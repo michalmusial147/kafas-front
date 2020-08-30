@@ -1,0 +1,6 @@
+elc\domain\RegistrationForm.class
+elc\domain\AppUser$AppUserBuilder.class
+elc\domain\Candidate.class
+elc\domain\LoginForm.class
+elc\domain\Role.class
+elc\domain\AppUser.class
