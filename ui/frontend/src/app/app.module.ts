@@ -9,7 +9,7 @@ import {ErrorInterceptor} from "./helpers";
 import {AppRoutingModule} from "./app-routing.module";
 import {JwtInterceptor} from "./helpers/jwt.interceptor";
 
-
+import { AlertModule } from 'bootstrap';
 @NgModule({
     imports: [
         BrowserModule,
