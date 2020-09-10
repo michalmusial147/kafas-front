@@ -26,7 +26,7 @@ public class Main implements CommandLineRunner {
     public void run(String... args) throws Exception {
         userRepository.save(AppUser.builder()
                 .id(1)
-                .username("0011")
+                .username("test")
                 .password(passwordEncoder.encode("test"))
                 .roles(Arrays.asList(Role.ROLE_ADMIN))
                 .build());

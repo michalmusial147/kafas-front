@@ -3,10 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {AppComponent} from "./app.component";
-import {HomeComponent} from "./components/home/home.component";
+import {HomeComponent} from "./components/home";
 import {LoginComponent} from "./components/login";
-import {ErrorInterceptor, fakeBackendProvider, JwtInterceptor} from "./helpers";
+import {ErrorInterceptor} from "./helpers";
 import {AppRoutingModule} from "./app-routing.module";
+import {JwtInterceptor} from "./helpers/jwt.interceptor";
 
 
 @NgModule({
