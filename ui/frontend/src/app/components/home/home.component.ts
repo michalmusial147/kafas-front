@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {first} from "rxjs/operators";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-home',
@@ -11,8 +12,12 @@ export class HomeComponent {
 
   constructor() { }
 
-  ngOnInit() {
-    this.loading = true;
+  myForm:FormGroup;
+  ngOnInit(){
+    this.myForm = new FormGroup({
+      'name':new FormControl(null), //note, can have up to 3 Constructor Params: default value, validators, AsyncValidators
+      'email':new FormControl(null,Validators.email)
 
+    })
   }
 }
