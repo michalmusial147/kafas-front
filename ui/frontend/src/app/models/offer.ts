@@ -11,6 +11,7 @@ export class Offer {
     country: string;
   }
   description: string;
+  datePosted: Date;
   photo: string;
 
   constructor() {
