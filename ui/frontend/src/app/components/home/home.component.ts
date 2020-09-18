@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
-import {first} from "rxjs/operators";
+import {catchError, first, map} from "rxjs/operators";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthenticationService} from "../../services/authentication";
 import {Router} from "@angular/router";
 import {Offer} from "../../models/offer";
+import {OffersService} from "../../services/offers/offers.service";
+import {throwError} from "rxjs";
 
 @Component({
   selector: 'app-home',
@@ -13,8 +15,8 @@ import {Offer} from "../../models/offer";
 export class HomeComponent {
   loading = false;
 
-  constructor( private authenticationService: AuthenticationService, private router: Router) { }
-
+  constructor( private authenticationService: AuthenticationService, private router: Router, private offersService: OffersService) { }
+  offers: Offer[];
   myForm:FormGroup;
   offerForm: any;
   newOfferType: any;
@@ -32,6 +34,15 @@ export class HomeComponent {
       'email':new FormControl(null,Validators.email)
 
     })
+    this.offersService.getCandidatesFromBackend()
+      .pipe(map(data => {
+          console.log(JSON.stringify(data));
+          this.offers = data;
+          return data;
+        }), catchError((err, caught) => {
+          return throwError(err);
+        })
+      ).subscribe();
   }
 
   onOfferFormSubmit() {
