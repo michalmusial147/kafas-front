@@ -1,5 +1,7 @@
 package elc.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import org.springframework.data.rest.core.annotation.RestResource;
 
@@ -21,12 +23,18 @@ public class Offer {
     private String type;
     private String rooms;
 
-    @OneToOne(fetch = FetchType.LAZY,
-            cascade =  CascadeType.ALL,
-            mappedBy = "offer")
-    private AppAddress address;
-
+    private String street;
+    private String city;
+    private String region;
+    private String postalCode;
+    private String country;
+    @Column(columnDefinition="TEXT")
     private String description;
     private Date datePosted;
     private String photo;
+
+    @JsonManagedReference
+    @ManyToOne
+    @JoinColumn(name = "appuser_id")
+    private AppUser appuser;
 }

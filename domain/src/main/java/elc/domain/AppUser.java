@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.List;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.security.core.GrantedAuthority;
@@ -16,6 +17,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 @NoArgsConstructor(access=AccessLevel.PUBLIC, force=true)
 @AllArgsConstructor
 @Builder
+@Table(name = "appusers")
 public class AppUser implements UserDetails {
 
   private static final long serialVersionUID = 1L;
@@ -29,9 +31,17 @@ public class AppUser implements UserDetails {
   private String lastName;
   private String token;
 
+  @JsonBackReference
+  @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "appuser")
+  private List<Offer> offers;
+
   @ElementCollection(fetch = FetchType.EAGER)
   @Setter
   private List<Role> roles;
+
+  public AppUser(int i, String username, String encode, String firstName, String lastName, String token, List<Role> roles) {
+
+  }
 
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {

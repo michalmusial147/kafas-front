@@ -39,11 +39,11 @@ export class HomeComponent {
     newOffer.title = this.newOfferTitle;
     newOffer.type = this.newOfferType;
     newOffer.rooms = this.newOfferRooms;
-    newOffer.address.street = this.newOfferStreet;
-    newOffer.address.city = this.newOfferCity;
-    newOffer.address.region = this.newOfferRegion;
-    newOffer.address.postalCode = this.newOfferPostalCode;
-    newOffer.address.country = this.newOfferCountry;
+    newOffer.street = this.newOfferStreet;
+    newOffer.city = this.newOfferCity;
+    newOffer.region = this.newOfferRegion;
+    newOffer.postalCode = this.newOfferPostalCode;
+    newOffer.country = this.newOfferCountry;
     newOffer.description = this.newOfferDescription;
     console.log(JSON.stringify(newOffer));
   }
