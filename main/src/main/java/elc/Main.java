@@ -56,6 +56,7 @@ public class Main implements CommandLineRunner {
                 .street("Waryńskiego 4")
                 .postalCode("91-075")
                 .appuser(userRepository.findByUsername("test"))
+
                 .build()
         );
         offerRepository.save(Offer.builder()

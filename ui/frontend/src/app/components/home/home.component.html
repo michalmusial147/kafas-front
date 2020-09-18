@@ -1,6 +1,7 @@
-<div class="row">
+<!-- Navbar -->
+
 <nav class="col-md-12 navbar navbar-icon-top navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">Globtrotter</a>
+  <a class="navbar-brand" href="#"><h2>Globtrotter</h2></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -58,9 +59,26 @@
     </div>
   </div>
 </nav>
-</div>
+
+<!-- Main -->
 <div class="row">
-  <div class="col-md-5 bg-primary" style="min-height: 1000px;">
+  <div class="col-md-5" style="min-height: 1000px;">
+    <ul class="list-group">
+      <div class="container">
+        <li *ngFor="let offer of offers" let="item container" class="list-group-item offer-list-item">
+          <div class="row">
+            <div class="col-md-7">
+              <h2>{{offer.title}}</h2>
+              <p>{{offer.description}}</p>
+            </div>
+            <div class="col-md-5">
+
+            </div>
+          </div>
+
+        </li>
+      </div>
+    </ul>
   </div>
   <div class="col-md-7">
     <div class="row h-100 flex-column">
