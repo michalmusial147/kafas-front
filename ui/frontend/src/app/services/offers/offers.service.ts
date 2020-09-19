@@ -35,4 +35,14 @@ export class OffersService {
       );
   }
 
+  putOfferOnBackend(offer: Offer) {
+    return this.http.put<any>(`${environment.apiUrl}/offers`, offer)
+      .pipe(map(offer => {
+          console.log(JSON.stringify(offer));
+          return offer;
+        }), catchError((err, caught) => {
+          return throwError(err);
+        })
+      );
+  }
 }

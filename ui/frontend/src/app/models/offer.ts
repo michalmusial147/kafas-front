@@ -9,9 +9,9 @@ export class Offer {
   postalCode: string;
   country: string;
   description: string;
-  datePosted: Date;
+  datePosted: string;
   photo: string;
   appuser: any;
   userId: any;
-  prize: string;
+  price: string;
 }

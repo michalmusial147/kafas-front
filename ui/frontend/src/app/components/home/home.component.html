@@ -7,10 +7,10 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item" data-toggle="modal" data-target="#exampleModalCenter">
+      <li (click)="addOffer()" class="nav-item" data-toggle="modal" data-target="#exampleModalCenter">
         <a class="nav-link">
             <span class="badge badge-warning" >+</span>
-          Add offer
+          Save
         </a>
       </li>
       <li class="nav-item dropdown">
@@ -59,9 +59,9 @@
             <div class="col-sm-5">
               <div style="text-align: end">
                 <span data-toggle="tooltip" data-placement="right" title="Click to show on map" class="badge badge-primary">{{offer.city}},{{offer.country}}</span>
-                <h3><span class="badge badge-secondary">{{offer.prize}}$</span></h3>
+                <h3><span class="badge badge-secondary">{{offer.price}}$</span></h3>
               </div>
-                <img [src]="this.sanitizer.bypassSecurityTrustResourceUrl(offer.photo)" alt="" />
+                <img class="fillingimg" [src]="this.sanitizer.bypassSecurityTrustResourceUrl(offer.photo)" alt="" />
             </div>
 
           </div>
@@ -180,9 +180,9 @@
                    [(ngModel)]="newOfferRooms" required>
           </div>
            <div>
-             <span class="form-label">Prize</span>
+             <span class="form-label">Price</span>
              <input class="form-control" type="number" placeholder="1" min="0"
-                    [(ngModel)]="newOfferPrize" required>
+                    [(ngModel)]="newOfferPrice" required>
            </div>
 
            <label class="input-file-label imp-bottom-button" for="inputfile">Add photo
@@ -192,7 +192,7 @@
                     name="inputfile"
                     class="input-file"
                     (change)="openCsvMapping($event)">
-             <img style="max-height: 150px" *ngIf="newOfferPhoto!=null" [src]="this.sanitizer.bypassSecurityTrustResourceUrl(newOfferPhoto)" alt="" />
+             <img class="fillingimg" style="max-height: 150px" *ngIf="newOfferPhoto!=null" [src]="this.sanitizer.bypassSecurityTrustResourceUrl(newOfferPhoto)" alt="" />
            </label>
         </div>
          <div class ="col-md-6">
@@ -477,22 +477,44 @@
 </div>
 
 
-<div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div *ngIf="currentClickerOffer!=null" class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle2">Offer form</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
+<!--      <div class="modal-header">-->
+<!--        <h5 style="text-align: center" class="modal-title" id="exampleModalLongTitle2">{{currentClickerOffer.title}}</h5>-->
+<!--        <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--          <span aria-hidden="true">&times;</span>-->
+<!--        </button>-->
+<!--      </div>-->
       <div>
         <div class="modal-body">
-
+          <div class="row h-25">
+<!--            <img style="max-height: 75%" [src]="this.sanitizer.bypassSecurityTrustResourceUrl(currentClickerOffer.photo)" alt="" />-->
+          </div>
+          <div class="card">
+            <div class="col-sm-5"></div>
+            <div class="row-cols-sm-4s">
+              <img class="fillingimg" [src]="this.sanitizer.bypassSecurityTrustResourceUrl(currentClickerOffer.photo)" alt="" />
+            </div>
+            <div  class="col-sm-5"></div>
+            <div class="card-body badge-light">
+              <h5 class="card-title">{{currentClickerOffer.title}}<span class="card-text"><small class="text-muted"> in {{currentClickerOffer.region}}, {{currentClickerOffer.country}}</small></span></h5>
+              <p class="card-text">{{currentClickerOffer.description}}</p>
+              <p class="card-text">{{currentClickerOffer.street}}, {{currentClickerOffer.city}}</p>
+              <p class="card-text">Type:{{currentClickerOffer.type}}</p>
+              <p class="card-text">Rooms:{{currentClickerOffer.rooms}}</p>
+              <p class="card-text"><small class="text-muted">Last updated {{currentClickerOffer.datePosted}}</small></p>
+              <p class="card-text"><small class="text-muted">Price per month {{currentClickerOffer.price}}$</small></p>
+            </div>
+          </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-primary submit-btn" (click)="onOfferFormSubmit()" data-dismiss="modal">Add offer</button>
+          <button (click)="editOffer()" data-toggle="modal" data-target="#exampleModalCenter"
+                  *ngIf="currentClickerOffer.userId == this.authenticationService.currentUserValue.id" type="button"
+                  class="btn btn-info" data-dismiss="modal" >Edit</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Go back</button>
+          <button type="button" class="btn btn-primary submit-btn"data-dismiss="modal">Show on map</button>
+          <button type="button" class="btn btn-primary submit-btn"data-dismiss="modal">Book</button>
         </div>
       </div>
     </div>

@@ -331,7 +331,7 @@ body {
 .offer-list-item{
   max-height:100%;
 }
-img {
+.fillingimg {
   max-width:100%;
   max-height:100%;
   min-width: 100%;

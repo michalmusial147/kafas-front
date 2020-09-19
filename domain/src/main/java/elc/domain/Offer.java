@@ -34,7 +34,7 @@ public class Offer {
     private Date datePosted;
     @Column(columnDefinition="TEXT")
     private String photo;
-    private int prize;
+    private int price;
     @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "appuser_id", nullable = false)

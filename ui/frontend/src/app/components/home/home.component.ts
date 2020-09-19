@@ -19,6 +19,7 @@ export class HomeComponent {
   constructor( public authenticationService: AuthenticationService, private router: Router, private offersService: OffersService,
                public sanitizer: DomSanitizer) { }
   offers: Offer[];
+  currentClickerOffer: Offer = null;
   myForm:FormGroup;
   offerForm: any;
   newOfferType: any;
@@ -31,7 +32,8 @@ export class HomeComponent {
   newOfferCountry: string;
   newOfferDescription: string;
   newOfferPhoto: string = null;
-  newOfferPrize: string;
+  newOfferPrice: string;
+  isEditClicked: boolean;
   ngOnInit(){
     this.myForm = new FormGroup({
       'name':new FormControl(null),
@@ -54,15 +56,29 @@ export class HomeComponent {
     newOffer.description = this.newOfferDescription;
     newOffer.photo = this.newOfferPhoto;
     newOffer.appuser = this.authenticationService.currentUserValue;
-    newOffer.prize = this.newOfferPrize;
+    newOffer.price = this.newOfferPrice;
     console.log(JSON.stringify(newOffer));
-    this.offersService.addOfferOnBackend(newOffer)
-      .pipe(map(data => {
-        this.getFromBackEnd();
-        }), catchError((err, caught) => {
-          return throwError(err);
-        })
-      ).subscribe();
+    if(this.isEditClicked){
+      newOffer.id = this.currentClickerOffer.id;
+      this.offersService.putOfferOnBackend(newOffer)
+        .pipe(map(data => {
+            this.getFromBackEnd();
+          }), catchError((err, caught) => {
+            return throwError(err);
+          })
+        ).subscribe();
+
+    }else{
+      newOffer.datePosted = Date.now().toString()
+      this.offersService.addOfferOnBackend(newOffer)
+        .pipe(map(data => {
+            this.getFromBackEnd();
+          }), catchError((err, caught) => {
+            return throwError(err);
+          })
+        ).subscribe();
+    }
+
   }
   getFromBackEnd(){
     this.offersService.getOffersFromBackend()
@@ -105,5 +121,37 @@ export class HomeComponent {
 
   showDetails(offer: Offer) {
     console.log(offer.description);
+    this.currentClickerOffer = offer;
+  }
+
+  editOffer() {
+    this.isEditClicked = true;
+    this.newOfferTitle = this.currentClickerOffer.title;
+    this.newOfferType = this.currentClickerOffer.type;
+    this.newOfferRooms = this.currentClickerOffer.rooms;
+    this.newOfferStreet = this.currentClickerOffer.street;
+    this.newOfferCity = this.currentClickerOffer.city;
+    this.newOfferRegion = this.currentClickerOffer.region;
+    this.newOfferPostalCode = this.currentClickerOffer.postalCode;
+    this.newOfferCountry  = this.currentClickerOffer.country;
+    this.newOfferDescription = this.currentClickerOffer.description;
+    this.newOfferPhoto = this.currentClickerOffer.photo;
+    this.newOfferPrice =  this.currentClickerOffer.price;
+  }
+
+  addOffer() {
+    //just clear form
+    this.isEditClicked = false;
+    this.newOfferTitle = "";
+    this.newOfferType = "";
+    this.newOfferRooms = "";
+    this.newOfferStreet = "";
+    this.newOfferCity = ""
+    this.newOfferRegion = "";
+    this.newOfferPostalCode = "";
+    this.newOfferCountry  = "";
+    this.newOfferDescription = "";
+    this.newOfferPhoto = "";
+    this.newOfferPrice =  "";
   }
 }
