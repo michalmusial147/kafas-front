@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.security.core.GrantedAuthority;
@@ -18,7 +19,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 @AllArgsConstructor
 @Builder
 @Table(name = "appusers")
-public class AppUser implements UserDetails {
+public class AppUser{
 
   private static final long serialVersionUID = 1L;
 
@@ -31,9 +32,10 @@ public class AppUser implements UserDetails {
   private String lastName;
   private String token;
 
-  @JsonBackReference
+  @JsonManagedReference
   @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "appuser")
   private List<Offer> offers;
+
 
   @ElementCollection(fetch = FetchType.EAGER)
   @Setter
@@ -43,34 +45,5 @@ public class AppUser implements UserDetails {
 
   }
 
-  @Override
-  public Collection<? extends GrantedAuthority> getAuthorities() {
-    return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
-  }
-
-  @Override
-  public String getUsername() {
-    return username;
-  }
-
-  @Override
-  public boolean isAccountNonExpired() {
-    return true;
-  }
-
-  @Override
-  public boolean isAccountNonLocked() {
-    return true;
-  }
-
-  @Override
-  public boolean isCredentialsNonExpired() {
-    return true;
-  }
-
-  @Override
-  public boolean isEnabled() {
-    return true;
-  }
 
 }

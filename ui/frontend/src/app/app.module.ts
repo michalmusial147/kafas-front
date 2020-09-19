@@ -10,13 +10,15 @@ import {AppRoutingModule} from "./app-routing.module";
 import {JwtInterceptor} from "./helpers/jwt.interceptor";
 
 import { AlertModule } from 'bootstrap';
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 @NgModule({
     imports: [
         BrowserModule,
         ReactiveFormsModule,
         HttpClientModule,
         AppRoutingModule,
-        FormsModule
+        FormsModule,
+        NgbModule
     ],
     declarations: [
         AppComponent,

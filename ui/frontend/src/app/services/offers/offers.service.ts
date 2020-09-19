@@ -13,12 +13,22 @@ export class OffersService {
   public candidates: Observable<Offer>;
   constructor(private http: HttpClient) { }
 
-  public getCandidatesFromBackend(): Observable<any> {
+  public getOffersFromBackend(): Observable<any> {
     return this.http.get<any>(`${environment.apiUrl}/offers
     `)
       .pipe(map(candidates => {
           console.log(JSON.stringify(candidates));
           return candidates;
+        }), catchError((err, caught) => {
+          return throwError(err);
+        })
+      );
+  }
+  public addOfferOnBackend(offer: Offer): Observable<any> {
+    return this.http.post<any>(`${environment.apiUrl}/offers`, offer)
+      .pipe(map(offer => {
+          console.log(JSON.stringify(offer));
+          return offer;
         }), catchError((err, caught) => {
           return throwError(err);
         })

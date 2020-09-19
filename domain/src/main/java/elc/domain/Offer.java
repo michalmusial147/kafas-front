@@ -1,5 +1,6 @@
 package elc.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
@@ -31,10 +32,13 @@ public class Offer {
     @Column(columnDefinition="TEXT")
     private String description;
     private Date datePosted;
+    @Column(columnDefinition="TEXT")
     private String photo;
-
-    @JsonManagedReference
+    private int prize;
+    @JsonBackReference
     @ManyToOne
-    @JoinColumn(name = "appuser_id")
+    @JoinColumn(name = "appuser_id", nullable = false)
     private AppUser appuser;
+
+    private int userId;
 }

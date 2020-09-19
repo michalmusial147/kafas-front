@@ -59,7 +59,7 @@ public class AuthenticationService {
 
 
     public String signup(AppUser appUser) throws Exception {
-        if (userRepository.existsById(appUser.getUsername())) {
+        if (userRepository.existsById(appUser.getId())) {
             throw new Exception();
         }
        else {

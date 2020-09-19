@@ -6,6 +6,7 @@ import {Router} from "@angular/router";
 import {Offer} from "../../models/offer";
 import {OffersService} from "../../services/offers/offers.service";
 import {throwError} from "rxjs";
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +16,8 @@ import {throwError} from "rxjs";
 export class HomeComponent {
   loading = false;
 
-  constructor( private authenticationService: AuthenticationService, private router: Router, private offersService: OffersService) { }
+  constructor( public authenticationService: AuthenticationService, private router: Router, private offersService: OffersService,
+               public sanitizer: DomSanitizer) { }
   offers: Offer[];
   myForm:FormGroup;
   offerForm: any;
@@ -28,21 +30,14 @@ export class HomeComponent {
   newOfferPostalCode: string;
   newOfferCountry: string;
   newOfferDescription: string;
+  newOfferPhoto: string = null;
   ngOnInit(){
     this.myForm = new FormGroup({
       'name':new FormControl(null),
       'email':new FormControl(null,Validators.email)
 
     })
-    this.offersService.getCandidatesFromBackend()
-      .pipe(map(data => {
-          console.log(JSON.stringify(data));
-          this.offers = data;
-          return data;
-        }), catchError((err, caught) => {
-          return throwError(err);
-        })
-      ).subscribe();
+    this.getFromBackEnd();
   }
 
   onOfferFormSubmit() {
@@ -56,9 +51,28 @@ export class HomeComponent {
     newOffer.postalCode = this.newOfferPostalCode;
     newOffer.country = this.newOfferCountry;
     newOffer.description = this.newOfferDescription;
+    newOffer.photo = this.newOfferPhoto;
+    newOffer.appuser = this.authenticationService.currentUserValue;
     console.log(JSON.stringify(newOffer));
+    this.offersService.addOfferOnBackend(newOffer)
+      .pipe(map(data => {
+        this.getFromBackEnd();
+        }), catchError((err, caught) => {
+          return throwError(err);
+        })
+      ).subscribe();
   }
-
+  getFromBackEnd(){
+    this.offersService.getOffersFromBackend()
+      .pipe(map(data => {
+          console.log(JSON.stringify(data));
+          this.offers = data;
+          return data;
+        }), catchError((err, caught) => {
+          return throwError(err);
+        })
+      ).subscribe();
+  }
   checkIfRoomIsChosen() {
     if(this.newOfferType == "Room"){
       return true;
@@ -70,4 +84,21 @@ export class HomeComponent {
     this.authenticationService.logout();
     this.router.navigate(['/login']);
   }
+
+  openCsvMapping(event) {
+
+    const input = event.target;
+
+    var reader = new FileReader();
+
+    reader.onload = () => {
+      let data = reader.result;
+
+      console.log(data)
+      this.newOfferPhoto = data.toString();
+      return;
+    };
+    reader.readAsDataURL(input.files[0]);
+  }
+
 }

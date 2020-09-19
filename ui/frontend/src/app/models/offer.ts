@@ -11,5 +11,7 @@ export class Offer {
   description: string;
   datePosted: Date;
   photo: string;
-
+  appuser: any;
+  userId: any;
+  prize: number;
 }

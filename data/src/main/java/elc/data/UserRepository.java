@@ -5,7 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.Map;
 
-public interface UserRepository extends CrudRepository<AppUser, String> {
+public interface UserRepository extends CrudRepository<AppUser, Integer> {
 
     AppUser findByUsername(String userName);
 }

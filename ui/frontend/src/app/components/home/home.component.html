@@ -7,19 +7,6 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">
-          <em class="fa fa-home"></em>
-          Home
-          <span class="sr-only">(current)</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-            <span class="badge badge-danger">11</span>
-          Link
-        </a>
-      </li>
       <li class="nav-item" data-toggle="modal" data-target="#exampleModalCenter">
         <a class="nav-link">
             <span class="badge badge-warning" >+</span>
@@ -53,120 +40,114 @@
         </a>
       </li>
     </ul>
-    <div class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </div>
   </div>
 </nav>
 
 <!-- Main -->
 <div class="row">
+  <div class="col-md-1"></div>
   <div class="col-md-5" style="min-height: 1000px;">
     <ul class="list-group">
       <div class="container">
-        <li *ngFor="let offer of offers" let="item container" class="list-group-item offer-list-item">
+        <li *ngFor="let offer of offers" let="item container" class="list-group-item offer-list-item bg-light" style=" margin-top: 25px;margin-bottom: 5px;margin-right: 25px;margin-left: 25px;">
           <div class="row">
             <div class="col-md-7">
-              <h2>{{offer.title}}</h2>
+              <h3>{{offer.title}}</h3>
               <p>{{offer.description}}</p>
-            </div>
-            <div class="col-md-5">
+
+              <p class="badge badge-info" *ngIf="offer.userId == this.authenticationService.currentUserValue.id">Your's offer</p>
 
             </div>
+            <div class="col-sm-5">
+              <div style="text-align: end">
+                <span class="badge badge-primary">{{offer.city}},{{offer.country}}</span>
+                <h3><span class="badge badge-secondary">{{offer.prize}}$</span></h3>
+              </div>
+                <img [src]="this.sanitizer.bypassSecurityTrustResourceUrl(offer.photo)" alt="" />
+            </div>
+
           </div>
-
         </li>
       </div>
     </ul>
   </div>
-  <div class="col-md-7">
-    <div class="row h-100 flex-column">
-      <div class="col-md-6 mw-100">
-        <div class="row">
-          <button class="btn-primary">Details</button>
-          <button class="btn-primary">Add new</button>
-          <button class="btn-primary">Search
-          </button>
-        </div>
-        <div class="row">
-          <div class="col ">
-          <h1>Title</h1>
+  <div class="col-md-5">
+    <div class="container">
+      <div class="row h-100 flex-column">
+        <div class="col-md-6 mw-100">
+          <div class="row">
+            <div class="col ">
+            <h1>Title</h1>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col">
-<!--            <div>-->
-<!--              <Button  class="btn-primary">Search</Button>-->
-<!--              <Button  class="btn-primary"></Button>-->
-<!--            </div>-->
-            <div>
-              <div class="form-group">
-                <span class="form-label">Your Destination</span>
-                <input class="form-control" type="text" placeholder="Enter a destination or hotel name">
-              </div>
-              <div class="row">
-                <div class="col-sm-6">
-                  <div class="form-group">
-                    <span class="form-label">Check In</span>
-                    <input class="form-control" type="date" required>
+          <div class="row">
+            <div class="col">
+              <div>
+                <div class="form-group">
+                  <span class="form-label">Your Destination</span>
+                  <input class="form-control" type="text" placeholder="Enter a destination or hotel name">
+                </div>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <span class="form-label">Check In</span>
+                      <input class="form-control" type="date" required>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <span class="form-label">Check out</span>
+                      <input class="form-control" type="date" required>
+                    </div>
                   </div>
                 </div>
-                <div class="col-sm-6">
-                  <div class="form-group">
-                    <span class="form-label">Check out</span>
-                    <input class="form-control" type="date" required>
+                <div class="row">
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <span class="form-label">Rooms</span>
+                      <select class="form-control">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                      </select>
+                      <span class="select-arrow"></span>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <span class="form-label">Adults</span>
+                      <select class="form-control">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                      </select>
+                      <span class="select-arrow"></span>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <span class="form-label">Children</span>
+                      <select class="form-control">
+                        <option>0</option>
+                        <option>1</option>
+                        <option>2</option>
+                      </select>
+                      <span class="select-arrow"></span>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="row">
-                <div class="col-sm-4">
-                  <div class="form-group">
-                    <span class="form-label">Rooms</span>
-                    <select class="form-control">
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                    </select>
-                    <span class="select-arrow"></span>
-                  </div>
+                <div class="form-btn">
+                  <button class="submit-btn">Search</button>
                 </div>
-                <div class="col-sm-4">
-                  <div class="form-group">
-                    <span class="form-label">Adults</span>
-                    <select class="form-control">
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                    </select>
-                    <span class="select-arrow"></span>
-                  </div>
-                </div>
-                <div class="col-sm-4">
-                  <div class="form-group">
-                    <span class="form-label">Children</span>
-                    <select class="form-control">
-                      <option>0</option>
-                      <option>1</option>
-                      <option>2</option>
-                    </select>
-                    <span class="select-arrow"></span>
-                  </div>
-                </div>
-              </div>
-              <div class="form-btn">
-                <button class="submit-btn">Search</button>
               </div>
             </div>
           </div>
-          <div class="col image-background">
-
-          </div>
         </div>
-      </div>
       <div class="col-md-6 mw-100 bg-success"></div>
     </div>
   </div>
+  </div>
+  <div class="col-md-1"></div>
 </div>
 <!-- Modal -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -200,6 +181,16 @@
             <input [disabled]="checkIfRoomIsChosen()" class="form-control" type="number" placeholder="1" min="0"
                    [(ngModel)]="newOfferRooms" required>
           </div>
+
+           <label class="input-file-label imp-bottom-button" for="inputfile">Add photo
+             <input
+               type="file"
+                    id="inputfile"
+                    name="inputfile"
+                    class="input-file"
+                    (change)="openCsvMapping($event)">
+             <img *ngIf="newOfferPhoto!=null" [src]="this.sanitizer.bypassSecurityTrustResourceUrl(newOfferPhoto)" alt="" />
+           </label>
         </div>
          <div class ="col-md-6">
            <div class="form-group">
