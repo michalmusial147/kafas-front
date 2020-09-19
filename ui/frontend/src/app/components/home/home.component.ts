@@ -5,7 +5,7 @@ import {AuthenticationService} from "../../services/authentication";
 import {Router} from "@angular/router";
 import {Offer} from "../../models/offer";
 import {OffersService} from "../../services/offers/offers.service";
-import {throwError} from "rxjs";
+import {of, throwError} from "rxjs";
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
@@ -31,6 +31,7 @@ export class HomeComponent {
   newOfferCountry: string;
   newOfferDescription: string;
   newOfferPhoto: string = null;
+  newOfferPrize: string;
   ngOnInit(){
     this.myForm = new FormGroup({
       'name':new FormControl(null),
@@ -53,6 +54,7 @@ export class HomeComponent {
     newOffer.description = this.newOfferDescription;
     newOffer.photo = this.newOfferPhoto;
     newOffer.appuser = this.authenticationService.currentUserValue;
+    newOffer.prize = this.newOfferPrize;
     console.log(JSON.stringify(newOffer));
     this.offersService.addOfferOnBackend(newOffer)
       .pipe(map(data => {
@@ -101,4 +103,7 @@ export class HomeComponent {
     reader.readAsDataURL(input.files[0]);
   }
 
+  showDetails(offer: Offer) {
+    console.log(offer.description);
+  }
 }

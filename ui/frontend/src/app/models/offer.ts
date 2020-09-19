@@ -13,5 +13,5 @@ export class Offer {
   photo: string;
   appuser: any;
   userId: any;
-  prize: number;
+  prize: string;
 }

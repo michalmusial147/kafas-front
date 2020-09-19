@@ -22,10 +22,6 @@
          Menu
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
           <a class="dropdown-item" (click)="logout()" >Logout</a>
         </div>
       </li>
@@ -49,18 +45,20 @@
   <div class="col-md-5" style="min-height: 1000px;">
     <ul class="list-group">
       <div class="container">
-        <li *ngFor="let offer of offers" let="item container" class="list-group-item offer-list-item bg-light" style=" margin-top: 25px;margin-bottom: 5px;margin-right: 25px;margin-left: 25px;">
+        <li data-toggle="modal" data-target="#exampleModalCenter2" (click)="showDetails(offer)"  data-placement="right" title="Click to show details" class="badge badge-primary" *ngFor="let offer of offers"
+            let="item container" class="list-group-item offer-list-item bg-light"
+            style=" margin-top: 25px;margin-bottom: 5px;margin-right: 25px;margin-left: 25px;">
           <div class="row">
             <div class="col-md-7">
               <h3>{{offer.title}}</h3>
               <p>{{offer.description}}</p>
 
-              <p class="badge badge-info" *ngIf="offer.userId == this.authenticationService.currentUserValue.id">Your's offer</p>
+              <p class="badge badge-info "  *ngIf="offer.userId == this.authenticationService.currentUserValue.id">Your's offer</p>
 
             </div>
             <div class="col-sm-5">
               <div style="text-align: end">
-                <span class="badge badge-primary">{{offer.city}},{{offer.country}}</span>
+                <span data-toggle="tooltip" data-placement="right" title="Click to show on map" class="badge badge-primary">{{offer.city}},{{offer.country}}</span>
                 <h3><span class="badge badge-secondary">{{offer.prize}}$</span></h3>
               </div>
                 <img [src]="this.sanitizer.bypassSecurityTrustResourceUrl(offer.photo)" alt="" />
@@ -181,6 +179,11 @@
             <input [disabled]="checkIfRoomIsChosen()" class="form-control" type="number" placeholder="1" min="0"
                    [(ngModel)]="newOfferRooms" required>
           </div>
+           <div>
+             <span class="form-label">Prize</span>
+             <input class="form-control" type="number" placeholder="1" min="0"
+                    [(ngModel)]="newOfferPrize" required>
+           </div>
 
            <label class="input-file-label imp-bottom-button" for="inputfile">Add photo
              <input
@@ -189,7 +192,7 @@
                     name="inputfile"
                     class="input-file"
                     (change)="openCsvMapping($event)">
-             <img *ngIf="newOfferPhoto!=null" [src]="this.sanitizer.bypassSecurityTrustResourceUrl(newOfferPhoto)" alt="" />
+             <img style="max-height: 150px" *ngIf="newOfferPhoto!=null" [src]="this.sanitizer.bypassSecurityTrustResourceUrl(newOfferPhoto)" alt="" />
            </label>
         </div>
          <div class ="col-md-6">
@@ -460,10 +463,33 @@
          <div class="row">
            <div class="col-md-12">
              <label for="exampleFormControlTextarea1">Description</label>
-             <textarea [(ngModel)]="newOfferDescription" class="form-control rounded-0" id="exampleFormControlTextarea1" rows="5"></textarea>
+             <textarea [(ngModel)]="newOfferDescription" class="form-control rounded-0" id="exampleFormControlTextarea1" rows="3"></textarea>
            </div>
          </div>
        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary submit-btn" (click)="onOfferFormSubmit()" data-dismiss="modal">Add offer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle2">Offer form</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div>
+        <div class="modal-body">
+
+        </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
           <button type="button" class="btn btn-primary submit-btn" (click)="onOfferFormSubmit()" data-dismiss="modal">Add offer</button>
