@@ -7,6 +7,8 @@ import {Offer} from "../../models/offer";
 import {OffersService} from "../../services/offers/offers.service";
 import {of, throwError} from "rxjs";
 import { DomSanitizer } from '@angular/platform-browser';
+import {User} from "../../models/user";
+import {AppUserService} from "../../services/appUser/app-user.service";
 
 @Component({
   selector: 'app-home',
@@ -17,8 +19,9 @@ export class HomeComponent {
   loading = false;
 
   constructor( public authenticationService: AuthenticationService, private router: Router, private offersService: OffersService,
-               public sanitizer: DomSanitizer) { }
+               public sanitizer: DomSanitizer, private userService: AppUserService) { }
   offers: Offer[];
+  users: User[];
   currentClickerOffer: Offer = null;
   myForm:FormGroup;
   offerForm: any;
@@ -59,6 +62,7 @@ export class HomeComponent {
     })
     console.log(JSON.stringify(this.authenticationService.currentUserValue.roles));
     this.getNewestOffersFromBackEnd();
+    this.getUsers();
   }
 
   onOfferFormSubmit() {
@@ -86,7 +90,7 @@ export class HomeComponent {
         ).subscribe();
 
     }else{
-      newOffer.datePosted = Date.now().toString()
+      newOffer.datePosted = new Date();
       this.offersService.addOfferOnBackend(newOffer)
         .pipe(map(data => {
             this.getNewestOffersFromBackEnd();
@@ -222,5 +226,44 @@ export class HomeComponent {
           return throwError(err);
         })
       ).subscribe();
+  }
+
+  private getUsers() {
+    this.userService.getUsersFromBackend()
+      .pipe(map(data => {
+          this.users = data;
+          return data;
+        }), catchError((err, caught) => {
+          return throwError(err);
+        })
+      ).subscribe();
+  }
+
+  calculateOffers() {
+    let filt
+    if(this.offers!=null) {
+     filt = this.offers.filter(x => this.isToday(x.datePosted))
+      return filt.length;
+    }
+   else{return 0;}
+  }
+
+   isToday = (someDate0) => {
+    console.log(someDate0)
+    const today = new Date()
+     let realDateObject = new Date(someDate0);
+    return realDateObject.getDate() == today.getDate() &&
+      realDateObject.getMonth() == today.getMonth() &&
+      realDateObject.getFullYear() == today.getFullYear()
+  }
+
+  checkIfUserIsAdmin() {
+    if(this.authenticationService.currentUserValue.roles.includes("ROLE_ADMIN")){
+      return true
+    }
+    else{
+      return false;
+    }
+
   }
 }

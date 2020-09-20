@@ -49,7 +49,7 @@ public class OfferController {
         }
         offers.forEach(offer -> {offer.setUserId(offer.getAppuser().getId());});
 
-        if(destination!=null && destination!="undefined"){
+        if(destination!=null && !destination.equals("undefined") && !destination.equals("")){
             Iterable<Offer> finalOffers = offers;
             offers = () -> StreamSupport.stream(finalOffers.spliterator(), false)
                     .filter(offer -> offer.getTitle().toLowerCase().contains(destination.toLowerCase())
@@ -58,7 +58,7 @@ public class OfferController {
                     .iterator();
         }
 
-        if(rooms!=null && rooms!="undefined"){
+        if(rooms!=null && !rooms.equals("undefined") && !rooms.equals("")){
             Iterable<Offer> finalOffers = offers;
             offers = () -> StreamSupport.stream(finalOffers.spliterator(), false)
                     .filter(offer -> offer.getRooms().equals(rooms))
@@ -87,4 +87,5 @@ public class OfferController {
         offerRepository.deleteById(id);
         return new ResponseEntity(HttpStatus.OK);
     }
+
 }

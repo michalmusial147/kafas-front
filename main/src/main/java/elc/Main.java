@@ -35,15 +35,26 @@ public class Main implements CommandLineRunner {
                 .username("admin")
                 .password(passwordEncoder.encode("test"))
                 .roles(Arrays.asList(Role.ROLE_ADMIN))
+                .firstName("Mariusz")
+                .lastName("Pudzianowski")
                 .build());
 
         userRepository.save(AppUser.builder()
                 .id(2)
                 .username("user")
-                .password(passwordEncoder.encode("test2"))
+                .password(passwordEncoder.encode("test"))
                 .roles(Arrays.asList(Role.ROLE_USER))
+                .firstName("Robert")
+                .lastName("Kubica")
                 .build());
-
+        userRepository.save(AppUser.builder()
+                .id(3)
+                .username("user2")
+                .password(passwordEncoder.encode("test"))
+                .roles(Arrays.asList(Role.ROLE_USER))
+                .firstName("Adam")
+                .lastName("Malysz")
+                .build());
 
         offerRepository.save(Offer.builder()
                 .description("Przyjazdne miejsce, wolne od wirusa. Zapraszamy do kontaktu")

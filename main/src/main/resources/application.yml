@@ -7,10 +7,9 @@ spring:
         persistence:
           schema-generation:
             scripts:
-              action: create
-              create-source: metadata
-              create-target: create.sql
-              drop-source: metadata
+#              action: create
+#              create-source: metadata
+#              create-target: create.sql
       hibernate:
         jdbc:
           lob:

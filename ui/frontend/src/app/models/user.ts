@@ -4,6 +4,7 @@
     password: string;
     firstName: string;
     lastName: string;
+    offers: any;
     token?: string;
     authorities: any;
     roles: any;
