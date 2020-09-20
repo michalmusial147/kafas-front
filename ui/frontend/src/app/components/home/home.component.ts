@@ -21,6 +21,7 @@ export class HomeComponent {
   constructor( public authenticationService: AuthenticationService, private router: Router, private offersService: OffersService,
                public sanitizer: DomSanitizer, private userService: AppUserService) { }
   offers: Offer[];
+  copiedOffers: Offer[];
   users: User[];
   currentClickerOffer: Offer = null;
   myForm:FormGroup;
@@ -105,6 +106,7 @@ export class HomeComponent {
     this.offersService.getOffersFromBackend("newest")
       .pipe(map(data => {
           this.offers = data;
+          this.copiedOffers = data;
           return data;
         }), catchError((err, caught) => {
           return throwError(err);
@@ -209,6 +211,7 @@ export class HomeComponent {
     this.offersService.getOffersFromBackend(sortparam)
       .pipe(map(data => {
           this.offers = data;
+          this.copiedOffers = data;
           return data;
         }), catchError((err, caught) => {
           return throwError(err);
@@ -221,6 +224,7 @@ export class HomeComponent {
       this.searchAdults,this.searchChildren, this.getSortinType())
       .pipe(map(data => {
           this.offers = data;
+          this.copiedOffers= data
           return data;
         }), catchError((err, caught) => {
           return throwError(err);
@@ -242,7 +246,7 @@ export class HomeComponent {
   calculateOffers() {
     let filt
     if(this.offers!=null) {
-     filt = this.offers.filter(x => this.isToday(x.datePosted))
+     filt = this.copiedOffers.filter(x => this.isToday(x.datePosted))
       return filt.length;
     }
    else{return 0;}
@@ -265,5 +269,10 @@ export class HomeComponent {
       return false;
     }
 
+  }
+
+  showUserOffers(id) {
+    console.log(id)
+    this.offers = this.copiedOffers.filter(offer => offer.userId==id);
   }
 }
