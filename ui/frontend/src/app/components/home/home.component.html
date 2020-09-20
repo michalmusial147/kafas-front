@@ -70,6 +70,7 @@
                       <div class="form-group">
                         <span class="form-label">Rooms</span>
                         <select [(ngModel)]="searchRooms" class="form-control">
+                          <option>any</option>
                           <option>1</option>
                           <option>2</option>
                           <option>3</option>
@@ -81,9 +82,11 @@
                       <div class="form-group">
                         <span class="form-label">Adults</span>
                         <select [(ngModel)]="searchAdults" class="form-control">
+                          <option>any</option>
                           <option>1</option>
                           <option>2</option>
                           <option>3</option>
+                          <option>4</option>
                         </select>
                         <span class="select-arrow"></span>
                       </div>
@@ -92,9 +95,12 @@
                       <div class="form-group">
                         <span class="form-label">Children</span>
                         <select  [(ngModel)]="searchChildren"  class="form-control">
+                          <option>any</option>
                           <option>0</option>
                           <option>1</option>
                           <option>2</option>
+                          <option>3</option>
+                          <option>4</option>
                         </select>
                         <span class="select-arrow"></span>
                       </div>
@@ -172,7 +178,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div >
+      <div>
        <div class="modal-body">
          <div class="row">
          <div class = "col-sm-6">

@@ -53,9 +53,9 @@ export class HomeComponent {
   searchDestinationName: any;
   searchCheckInDate: any;
   searchCheckOutDate: any;
-  searchRooms: any;
-  searchAdults: any;
-  searchChildren: any;
+  searchRooms = "any";
+  searchAdults = "any";
+  searchChildren = "any";
   ngOnInit(){
     this.myForm = new FormGroup({
       'name':new FormControl(null),
