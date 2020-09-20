@@ -1,7 +1,7 @@
 <!-- Navbar -->
 
 <nav class="col-md-12 navbar navbar-icon-top navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#"><h2>Globtrotter</h2></a>
+  <a class="navbar-brand" href="#"><h2>Globtroter</h2></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -58,19 +58,19 @@
                 <div>
                   <div class="form-group">
                     <span class="form-label">Your Destination</span>
-                    <input class="form-control" type="text" placeholder="Enter a destination or hotel name">
+                    <input [(ngModel)]="searchDestinationName" class="form-control" type="text" placeholder="Enter a destination or hotel name">
                   </div>
-                  <div class="row">
+                  <div  class="row">
                     <div class="col-sm-6">
                       <div class="form-group">
                         <span class="form-label">Check In</span>
-                        <input class="form-control" type="date" required>
+                        <input disabled [(ngModel)]="searchCheckInDate" class="form-control" type="date" required>
                       </div>
                     </div>
                     <div class="col-sm-6">
                       <div class="form-group">
                         <span class="form-label">Check out</span>
-                        <input class="form-control" type="date" required>
+                        <input disabled [(ngModel)]="searchCheckOutDate" class="form-control" type="date" required>
                       </div>
                     </div>
                   </div>
@@ -78,7 +78,7 @@
                     <div class="col-sm-4">
                       <div class="form-group">
                         <span class="form-label">Rooms</span>
-                        <select class="form-control">
+                        <select [(ngModel)]="searchRooms" class="form-control">
                           <option>1</option>
                           <option>2</option>
                           <option>3</option>
@@ -89,7 +89,7 @@
                     <div class="col-sm-4">
                       <div class="form-group">
                         <span class="form-label">Adults</span>
-                        <select class="form-control">
+                        <select [(ngModel)]="searchAdults" class="form-control">
                           <option>1</option>
                           <option>2</option>
                           <option>3</option>
@@ -100,7 +100,7 @@
                     <div class="col-sm-4">
                       <div class="form-group">
                         <span class="form-label">Children</span>
-                        <select class="form-control">
+                        <select  [(ngModel)]="searchChildren"  class="form-control">
                           <option>0</option>
                           <option>1</option>
                           <option>2</option>
@@ -110,7 +110,7 @@
                     </div>
                   </div>
                   <div class="form-btn">
-                    <button class="submit-btn">Search</button>
+                    <button class="submit-btn" (click)="searchForOffers()">Search</button>
                   </div>
                 </div>
               </div>
@@ -215,7 +215,7 @@
                     id="inputfile"
                     name="inputfile"
                     class="input-file"
-                    (change)="openCsvMapping($event)">
+                    (change)="openImgFile($event)">
              <img class="fillingimg" style="max-height: 150px" *ngIf="newOfferPhoto!=null" [src]="this.sanitizer.bypassSecurityTrustResourceUrl(newOfferPhoto)" alt="" />
            </label>
         </div>
@@ -495,7 +495,7 @@
           <button *ngIf="newOfferUserId!=null && newOfferUserId==this.authenticationService.currentUserValue.id"
                   (click)="deleteOffer(currentClickerOffer.id)"type="button" class="btn btn-danger" data-dismiss="modal">Delete</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-primary submit-btn" (click)="onOfferFormSubmit()" data-dismiss="modal">Add offer</button>
+          <button type="button" class="btn btn-primary submit-btn" (click)="onOfferFormSubmit()" data-dismiss="modal">Save offer</button>
         </div>
       </div>
     </div>
@@ -539,8 +539,8 @@
                   *ngIf="currentClickerOffer.userId == this.authenticationService.currentUserValue.id" type="button"
                   class="btn btn-info" data-dismiss="modal" >Edit</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Go back</button>
-          <button type="button" class="btn btn-primary submit-btn"data-dismiss="modal">Show on map</button>
-          <button type="button" class="btn btn-primary submit-btn"data-dismiss="modal">Book</button>
+          <button type="button" disabled class="btn btn-primary submit-btn"data-dismiss="modal">Show on map</button>
+          <button type="button" disabled class="btn btn-primary submit-btn"data-dismiss="modal">Book</button>
         </div>
       </div>
     </div>

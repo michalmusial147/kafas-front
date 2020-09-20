@@ -10,6 +10,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @RestController
 @RequestMapping("/offers")
@@ -22,24 +25,49 @@ public class OfferController {
     UserRepository userRepository;
 
     @GetMapping
-    public Iterable<Offer> getAll(@RequestParam String sortBy) {
-       if(sortBy!=null)
+    public Iterable<Offer> getAll(@RequestParam(value = "sortBy", required = false) String sortBy,
+                                  @RequestParam(value = "destination", required = false) String destination,
+                                  @RequestParam(value = "rooms", required = false) String rooms) {
+        System.out.println("getall reached");
+       if(sortBy==null)
             System.out.println(sortBy);
         Iterable<Offer> offers = null;
-       if(sortBy.equals("newest")){
+        if(sortBy==null){
+            offers = offerRepository.findAll();
+        }
+       else if(sortBy.equals("newest")){
             offers = offerRepository.findAllByOrderByDatePostedDesc();
        }
-        if(sortBy.equals("oldest")){
+        else if(sortBy.equals("oldest")){
              offers = offerRepository.findAllByOrderByDatePostedAsc();
         }
-        if(sortBy.equals("low_price")){
+        else if(sortBy.equals("low_price")){
             offers = offerRepository.findAllByOrderByPriceAsc();
         }
-        if(sortBy.equals("high_price")){
+       else if(sortBy.equals("high_price")){
             offers = offerRepository.findAllByOrderByPriceDesc();
         }
         offers.forEach(offer -> {offer.setUserId(offer.getAppuser().getId());});
-        return offers;
+
+        if(destination!=null && destination!="undefined"){
+            Iterable<Offer> finalOffers = offers;
+            offers = () -> StreamSupport.stream(finalOffers.spliterator(), false)
+                    .filter(offer -> offer.getTitle().toLowerCase().contains(destination.toLowerCase())
+                            || offer.getCity().toLowerCase().contains(destination.toLowerCase())
+                            || offer.getRegion().toLowerCase().contains(destination.toLowerCase()))
+                    .iterator();
+        }
+
+        if(rooms!=null && rooms!="undefined"){
+            Iterable<Offer> finalOffers = offers;
+            offers = () -> StreamSupport.stream(finalOffers.spliterator(), false)
+                    .filter(offer -> offer.getRooms().equals(rooms))
+                    .iterator();
+        }
+        List<Offer> array = StreamSupport
+                .stream(offers.spliterator(), false)
+                .collect(Collectors.toList());
+        return array;
     }
 
     @PostMapping

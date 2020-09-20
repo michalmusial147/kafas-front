@@ -46,12 +46,18 @@ export class HomeComponent {
     {name : "High price",
       key: "high_price"}
   ]
+  searchDestinationName: any;
+  searchCheckInDate: any;
+  searchCheckOutDate: any;
+  searchRooms: any;
+  searchAdults: any;
+  searchChildren: any;
   ngOnInit(){
     this.myForm = new FormGroup({
       'name':new FormControl(null),
       'email':new FormControl(null,Validators.email)
-
     })
+    console.log(JSON.stringify(this.authenticationService.currentUserValue.roles));
     this.getNewestOffersFromBackEnd();
   }
 
@@ -69,7 +75,6 @@ export class HomeComponent {
     newOffer.photo = this.newOfferPhoto;
     newOffer.appuser = this.authenticationService.currentUserValue;
     newOffer.price = this.newOfferPrice;
-    console.log(JSON.stringify(newOffer));
     if(this.isEditClicked){
       newOffer.id = this.currentClickerOffer.id;
       this.offersService.putOfferOnBackend(newOffer)
@@ -95,7 +100,6 @@ export class HomeComponent {
   getNewestOffersFromBackEnd(){
     this.offersService.getOffersFromBackend("newest")
       .pipe(map(data => {
-          console.log(JSON.stringify(data));
           this.offers = data;
           return data;
         }), catchError((err, caught) => {
@@ -115,7 +119,7 @@ export class HomeComponent {
     this.router.navigate(['/login']);
   }
 
-  openCsvMapping(event) {
+  openImgFile(event) {
 
     const input = event.target;
 
@@ -124,7 +128,6 @@ export class HomeComponent {
     reader.onload = () => {
       let data = reader.result;
 
-      console.log(data)
       this.newOfferPhoto = data.toString();
       return;
     };
@@ -132,7 +135,6 @@ export class HomeComponent {
   }
 
   showDetails(offer: Offer) {
-    console.log(offer.description);
     this.currentClickerOffer = offer;
   }
 
@@ -168,9 +170,7 @@ export class HomeComponent {
     this.newOfferPrice =  "";
     this.newOfferUserId = null;
   }
-
-  sortingTypeChanged() {
-    console.log(this.sortingType);
+  getSortinType(){
     let param;
     if(this.sortingType == "Newest"){
       param = "newest";
@@ -184,7 +184,10 @@ export class HomeComponent {
     else if(this.sortingType == "High price"){
       param = "high_price";
     }
-    this.getOffersFromBackEndWithParam(param);
+     return param;
+  }
+  sortingTypeChanged() {
+    this.getOffersFromBackEndWithParam(this.getSortinType());
   }
 
   deleteOffer(id: number) {
@@ -200,6 +203,18 @@ export class HomeComponent {
 
   private getOffersFromBackEndWithParam(sortparam: string) {
     this.offersService.getOffersFromBackend(sortparam)
+      .pipe(map(data => {
+          this.offers = data;
+          return data;
+        }), catchError((err, caught) => {
+          return throwError(err);
+        })
+      ).subscribe();
+  }
+
+  searchForOffers() {
+    this.offersService.getSearchOffersFromBackend(this.searchDestinationName, this.searchCheckInDate, this.searchCheckOutDate, this.searchRooms,
+      this.searchAdults,this.searchChildren, this.getSortinType())
       .pipe(map(data => {
           this.offers = data;
           return data;

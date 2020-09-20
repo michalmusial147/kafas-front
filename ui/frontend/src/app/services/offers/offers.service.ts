@@ -14,10 +14,8 @@ export class OffersService {
   constructor(private http: HttpClient) { }
 
   public getOffersFromBackend(sortparam: string): Observable<any> {
-    console.log(`offers?sortBy=`+sortparam);
     return this.http.get<any>(`${environment.apiUrl}/offers?sortBy=`+sortparam)
       .pipe(map(candidates => {
-          console.log(JSON.stringify(candidates));
           return candidates;
         }), catchError((err, caught) => {
           return throwError(err);
@@ -27,7 +25,6 @@ export class OffersService {
   public addOfferOnBackend(offer: Offer): Observable<any> {
     return this.http.post<any>(`${environment.apiUrl}/offers`, offer)
       .pipe(map(offer => {
-          console.log(JSON.stringify(offer));
           return offer;
         }), catchError((err, caught) => {
           return throwError(err);
@@ -38,7 +35,6 @@ export class OffersService {
   putOfferOnBackend(offer: Offer) {
     return this.http.put<any>(`${environment.apiUrl}/offers`, offer)
       .pipe(map(offer => {
-          console.log(JSON.stringify(offer));
           return offer;
         }), catchError((err, caught) => {
           return throwError(err);
@@ -56,4 +52,15 @@ export class OffersService {
       );
   }
 
+  getSearchOffersFromBackend(searchDestinationName: any, searchCheckInDate: any, searchCheckOutDate: any,
+                             searchRooms: any, searchAdults: any, searchChildren: any, sortparam: any): Observable<any>
+  {
+    return this.http.get<any>(`${environment.apiUrl}/offers?sortBy=${sortparam}&destination=${searchDestinationName}&rooms=${searchRooms}`)
+      .pipe(map(offers => {
+          return offers;
+        }), catchError((err, caught) => {
+          return throwError(err);
+        })
+      );
+  }
 }
