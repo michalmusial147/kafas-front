@@ -13,9 +13,9 @@ export class OffersService {
   public candidates: Observable<Offer>;
   constructor(private http: HttpClient) { }
 
-  public getOffersFromBackend(): Observable<any> {
-    return this.http.get<any>(`${environment.apiUrl}/offers
-    `)
+  public getOffersFromBackend(sortparam: string): Observable<any> {
+    console.log(`offers?sortBy=`+sortparam);
+    return this.http.get<any>(`${environment.apiUrl}/offers?sortBy=`+sortparam)
       .pipe(map(candidates => {
           console.log(JSON.stringify(candidates));
           return candidates;
@@ -45,4 +45,15 @@ export class OffersService {
         })
       );
   }
+
+  deleteById(id: number) {
+    return this.http.delete<any>(`${environment.apiUrl}/offers/`+id,)
+      .pipe(map(offer => {
+          return offer;
+        }), catchError((err, caught) => {
+          return throwError(err);
+        })
+      );
+  }
+
 }

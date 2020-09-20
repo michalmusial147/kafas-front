@@ -34,13 +34,25 @@ export class HomeComponent {
   newOfferPhoto: string = null;
   newOfferPrice: string;
   isEditClicked: boolean;
+  sortingType: any = "Newest";
+  newOfferUserId: number;
+  sortingTypes = [
+    {name : "Newest",
+     key: "newest"},
+    {name : "Oldest",
+      key: "oldest"},
+    {name : "Low price",
+      key: "low_price"},
+    {name : "High price",
+      key: "high_price"}
+  ]
   ngOnInit(){
     this.myForm = new FormGroup({
       'name':new FormControl(null),
       'email':new FormControl(null,Validators.email)
 
     })
-    this.getFromBackEnd();
+    this.getNewestOffersFromBackEnd();
   }
 
   onOfferFormSubmit() {
@@ -62,7 +74,7 @@ export class HomeComponent {
       newOffer.id = this.currentClickerOffer.id;
       this.offersService.putOfferOnBackend(newOffer)
         .pipe(map(data => {
-            this.getFromBackEnd();
+            this.getNewestOffersFromBackEnd();
           }), catchError((err, caught) => {
             return throwError(err);
           })
@@ -72,7 +84,7 @@ export class HomeComponent {
       newOffer.datePosted = Date.now().toString()
       this.offersService.addOfferOnBackend(newOffer)
         .pipe(map(data => {
-            this.getFromBackEnd();
+            this.getNewestOffersFromBackEnd();
           }), catchError((err, caught) => {
             return throwError(err);
           })
@@ -80,8 +92,8 @@ export class HomeComponent {
     }
 
   }
-  getFromBackEnd(){
-    this.offersService.getOffersFromBackend()
+  getNewestOffersFromBackEnd(){
+    this.offersService.getOffersFromBackend("newest")
       .pipe(map(data => {
           console.log(JSON.stringify(data));
           this.offers = data;
@@ -137,6 +149,7 @@ export class HomeComponent {
     this.newOfferDescription = this.currentClickerOffer.description;
     this.newOfferPhoto = this.currentClickerOffer.photo;
     this.newOfferPrice =  this.currentClickerOffer.price;
+    this.newOfferUserId= this.currentClickerOffer.userId;
   }
 
   addOffer() {
@@ -153,5 +166,46 @@ export class HomeComponent {
     this.newOfferDescription = "";
     this.newOfferPhoto = "";
     this.newOfferPrice =  "";
+    this.newOfferUserId = null;
+  }
+
+  sortingTypeChanged() {
+    console.log(this.sortingType);
+    let param;
+    if(this.sortingType == "Newest"){
+      param = "newest";
+    }
+    else if(this.sortingType == "Oldest"){
+      param = "oldest";
+    }
+    else if(this.sortingType == "Low price"){
+      param = "low_price";
+    }
+    else if(this.sortingType == "High price"){
+      param = "high_price";
+    }
+    this.getOffersFromBackEndWithParam(param);
+  }
+
+  deleteOffer(id: number) {
+    this.offersService.deleteById(id)
+      .pipe(map(data => {
+        this.getNewestOffersFromBackEnd();
+        }), catchError((err, caught) => {
+          return throwError(err);
+        })
+      ).subscribe();
+
+  }
+
+  private getOffersFromBackEndWithParam(sortparam: string) {
+    this.offersService.getOffersFromBackend(sortparam)
+      .pipe(map(data => {
+          this.offers = data;
+          return data;
+        }), catchError((err, caught) => {
+          return throwError(err);
+        })
+      ).subscribe();
   }
 }

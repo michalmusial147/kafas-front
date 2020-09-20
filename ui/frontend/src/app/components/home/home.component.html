@@ -10,7 +10,7 @@
       <li (click)="addOffer()" class="nav-item" data-toggle="modal" data-target="#exampleModalCenter">
         <a class="nav-link">
             <span class="badge badge-warning" >+</span>
-          Save
+          Add offer
         </a>
       </li>
       <li class="nav-item dropdown">
@@ -42,14 +42,113 @@
 <!-- Main -->
 <div class="row">
   <div class="col-md-1"></div>
-  <div class="col-md-5" style="min-height: 1000px;">
-    <ul class="list-group">
+  <div class="col-md-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-9 "style="margin-top: 25px">
+          <div class="card" style="padding: 20px">
+            <div class="row">
+              <div class="col">
+                <h3>Search options</h3>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div>
+                  <div class="form-group">
+                    <span class="form-label">Your Destination</span>
+                    <input class="form-control" type="text" placeholder="Enter a destination or hotel name">
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <span class="form-label">Check In</span>
+                        <input class="form-control" type="date" required>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <span class="form-label">Check out</span>
+                        <input class="form-control" type="date" required>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <div class="form-group">
+                        <span class="form-label">Rooms</span>
+                        <select class="form-control">
+                          <option>1</option>
+                          <option>2</option>
+                          <option>3</option>
+                        </select>
+                        <span class="select-arrow"></span>
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <div class="form-group">
+                        <span class="form-label">Adults</span>
+                        <select class="form-control">
+                          <option>1</option>
+                          <option>2</option>
+                          <option>3</option>
+                        </select>
+                        <span class="select-arrow"></span>
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <div class="form-group">
+                        <span class="form-label">Children</span>
+                        <select class="form-control">
+                          <option>0</option>
+                          <option>1</option>
+                          <option>2</option>
+                        </select>
+                        <span class="select-arrow"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-btn">
+                    <button class="submit-btn">Search</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card" style="margin-top: 25px"  style="padding: 20px">
+            <div class="row">
+              <div class="col">
+                <h3>Sorting options</h3>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <select class="form-control" (change)="sortingTypeChanged()" [(ngModel)]="sortingType" required>
+                  <option *ngFor="let type of sortingTypes">{{type.name}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  <div class="col-sm-5" style="min-height: 1000px;">
+    <div class="text-center">
+    <div style="width: 20rem; height: 20rem;" *ngIf="offers==null">
+      <div style="width: 20rem; height: 20rem;" class="spinner-border" role="status">
+      <span style="width: 20rem; height: 20rem;" class="sr-only">Loading...</span>
+      </div></div></div>
+    <ul *ngIf="offers!=null" class="list-group">
       <div class="container">
         <li data-toggle="modal" data-target="#exampleModalCenter2" (click)="showDetails(offer)"  data-placement="right" title="Click to show details" class="badge badge-primary" *ngFor="let offer of offers"
             let="item container" class="list-group-item offer-list-item bg-light"
             style=" margin-top: 25px;margin-bottom: 5px;margin-right: 25px;margin-left: 25px;">
           <div class="row">
-            <div class="col-md-7">
+            <div class="col-sm-7">
               <h3>{{offer.title}}</h3>
               <p>{{offer.description}}</p>
 
@@ -69,83 +168,8 @@
       </div>
     </ul>
   </div>
-  <div class="col-md-5">
-    <div class="container">
-      <div class="row h-100 flex-column">
-        <div class="col-md-6 mw-100">
-          <div class="row">
-            <div class="col ">
-            <h1>Title</h1>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col">
-              <div>
-                <div class="form-group">
-                  <span class="form-label">Your Destination</span>
-                  <input class="form-control" type="text" placeholder="Enter a destination or hotel name">
-                </div>
-                <div class="row">
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <span class="form-label">Check In</span>
-                      <input class="form-control" type="date" required>
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <span class="form-label">Check out</span>
-                      <input class="form-control" type="date" required>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-4">
-                    <div class="form-group">
-                      <span class="form-label">Rooms</span>
-                      <select class="form-control">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                      </select>
-                      <span class="select-arrow"></span>
-                    </div>
-                  </div>
-                  <div class="col-sm-4">
-                    <div class="form-group">
-                      <span class="form-label">Adults</span>
-                      <select class="form-control">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                      </select>
-                      <span class="select-arrow"></span>
-                    </div>
-                  </div>
-                  <div class="col-sm-4">
-                    <div class="form-group">
-                      <span class="form-label">Children</span>
-                      <select class="form-control">
-                        <option>0</option>
-                        <option>1</option>
-                        <option>2</option>
-                      </select>
-                      <span class="select-arrow"></span>
-                    </div>
-                  </div>
-                </div>
-                <div class="form-btn">
-                  <button class="submit-btn">Search</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      <div class="col-md-6 mw-100 bg-success"></div>
-    </div>
-  </div>
-  </div>
-  <div class="col-md-1"></div>
+
+  <div class="col-sm-2"></div>
 </div>
 <!-- Modal -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -160,7 +184,7 @@
       <div >
        <div class="modal-body">
          <div class="row">
-         <div class = "col-md-6">
+         <div class = "col-sm-6">
           <div>
             <span class="form-label">Tile</span>
             <input [(ngModel)]="newOfferTitle" class="form-control" type="text" placeholder="Enter a name" required>
@@ -195,7 +219,7 @@
              <img class="fillingimg" style="max-height: 150px" *ngIf="newOfferPhoto!=null" [src]="this.sanitizer.bypassSecurityTrustResourceUrl(newOfferPhoto)" alt="" />
            </label>
         </div>
-         <div class ="col-md-6">
+         <div class ="col-sm-6">
            <div class="form-group">
              <span class="form-label">Street</span>
              <input [(ngModel)]="newOfferStreet" class="form-control" type="text" placeholder="Enter a street" required>
@@ -461,13 +485,15 @@
          </div>
          </div>
          <div class="row">
-           <div class="col-md-12">
+           <div class="col-sm-12">
              <label for="exampleFormControlTextarea1">Description</label>
              <textarea [(ngModel)]="newOfferDescription" class="form-control rounded-0" id="exampleFormControlTextarea1" rows="3"></textarea>
            </div>
          </div>
        </div>
         <div class="modal-footer">
+          <button *ngIf="newOfferUserId!=null && newOfferUserId==this.authenticationService.currentUserValue.id"
+                  (click)="deleteOffer(currentClickerOffer.id)"type="button" class="btn btn-danger" data-dismiss="modal">Delete</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
           <button type="button" class="btn btn-primary submit-btn" (click)="onOfferFormSubmit()" data-dismiss="modal">Add offer</button>
         </div>
