@@ -28,7 +28,7 @@ public class OfferController {
     public Iterable<Offer> getAll(@RequestParam(value = "sortBy", required = false) String sortBy,
                                   @RequestParam(value = "destination", required = false) String destination,
                                   @RequestParam(value = "rooms", required = false) String rooms) {
-        System.out.println("getall reached");
+        System.out.println("getall reached rooms= "+ rooms);
        if(sortBy==null)
             System.out.println(sortBy);
         Iterable<Offer> offers = null;
@@ -49,7 +49,7 @@ public class OfferController {
         }
         offers.forEach(offer -> {offer.setUserId(offer.getAppuser().getId());});
 
-        if(destination!=null && !destination.equals("undefined") && !destination.equals("")){
+        if(destination!=null && !destination.equals("undefined") && !destination.equals("") && !destination.equals("any")){
             Iterable<Offer> finalOffers = offers;
             offers = () -> StreamSupport.stream(finalOffers.spliterator(), false)
                     .filter(offer -> offer.getTitle().toLowerCase().contains(destination.toLowerCase())
@@ -58,7 +58,7 @@ public class OfferController {
                     .iterator();
         }
 
-        if(rooms!=null && !rooms.equals("undefined") && !rooms.equals("")){
+        if(rooms!=null && !rooms.equals("undefined") && !rooms.equals("") && !rooms.equals("any")){
             Iterable<Offer> finalOffers = offers;
             offers = () -> StreamSupport.stream(finalOffers.spliterator(), false)
                     .filter(offer -> offer.getRooms().equals(rooms))

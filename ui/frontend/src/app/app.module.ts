@@ -8,7 +8,7 @@ import {LoginComponent} from "./components/login";
 import {ErrorInterceptor} from "./helpers";
 import {AppRoutingModule} from "./app-routing.module";
 import {JwtInterceptor} from "./helpers/jwt.interceptor";
-
+import {} from 'googlemaps';
 import { AlertModule } from 'bootstrap';
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 @NgModule({
@@ -28,9 +28,6 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-
-        // provider used to create fake backend uncomment to use it, remember to change api url in environment.ts
-        // fakeBackendProvider
     ],
     bootstrap: [AppComponent]
 })

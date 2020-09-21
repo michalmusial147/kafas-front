@@ -9,6 +9,8 @@ import {of, throwError} from "rxjs";
 import { DomSanitizer } from '@angular/platform-browser';
 import {User} from "../../models/user";
 import {AppUserService} from "../../services/appUser/app-user.service";
+import {} from 'googlemaps';
+import {CordsService} from "../../services/cords";
 
 @Component({
   selector: 'app-home',
@@ -18,13 +20,15 @@ import {AppUserService} from "../../services/appUser/app-user.service";
 export class HomeComponent {
   loading = false;
 
-  constructor( public authenticationService: AuthenticationService, private router: Router, private offersService: OffersService,
-               public sanitizer: DomSanitizer, private userService: AppUserService) { }
+  constructor(public authenticationService: AuthenticationService, private router: Router, private offersService: OffersService,
+              public sanitizer: DomSanitizer, private userService: AppUserService, private cordsService: CordsService) {
+  }
+
   offers: Offer[];
   copiedOffers: Offer[];
   users: User[];
-  currentClickerOffer: Offer = null;
-  myForm:FormGroup;
+  currentClickedOffer: Offer = null;
+  myForm: FormGroup;
   offerForm: any;
   newOfferType: any;
   newOfferRooms: any;
@@ -41,14 +45,22 @@ export class HomeComponent {
   sortingType: any = "Newest";
   newOfferUserId: number;
   sortingTypes = [
-    {name : "Newest",
-     key: "newest"},
-    {name : "Oldest",
-      key: "oldest"},
-    {name : "Low price",
-      key: "low_price"},
-    {name : "High price",
-      key: "high_price"}
+    {
+      name: "Newest",
+      key: "newest"
+    },
+    {
+      name: "Oldest",
+      key: "oldest"
+    },
+    {
+      name: "Low price",
+      key: "low_price"
+    },
+    {
+      name: "High price",
+      key: "high_price"
+    }
   ]
   searchDestinationName: any;
   searchCheckInDate: any;
@@ -56,16 +68,38 @@ export class HomeComponent {
   searchRooms = "any";
   searchAdults = "any";
   searchChildren = "any";
-  ngOnInit(){
+
+  ngOnInit() {
     this.myForm = new FormGroup({
-      'name':new FormControl(null),
-      'email':new FormControl(null,Validators.email)
+      'name': new FormControl(null),
+      'email': new FormControl(null, Validators.email)
     })
     console.log(JSON.stringify(this.authenticationService.currentUserValue.roles));
     this.getNewestOffersFromBackEnd();
     this.getUsers();
   }
+  centerMap(){
+    let googlemap: google.maps.Map;
 
+    let center: google.maps.LatLngLiteral = {lat: 30, lng: -110};
+
+    this.cordsService.getCords(this.currentClickedOffer.street, this.currentClickedOffer.city) .pipe(map(data => {
+      console.log(`from homecomponent` + JSON.stringify(data));
+      center = data;
+      googlemap = new google.maps.Map(document.getElementById("map") as HTMLElement, {
+        center,
+        zoom: 10});
+      var marker = new google.maps.Marker({
+        position: center,
+        map: googlemap
+      });
+      }), catchError((err, caught) => {
+        return throwError(err);
+      })
+    ).subscribe();
+
+
+  }
   onOfferFormSubmit() {
     let newOffer: Offer = new Offer();
     newOffer.title = this.newOfferTitle;
@@ -80,8 +114,8 @@ export class HomeComponent {
     newOffer.photo = this.newOfferPhoto;
     newOffer.appuser = this.authenticationService.currentUserValue;
     newOffer.price = this.newOfferPrice;
-    if(this.isEditClicked){
-      newOffer.id = this.currentClickerOffer.id;
+    if (this.isEditClicked) {
+      newOffer.id = this.currentClickedOffer.id;
       this.offersService.putOfferOnBackend(newOffer)
         .pipe(map(data => {
             this.getNewestOffersFromBackEnd();
@@ -90,7 +124,7 @@ export class HomeComponent {
           })
         ).subscribe();
 
-    }else{
+    } else {
       newOffer.datePosted = new Date();
       this.offersService.addOfferOnBackend(newOffer)
         .pipe(map(data => {
@@ -102,7 +136,8 @@ export class HomeComponent {
     }
 
   }
-  getNewestOffersFromBackEnd(){
+
+  getNewestOffersFromBackEnd() {
     this.offersService.getOffersFromBackend("newest")
       .pipe(map(data => {
           this.offers = data;
@@ -113,11 +148,13 @@ export class HomeComponent {
         })
       ).subscribe();
   }
+
   checkIfRoomIsChosen() {
-    if(this.newOfferType == "Room"){
+    if (this.newOfferType == "Room") {
       return true;
+    } else {
+      return false
     }
-    else {return false}
   }
 
   logout() {
@@ -141,23 +178,23 @@ export class HomeComponent {
   }
 
   showDetails(offer: Offer) {
-    this.currentClickerOffer = offer;
+    this.currentClickedOffer = offer;
   }
 
   editOffer() {
     this.isEditClicked = true;
-    this.newOfferTitle = this.currentClickerOffer.title;
-    this.newOfferType = this.currentClickerOffer.type;
-    this.newOfferRooms = this.currentClickerOffer.rooms;
-    this.newOfferStreet = this.currentClickerOffer.street;
-    this.newOfferCity = this.currentClickerOffer.city;
-    this.newOfferRegion = this.currentClickerOffer.region;
-    this.newOfferPostalCode = this.currentClickerOffer.postalCode;
-    this.newOfferCountry  = this.currentClickerOffer.country;
-    this.newOfferDescription = this.currentClickerOffer.description;
-    this.newOfferPhoto = this.currentClickerOffer.photo;
-    this.newOfferPrice =  this.currentClickerOffer.price;
-    this.newOfferUserId= this.currentClickerOffer.userId;
+    this.newOfferTitle = this.currentClickedOffer.title;
+    this.newOfferType = this.currentClickedOffer.type;
+    this.newOfferRooms = this.currentClickedOffer.rooms;
+    this.newOfferStreet = this.currentClickedOffer.street;
+    this.newOfferCity = this.currentClickedOffer.city;
+    this.newOfferRegion = this.currentClickedOffer.region;
+    this.newOfferPostalCode = this.currentClickedOffer.postalCode;
+    this.newOfferCountry = this.currentClickedOffer.country;
+    this.newOfferDescription = this.currentClickedOffer.description;
+    this.newOfferPhoto = this.currentClickedOffer.photo;
+    this.newOfferPrice = this.currentClickedOffer.price;
+    this.newOfferUserId = this.currentClickedOffer.userId;
   }
 
   addOffer() {
@@ -170,28 +207,27 @@ export class HomeComponent {
     this.newOfferCity = ""
     this.newOfferRegion = "";
     this.newOfferPostalCode = "";
-    this.newOfferCountry  = "";
+    this.newOfferCountry = "";
     this.newOfferDescription = "";
     this.newOfferPhoto = "";
-    this.newOfferPrice =  "";
+    this.newOfferPrice = "";
     this.newOfferUserId = null;
   }
-  getSortinType(){
+
+  getSortinType() {
     let param;
-    if(this.sortingType == "Newest"){
+    if (this.sortingType == "Newest") {
       param = "newest";
-    }
-    else if(this.sortingType == "Oldest"){
+    } else if (this.sortingType == "Oldest") {
       param = "oldest";
-    }
-    else if(this.sortingType == "Low price"){
+    } else if (this.sortingType == "Low price") {
       param = "low_price";
-    }
-    else if(this.sortingType == "High price"){
+    } else if (this.sortingType == "High price") {
       param = "high_price";
     }
-     return param;
+    return param;
   }
+
   sortingTypeChanged() {
     this.getOffersFromBackEndWithParam(this.getSortinType());
   }
@@ -199,7 +235,7 @@ export class HomeComponent {
   deleteOffer(id: number) {
     this.offersService.deleteById(id)
       .pipe(map(data => {
-        this.getNewestOffersFromBackEnd();
+          this.getNewestOffersFromBackEnd();
         }), catchError((err, caught) => {
           return throwError(err);
         })
@@ -221,10 +257,10 @@ export class HomeComponent {
 
   searchForOffers() {
     this.offersService.getSearchOffersFromBackend(this.searchDestinationName, this.searchCheckInDate, this.searchCheckOutDate, this.searchRooms,
-      this.searchAdults,this.searchChildren, this.getSortinType())
+      this.searchAdults, this.searchChildren, this.getSortinType())
       .pipe(map(data => {
           this.offers = data;
-          this.copiedOffers= data
+          this.copiedOffers = data
           return data;
         }), catchError((err, caught) => {
           return throwError(err);
@@ -245,27 +281,26 @@ export class HomeComponent {
 
   calculateOffers() {
     let filt
-    if(this.offers!=null) {
-     filt = this.copiedOffers.filter(x => this.isToday(x.datePosted))
+    if (this.offers != null) {
+      filt = this.copiedOffers.filter(x => this.isToday(x.datePosted))
       return filt.length;
+    } else {
+      return 0;
     }
-   else{return 0;}
   }
 
-   isToday = (someDate0) => {
-    console.log(someDate0)
+  isToday = (someDate0) => {
     const today = new Date()
-     let realDateObject = new Date(someDate0);
+    let realDateObject = new Date(someDate0);
     return realDateObject.getDate() == today.getDate() &&
       realDateObject.getMonth() == today.getMonth() &&
       realDateObject.getFullYear() == today.getFullYear()
   }
 
   checkIfUserIsAdmin() {
-    if(this.authenticationService.currentUserValue.roles.includes("ROLE_ADMIN")){
+    if (this.authenticationService.currentUserValue.roles.includes("ROLE_ADMIN")) {
       return true
-    }
-    else{
+    } else {
       return false;
     }
 
@@ -273,6 +308,8 @@ export class HomeComponent {
 
   showUserOffers(id) {
     console.log(id)
-    this.offers = this.copiedOffers.filter(offer => offer.userId==id);
+    this.offers = this.copiedOffers.filter(offer => offer.userId == id);
   }
+
+
 }

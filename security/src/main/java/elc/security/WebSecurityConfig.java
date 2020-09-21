@@ -49,7 +49,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/swagger-ui.html").permitAll()
             .anyRequest().authenticated();
 
-    // If a DeskApp.dto.user try to access a resource without having enough permissions
     http.exceptionHandling().accessDeniedPage("/login");
 
     // Apply JWT
