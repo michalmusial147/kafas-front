@@ -29,7 +29,7 @@ public class JwtTokenProvider {
 
     private String secretKey  = "secret-key";
 
-    private long validityInMilliseconds = 1000000000000000000l;
+    private long validityInMilliseconds = 1000000000000000000L;
 
     private MyUserDetails myUserDetails;
 
