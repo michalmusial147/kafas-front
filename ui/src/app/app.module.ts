@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -14,6 +13,13 @@ import { ToolbarMobileComponent } from './home-page/home-page-mobile/components/
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatListModule} from "@angular/material/list";
 import {MatCardModule} from "@angular/material/card";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import {MatInputModule} from "@angular/material/input";
+import { MatChipsModule } from "@angular/material/chips";
+import { MatMenuModule } from "@angular/material/menu";
+import { LanguageSelector } from './components/language-selector/language-selector.component';
 
 
 @NgModule({
@@ -22,7 +28,7 @@ import {MatCardModule} from "@angular/material/card";
     HomePageMobileComponent,
     HomePageDesktopComponent,
     ToolbarMobileComponent,
-
+    LanguageSelector,
   ],
   imports: [
     BrowserModule,
@@ -34,7 +40,15 @@ import {MatCardModule} from "@angular/material/card";
     MatIconModule,
     MatSidenavModule,
     MatListModule,
-    MatCardModule
+    MatCardModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatAutocompleteModule,
+    MatInputModule,
+    FormsModule,
+    BrowserModule,
+    MatChipsModule,
+    MatMenuModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

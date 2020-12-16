@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { MatSliderModule } from '@angular/material/slider';
-import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-root',

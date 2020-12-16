@@ -1,23 +1,38 @@
-<p>
-  <mat-toolbar color="primary">
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <a mat-button>
+      <mat-icon>account_circle</mat-icon>
+      <span class="mat-caption">Account</span>
+    </a>
+    <app-language-selector class="app-padding-left"></app-language-selector>
+  </mat-toolbar-row>
+</mat-toolbar>
+<div style="padding-right:15%; padding-left:15%; flex-direction: row; box-sizing: border-box;  display: flex; place-content: center space-between; align-items: center;">
+    <span style="padding: 1.12%; letter-spacing: 2px; font-family: 'Helvetica Neue', serif; font-size: 30px; box-sizing: border-box; display: flex;" class="app-padding-left">KAFAS</span>
+    <form class="search-form app-padding-left">
+      <mat-form-field floatLabel="never">
+        <input class="toolbar-search" type="text" matInput placeholder="Type to search">
+      </mat-form-field>
+      <mat-icon style="font-size: 20px;">search</mat-icon>
+    </form>
+    <div class="app-padding-left">
+      <div class="app-item">Helpline</div>
+      <label class="app-item">+48 123 456 789</label>
+    </div>
+</div>
+<mat-toolbar style="height: 40px">
     <mat-toolbar-row>
-      <span>KAFAS</span>
-    </mat-toolbar-row>
-    <mat-toolbar-row>
-      <button mat-raised-button class="example-icon">
+      <button mat-button class="bottom-nav-button">
         <span>Products</span>
       </button>
-      <button mat-raised-button class="example-icon">
+      <button mat-button class="bottom-nav-button">
         <span>Cart</span>
       </button>
-      <button mat-raised-button class="example-icon">
+      <button  mat-button class="bottom-nav-button">
         <span>Contact</span>
       </button>
     </mat-toolbar-row>
-
-  </mat-toolbar>
-</p>
-
+</mat-toolbar>
   <div class="main-wrapper">
     <p><mat-card>Witamy na stronie</mat-card></p>
 
@@ -32,6 +47,9 @@
     <p><mat-card>Krzewy</mat-card></p>
   </div>
 
-
-
+<footer>
+  <div id="btmFooter">
+    <p>Basic Footer</p>
+  </div>
+</footer>
 

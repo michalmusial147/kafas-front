@@ -1,22 +1,27 @@
 <mat-drawer-container class="app-container" autosize>
-  <p>
-    <mat-toolbar color="primary">
-      <button mat-icon-button class="example-icon" (click)="drawer.toggle()">
-        <mat-icon>menu</mat-icon>
-      </button>
-      <span>KAFAS</span>
-      <span class="example-spacer"></span>
-      <button mat-icon-button class="example-icon">
-        <mat-icon>shopping_cart</mat-icon>
-      </button>
-      <button mat-icon-button class="example-icon">
-        <mat-icon>share</mat-icon>
-      </button>
-    </mat-toolbar>
-  </p>
+  <mat-toolbar style="display: flex"  color="primary">
+    <button mat-icon-button class="example-icon" (click)="drawer.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span style="padding: 1.12%; letter-spacing: 2px; font-family: 'Helvetica Neue', serif; font-size: 24px" >KAFAS</span>
+    <span class="example-spacer"></span>
+    <button mat-icon-button class="example-icon">
+      <mat-icon>shopping_cart</mat-icon>
+    </button>
+    <app-language-selector></app-language-selector>
+  </mat-toolbar>
+  <mat-toolbar>
+    <form class="search-form">
+      <mat-form-field floatLabel="never" color="primary">
+        <input class="toolbar-search" type="text" matInput placeholder="search">
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+    </form>
+
+  </mat-toolbar>
   <mat-drawer #drawer class="app-sidenav" mode="over">
     <mat-nav-list>
-      <mat-list-item class="app-item-list-wrapper"(click)="drawer.toggle()">
+      <mat-list-item class="app-item-list-wrapper" (click)="drawer.toggle()">
           <span><mat-icon class="app-backspace-icon">keyboard_backspace</mat-icon></span>
       </mat-list-item>
       <mat-divider></mat-divider>
@@ -39,7 +44,6 @@
 
     <p><mat-card>Zapoznaj się z ofertą</mat-card></p>
 
-    <p><mat-card>Nasza firma</mat-card></p>
   </div>
 
   <p><mat-card>Bramy</mat-card></p>
