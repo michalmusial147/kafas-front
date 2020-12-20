@@ -1,28 +1,19 @@
 <mat-drawer-container class="app-container" autosize>
-  <mat-toolbar style="display: flex"  color="primary">
+  <mat-toolbar class="mobileToolBar" color="primary">
     <button mat-icon-button class="example-icon" (click)="drawer.toggle()">
       <mat-icon>menu</mat-icon>
     </button>
     <span style="padding: 1.12%; letter-spacing: 2px; font-family: 'Helvetica Neue', serif; font-size: 24px" >KAFAS</span>
     <span class="example-spacer"></span>
-    <button mat-icon-button class="example-icon">
-      <mat-icon>shopping_cart</mat-icon>
-    </button>
     <app-language-selector></app-language-selector>
   </mat-toolbar>
-  <mat-toolbar>
-    <form class="search-form">
-      <mat-form-field floatLabel="never" color="primary">
-        <input class="toolbar-search" type="text" matInput placeholder="search">
-        <mat-icon matSuffix>search</mat-icon>
-      </mat-form-field>
-    </form>
-
+  <mat-toolbar class="mobileToolBar" color="primary">
+      <app-app-searcher class="searcher-wrapper-mobile"></app-app-searcher>
   </mat-toolbar>
   <mat-drawer #drawer class="app-sidenav" mode="over">
     <mat-nav-list>
       <mat-list-item class="app-item-list-wrapper" (click)="drawer.toggle()">
-          <span><mat-icon class="app-backspace-icon">keyboard_backspace</mat-icon></span>
+        <span style="padding: 1.12%; letter-spacing: 2px; font-family: 'Helvetica Neue', serif; font-size: 24px" >KAFAS</span>
       </mat-list-item>
       <mat-divider></mat-divider>
       <mat-list-item>
@@ -38,18 +29,13 @@
       </mat-list-item>
     </mat-nav-list>
   </mat-drawer>
-
-  <div class="example-sidenav-content">
+  <div class="content">
     <p><mat-card>Witamy na stronie</mat-card></p>
-
     <p><mat-card>Zapoznaj się z ofertą</mat-card></p>
-
+    <p><mat-card>Bramy</mat-card></p>
+    <p><mat-card>Materiały</mat-card></p>
+    <p><mat-card>Krzewy</mat-card></p>
   </div>
-
-  <p><mat-card>Bramy</mat-card></p>
-  <p><mat-card>Materiały</mat-card></p>
-  <p><mat-card>Krzewy</mat-card></p>
-
 </mat-drawer-container>
 
 

@@ -1,53 +1,80 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
+    <span
+      style="padding: 1.12%; letter-spacing: 2px; font-family: 'Helvetica Neue', serif; font-size: 30px;">
+      <h1>KAFAS</h1>
+    </span>
+    <div class="mat-caption">Helpline</div>
+    <span class="mat-caption">+48 123 456 789</span>
+
+    <app-language-selector></app-language-selector>
+    <app-app-searcher class="searcher-wrapper-mobile"></app-app-searcher>
+    <button mat-flat-button color="primary" class="cart_button">
+      <mat-icon>shopping_cart</mat-icon>
+      <span class="mat-caption">Cart</span>
+    </button>
     <a mat-button>
       <mat-icon>account_circle</mat-icon>
       <span class="mat-caption">Account</span>
     </a>
-    <app-language-selector class="app-padding-left"></app-language-selector>
   </mat-toolbar-row>
 </mat-toolbar>
-<div style="padding-right:15%; padding-left:15%; flex-direction: row; box-sizing: border-box;  display: flex; place-content: center space-between; align-items: center;">
-    <span style="padding: 1.12%; letter-spacing: 2px; font-family: 'Helvetica Neue', serif; font-size: 30px; box-sizing: border-box; display: flex;" class="app-padding-left">KAFAS</span>
-    <form class="search-form app-padding-left">
-      <mat-form-field floatLabel="never">
-        <input class="toolbar-search" type="text" matInput placeholder="Type to search">
-      </mat-form-field>
-      <mat-icon style="font-size: 20px;">search</mat-icon>
-    </form>
-    <div class="app-padding-left">
-      <div class="app-item">Helpline</div>
-      <label class="app-item">+48 123 456 789</label>
-    </div>
-</div>
-<mat-toolbar style="height: 40px">
-    <mat-toolbar-row>
-      <button mat-button class="bottom-nav-button">
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+      <button  style="margin: 5px" color="accent" mat-raised-button class="bottom-nav-button">
         <span>Products</span>
       </button>
-      <button mat-button class="bottom-nav-button">
+      <button  style="margin: 5px" color="accent" mat-raised-button class="bottom-nav-button">
         <span>Cart</span>
       </button>
-      <button  mat-button class="bottom-nav-button">
+      <button  style="margin: 5px" color="accent" mat-raised-button class="bottom-nav-button">
         <span>Contact</span>
       </button>
-    </mat-toolbar-row>
+  </mat-toolbar-row>
 </mat-toolbar>
-  <div class="main-wrapper">
-    <p><mat-card>Witamy na stronie</mat-card></p>
+<div>
+  <mat-grid-list class="main-wrapper" cols="3" rowHeight="2:1">
+    <mat-grid-tile>
+      <mat-card>
+        <mat-card-content>
+           <h2>1</h2>
+           <h2>1</h2>
+           <h2>1</h2>
+           <h2>1</h2>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-card>2</mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-card>1</mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-card>2</mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-card>1</mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-card>2</mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-card>1</mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-card>2</mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-card>1</mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-card>2</mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
 
-    <p><mat-card>Zapoznaj się z ofertą</mat-card></p>
-
-    <p><mat-card>Nasza firma</mat-card></p>
-
-    <p><mat-card>Bramy</mat-card></p>
-
-    <p><mat-card>Materiały</mat-card></p>
-
-    <p><mat-card>Krzewy</mat-card></p>
-  </div>
-
-<footer>
+<footer style="margin-top: 1000px">
   <div id="btmFooter">
     <p>Basic Footer</p>
   </div>

@@ -11,6 +11,7 @@ import {MatDrawer, MatDrawerContainer} from "@angular/material/sidenav";
 })
 export class HomePageMobileComponent extends HomePageComponent{
   showFiller: boolean;
+  searchForResults: any;
 
   constructor(router: Router,
               sanitizer: DomSanitizer) {

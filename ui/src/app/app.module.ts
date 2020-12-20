@@ -20,7 +20,8 @@ import {MatInputModule} from "@angular/material/input";
 import { MatChipsModule } from "@angular/material/chips";
 import { MatMenuModule } from "@angular/material/menu";
 import { LanguageSelector } from './components/language-selector/language-selector.component';
-
+import { AppSearcherComponent } from './components/app-searcher/app-searcher.component';
+import {MatGridListModule} from "@angular/material/grid-list";
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { LanguageSelector } from './components/language-selector/language-select
     HomePageDesktopComponent,
     ToolbarMobileComponent,
     LanguageSelector,
+    AppSearcherComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,6 +51,7 @@ import { LanguageSelector } from './components/language-selector/language-select
     BrowserModule,
     MatChipsModule,
     MatMenuModule,
+    MatGridListModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
