@@ -1,82 +1,168 @@
-<mat-toolbar color="primary">
-  <mat-toolbar-row>
-    <span
-      style="padding: 1.12%; letter-spacing: 2px; font-family: 'Helvetica Neue', serif; font-size: 30px;">
-      <h1>KAFAS</h1>
-    </span>
-    <div class="mat-caption">Helpline</div>
-    <span class="mat-caption">+48 123 456 789</span>
-
-    <app-language-selector></app-language-selector>
-    <app-app-searcher class="searcher-wrapper-mobile"></app-app-searcher>
-    <button mat-flat-button color="primary" class="cart_button">
-      <mat-icon>shopping_cart</mat-icon>
-      <span class="mat-caption">Cart</span>
-    </button>
-    <a mat-button>
-      <mat-icon>account_circle</mat-icon>
-      <span class="mat-caption">Account</span>
-    </a>
-  </mat-toolbar-row>
-</mat-toolbar>
-<mat-toolbar color="primary">
-  <mat-toolbar-row>
-      <button  style="margin: 5px" color="accent" mat-raised-button class="bottom-nav-button">
-        <span>Products</span>
-      </button>
-      <button  style="margin: 5px" color="accent" mat-raised-button class="bottom-nav-button">
+<mat-drawer-container class="app-container" autosize>
+  <mat-drawer  #drawer class="app-sidenav" mode="push">
+    <mat-nav-list>
+      <mat-list-item  class="app-item-list-wrapper" (click)="drawer.toggle()">
+        <span style="padding: 1.12%; letter-spacing: 2px; font-family: 'Helvetica Neue', serif; font-size: 24px" >KAFAS</span>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
         <span>Cart</span>
-      </button>
-      <button  style="margin: 5px" color="accent" mat-raised-button class="bottom-nav-button">
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <span>Products</span>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
         <span>Contact</span>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-drawer>
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <button mat-icon-button class="example-icon" (click)="drawer.toggle()">
+        <mat-icon>menu</mat-icon>
       </button>
-  </mat-toolbar-row>
+      <span>
+        <h1 style="font-family: 'Helvetica Neue',sans-serif ;letter-spacing: 2px; padding: 1.12%;">KAFAS</h1>
+      </span>
+      <div style="font-family: 'Helvetica Neue',sans-serif ;letter-spacing: 2px; padding: 1.12%;" class="helpline-header">
+        <span class="helpline-item">Helpline</span>
+        <span class="helpline-item">+48 123 456 789</span>
+      </div>
+      <app-app-searcher class="searcher-wrapper-mobile"></app-app-searcher>
+      <button mat-flat-button color="primary" class="cart_button">
+        <mat-icon>shopping_cart</mat-icon>
+        <span class="mat-caption">Cart</span>
+      </button>
+      <a mat-button>
+        <mat-icon>account_circle</mat-icon>
+        <span class="mat-caption">Account</span>
+      </a>
+      <app-language-selector></app-language-selector>
+    </mat-toolbar-row>
+  </mat-toolbar>
+<mat-toolbar>
+
 </mat-toolbar>
-<div>
-  <mat-grid-list class="main-wrapper" cols="3" rowHeight="2:1">
-    <mat-grid-tile>
-      <mat-card>
-        <mat-card-content>
-           <h2>1</h2>
-           <h2>1</h2>
-           <h2>1</h2>
-           <h2>1</h2>
-        </mat-card-content>
-      </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile>
-      <mat-card>2</mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile>
-      <mat-card>1</mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile>
-      <mat-card>2</mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile>
-      <mat-card>1</mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile>
-      <mat-card>2</mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile>
-      <mat-card>1</mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile>
-      <mat-card>2</mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile>
-      <mat-card>1</mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile>
-      <mat-card>2</mat-card>
-    </mat-grid-tile>
-  </mat-grid-list>
-</div>
+  <div class="home-carousel" [style.height]="parentHeight">
+    <mat-carousel
+      #matCarousel
+      [timings]="timings"
+      [autoplay]="autoplay"
+      [interval]="interval"
+      [loop]="loop"
+      [hideArrows]="hideArrows"
+      [hideIndicators]="hideIndicators"
+      [color]="color"
+      [maxWidth]="maxWidth"
+      [proportion]="proportion"
+      [useKeyboard]="useKeyboard"
+      [useMouseWheel]="useMouseWheel"
+      [orientation]="orientation"
+      [slides]="slides"
+      [maintainAspectRatio]="maintainAspectRatio"
+      [slideHeight]="slideHeight"
+      (change)="onChange($event)"
+    >
+      <mat-carousel-slide
+        #matCarouselSlide
+        *ngFor="let slide of slidesList; let i = index"
+        [overlayColor]="overlayColor"
+        [hideOverlay]="hideOverlay">
+        <ng-container *ngIf="showContent">
+          <div class="row">
+            <div class="column">
+              <div style="width: 100%; height: 100%; display: flex; flex-direction: column; align-items: start; justify-content: center">
+                <h1 class="mat-display-3">Bramy</h1>
+                <h3 class="mat-display-1">Handmade iron gates</h3>
+                <p>disabled: {{ matCarouselSlide.disabled }}</p>
+                <button
+                  color = accent
+                  mat-raised-button
+                  (click)=" matCarouselSlide.disabled = !matCarouselSlide.disabled ">
+                  Zamów teraz
+                </button>
+              </div>
+            </div>
+            <div class="column">
+              <div style="height: 100%; margin-left: 100px; margin-right: 100px">
+                <img style="width: 100%" src="../../../assets/home-cards/gate01.jpeg" alt="Photo of a gate">
+              </div>
+            </div>
+          </div>
 
-<footer style="margin-top: 1000px">
-  <div id="btmFooter">
-    <p>Basic Footer</p>
+        </ng-container>
+      </mat-carousel-slide>
+    </mat-carousel>
   </div>
-</footer>
+<!--  <div>-->
+<!--    <mat-grid-list class="main-wrapper" cols="2" rowHeight="4:2">-->
+<!--      <mat-grid-tile>-->
+<!--        <mat-card class="example-card">-->
+<!--          <mat-card-header>-->
+<!--            <div mat-card-avatar class="example-header-image"></div>-->
+<!--            <mat-card-title>Shiba Inu</mat-card-title>-->
+<!--            <mat-card-subtitle>Dog Breed</mat-card-subtitle>-->
+<!--          </mat-card-header>-->
+<!--          <img mat-card-image src="../../../assets/home-cards/architect.jpg" alt="Photo of a Shiba Inu">-->
+<!--          <mat-card-content>-->
+<!--            <p>-->
+<!--              The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.-->
+<!--              A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally-->
+<!--              bred for hunting.-->
+<!--            </p>-->
+<!--          </mat-card-content>-->
+<!--        </mat-card>-->
+<!--      </mat-grid-tile>-->
+<!--      <mat-grid-tile>-->
+<!--        <mat-card class="example-card">-->
+<!--          <mat-card-header>-->
+<!--            <div mat-card-avatar class="example-header-image"></div>-->
+<!--            <mat-card-title>Materiały budowlane</mat-card-title>-->
+<!--            <mat-card-subtitle>Dog Breed</mat-card-subtitle>-->
+<!--          </mat-card-header>-->
+<!--          <img mat-card-image src="../../../assets/home-cards/architect.jpg" alt="Photo of a Shiba Inu">-->
+<!--          <mat-card-content>-->
+<!--            <p>-->
+<!--              The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.-->
+<!--              A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally-->
+<!--              bred for hunting.-->
+<!--            </p>-->
+<!--          </mat-card-content>-->
+<!--        </mat-card>-->
+<!--      </mat-grid-tile>-->
+<!--      <mat-grid-tile>-->
+<!--        <mat-card>1</mat-card>-->
+<!--      </mat-grid-tile>-->
+<!--      <mat-grid-tile>-->
+<!--        <mat-card>2</mat-card>-->
+<!--      </mat-grid-tile>-->
+<!--      <mat-grid-tile>-->
+<!--        <mat-card>1</mat-card>-->
+<!--      </mat-grid-tile>-->
+<!--      <mat-grid-tile>-->
+<!--        <mat-card>2</mat-card>-->
+<!--      </mat-grid-tile>-->
+<!--      <mat-grid-tile>-->
+<!--        <mat-card>1</mat-card>-->
+<!--      </mat-grid-tile>-->
+<!--      <mat-grid-tile>-->
+<!--        <mat-card>2</mat-card>-->
+<!--      </mat-grid-tile>-->
+<!--      <mat-grid-tile>-->
+<!--        <mat-card>1</mat-card>-->
+<!--      </mat-grid-tile>-->
+<!--      <mat-grid-tile>-->
+<!--        <mat-card>2</mat-card>-->
+<!--      </mat-grid-tile>-->
+<!--    </mat-grid-list>-->
+<!--  </div>-->
 
+  <footer style="margin-top: 1000px">
+    <div id="btmFooter">
+      <p>Basic Footer</p>
+    </div>
+  </footer>
+
+</mat-drawer-container>
