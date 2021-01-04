@@ -23,6 +23,7 @@ import { LanguageSelector } from './components/language-selector/language-select
 import { AppSearcherComponent } from './components/app-searcher/app-searcher.component';
 import {MatGridListModule} from "@angular/material/grid-list";
 import { MatCarouselModule } from '@ngbmodule/material-carousel';
+import {MatTabsModule} from "@angular/material/tabs";
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,6 +54,7 @@ import { MatCarouselModule } from '@ngbmodule/material-carousel';
     MatMenuModule,
     MatGridListModule,
     MatCarouselModule.forRoot(),
+    MatTabsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

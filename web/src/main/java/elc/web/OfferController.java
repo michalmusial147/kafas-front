@@ -47,23 +47,10 @@ public class OfferController {
        else if(sortBy.equals("high_price")){
             offers = offerRepository.findAllByOrderByPriceDesc();
         }
-        offers.forEach(offer -> {offer.setUserId(offer.getAppuser().getId());});
+        offers.forEach(offer -> {
+            offer.setUserId(offer.getAppuser().getId());
+        });
 
-        if(destination!=null && !destination.equals("undefined") && !destination.equals("") && !destination.equals("any")){
-            Iterable<Offer> finalOffers = offers;
-            offers = () -> StreamSupport.stream(finalOffers.spliterator(), false)
-                    .filter(offer -> offer.getTitle().toLowerCase().contains(destination.toLowerCase())
-                            || offer.getCity().toLowerCase().contains(destination.toLowerCase())
-                            || offer.getRegion().toLowerCase().contains(destination.toLowerCase()))
-                    .iterator();
-        }
-
-        if(rooms!=null && !rooms.equals("undefined") && !rooms.equals("") && !rooms.equals("any")){
-            Iterable<Offer> finalOffers = offers;
-            offers = () -> StreamSupport.stream(finalOffers.spliterator(), false)
-                    .filter(offer -> offer.getRooms().equals(rooms))
-                    .iterator();
-        }
         List<Offer> array = StreamSupport
                 .stream(offers.spliterator(), false)
                 .collect(Collectors.toList());

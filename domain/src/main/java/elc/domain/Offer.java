@@ -21,13 +21,6 @@ public class Offer {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String title;
-    private String type;
-    private String rooms;
-    private String street;
-    private String city;
-    private String region;
-    private String postalCode;
-    private String country;
 
     @Column(columnDefinition="TEXT")
     private String description;
@@ -41,5 +34,6 @@ public class Offer {
     @ManyToOne
     @JoinColumn(name = "appuser_id", nullable = false)
     private AppUser appuser;
+
     private int userId;
 }
