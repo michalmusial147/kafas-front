@@ -1,1 +1,1 @@
-# kafas-front
+# kafas frontend server
