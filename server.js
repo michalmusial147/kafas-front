@@ -1,10 +1,15 @@
-const express = require('express');
-const path = require('path');
-const app = express();
+var express = require("express");
+var bodyParser = require("body-parser");
+// var mongodb = require("mongodb");
+// var ObjectID = mongodb.ObjectID;
+//
+// var CONTACTS_COLLECTION = "contacts";
 
-app.use(express.static('./dist/<name-on-package.json>'));
-app.get('/*', function(req, res) {
-    res.sendFile('index.html', {root: 'dist/<name-on-package.json>/'}
-  );
-});
-app.listen(process.env.PORT || 8080);
+var app = express();
+app.use(bodyParser.json());
+
+// Create link to Angular build directory
+var distDir = __dirname + "/dist/";
+app.use(express.static(distDir));
+
+// Rest of server.js code below

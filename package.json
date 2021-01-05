@@ -3,18 +3,19 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "node server.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "postinstall": "ngcc",
-    "heroku-postbuild": "ng build --prod"
+    "postinstall": "ng build --output-path dist"
   },
   "private": true,
   "dependencies": {
     "@angular/animations": "~9.0.6",
     "@angular/cdk": "^9.2.4",
+    "@angular/cli": "^9.0.7",
+    "@angular/compiler-cli": "^9.0.7",
     "@angular/common": "~9.0.6",
     "@angular/compiler": "~9.0.6",
     "@angular/core": "~9.0.6",
@@ -38,8 +39,6 @@
     "@angular-eslint/eslint-plugin-template": "0.8.0-beta.5",
     "@angular-eslint/schematics": "^0.8.0-beta.5",
     "@angular-eslint/template-parser": "0.8.0-beta.5",
-    "@angular/cli": "^9.0.7",
-    "@angular/compiler-cli": "^9.0.7",
     "@angular/language-service": "~9.0.6",
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
