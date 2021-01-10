@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatSliderModule} from '@angular/material/slider';
+import { MatSliderModule } from '@angular/material/slider';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
@@ -24,6 +24,8 @@ import { AppSearcherComponent } from './components/app-searcher/app-searcher.com
 import {MatGridListModule} from '@angular/material/grid-list';
 import { MatCarouselModule } from '@ngbmodule/material-carousel';
 import {MatTabsModule} from '@angular/material/tabs';
+import { FooterComponent } from './components/footer/footer.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,6 +34,7 @@ import {MatTabsModule} from '@angular/material/tabs';
     ToolbarMobileComponent,
     LanguageSelectorComponent,
     AppSearcherComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -55,6 +58,7 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatGridListModule,
     MatCarouselModule.forRoot(),
     MatTabsModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]
