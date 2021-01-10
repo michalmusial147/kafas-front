@@ -29,6 +29,7 @@
     "@ngbmodule/material-carousel": "^0.7.1",
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
+    "ngx-pagination": "^5.0.0",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "typescript": "~3.7.5",

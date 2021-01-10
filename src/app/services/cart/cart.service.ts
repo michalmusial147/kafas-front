@@ -12,7 +12,7 @@ const products = JSON.parse(localStorage.getItem('cartItem')) || [];
 @Injectable({
   providedIn: 'root'
 })
-export class CartServiceService {
+export class CartService {
 // Array
   public cartItems: BehaviorSubject<CartItem[]> = new BehaviorSubject([]);
   public observer: Subscriber<{}>;

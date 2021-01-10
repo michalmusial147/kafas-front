@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
@@ -28,6 +28,14 @@ import { FooterComponent } from './components/footer/footer.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProductsViewComponent } from './products-view/products-view.component';
+import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
+import {OrderByPipe} from './pipes/order-by.pipe';
+import {ProductComponent} from './components/product/product.component';
+import {ProductDialogComponent} from './components/product-dialog/product-dialog.component';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MAT_DIALOG_DATA, MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule, MatDialogRef} from '@angular/material/dialog';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +46,11 @@ import { ProductsViewComponent } from './products-view/products-view.component';
     AppSearcherComponent,
     FooterComponent,
     DashboardComponent,
-    ProductsViewComponent
+    ProductsViewComponent,
+    BreadcrumbComponent,
+    OrderByPipe,
+    ProductComponent,
+    ProductDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -62,9 +74,17 @@ import { ProductsViewComponent } from './products-view/products-view.component';
     MatGridListModule,
     MatCarouselModule.forRoot(),
     MatTabsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    NgxPaginationModule,
+    BrowserModule,
+    HttpClientModule,
+    MatSnackBarModule,
+    NoopAnimationsModule
   ],
-  providers: [],
+  providers: [ {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}},
+    {provide: MatDialogRef , useValue: {} },
+    { provide: MAT_DIALOG_DATA, useValue: {} }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
