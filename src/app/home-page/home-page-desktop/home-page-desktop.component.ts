@@ -4,7 +4,7 @@ import {Router} from '@angular/router';
 import {DomSanitizer} from '@angular/platform-browser';
 import {Orientation} from '@ngbmodule/material-carousel';
 import {ThemePalette} from '@angular/material/core';
-import {DictionaryService} from '../../dictionary-service/dictionary.service';
+import {DictionaryService} from '../../services/dictionary/dictionary.service';
 @Component({
   selector: 'app-home-page-desktop',
   templateUrl: './home-page-desktop.component.html',

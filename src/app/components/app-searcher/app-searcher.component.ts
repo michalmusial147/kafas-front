@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
-import {DictionaryService} from '../../dictionary-service/dictionary.service';
+import {DictionaryService} from '../../services/dictionary/dictionary.service';
 
 @Component({
   selector: 'app-app-searcher',

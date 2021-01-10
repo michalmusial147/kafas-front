@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {DictionaryService} from '../../dictionary-service/dictionary.service';
+import {DictionaryService} from '../../services/dictionary/dictionary.service';
 
 @Component({
   selector: 'app-language-selector',
