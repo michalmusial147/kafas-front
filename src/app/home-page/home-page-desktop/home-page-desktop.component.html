@@ -74,7 +74,7 @@
         *ngFor="let slide of slidesList; let i = index"
         [overlayColor]="overlayColor"
         [hideOverlay]="hideOverlay">
-          <div style="padding-left: 15%;padding-right: 15%;" class="row">
+          <div class="row">
             <div class="column">
               <div style="width: 100%; height: 100%; display: flex; flex-direction: column; align-items: flex-start; justify-content: center">
                   <h1 class="">Bramy</h1>
@@ -96,20 +96,31 @@
       </mat-carousel-slide>
     </mat-carousel>
     </div>
+  <mat-toolbar>
+  </mat-toolbar>
   <div style="padding-right: 15%; padding-left: 15%">
     <mat-tab-group color="accent" mat-align-tabs="start">
       <mat-tab label="Polecane">
         Polecane
+        <mat-card></mat-card>
+        <mat-card></mat-card>
+        <mat-card></mat-card>
       </mat-tab>
       <mat-tab label="Najnowsze">
         Najnowsze
+        <mat-card></mat-card>
+        <mat-card></mat-card>
+        <mat-card></mat-card>
       </mat-tab>
       <mat-tab label="Wyprzedaż">
         Wyprzedaż
+        <mat-card></mat-card>
+        <mat-card></mat-card>
+        <mat-card></mat-card>
       </mat-tab>
     </mat-tab-group>
   </div>
-  <mat-card>aaaaaaaaaaa</mat-card>
+
   <app-footer >
 
   </app-footer>

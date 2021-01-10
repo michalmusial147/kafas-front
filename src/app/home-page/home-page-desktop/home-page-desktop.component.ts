@@ -25,7 +25,7 @@ export class HomePageDesktopComponent extends HomePageComponent {
   public maxWidth = 'auto';
   public maintainAspectRatio = true;
   public proportion = 25;
-  public slideHeight = '1px';
+  public slideHeight = '300px';
   public slides = this.slidesList.length;
   public overlayColor = '#00000000';
   public hideOverlay = false;

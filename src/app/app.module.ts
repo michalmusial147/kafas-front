@@ -26,6 +26,7 @@ import { MatCarouselModule } from '@ngbmodule/material-carousel';
 import {MatTabsModule} from '@angular/material/tabs';
 import { FooterComponent } from './components/footer/footer.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { DashboardComponent } from './dashboard/dashboard.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +35,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     ToolbarMobileComponent,
     LanguageSelectorComponent,
     AppSearcherComponent,
-    FooterComponent
+    FooterComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
