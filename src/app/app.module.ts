@@ -27,6 +27,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { FooterComponent } from './components/footer/footer.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ProductsViewComponent } from './products-view/products-view.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +37,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     LanguageSelectorComponent,
     AppSearcherComponent,
     FooterComponent,
-    DashboardComponent
+    DashboardComponent,
+    ProductsViewComponent
   ],
   imports: [
     BrowserModule,

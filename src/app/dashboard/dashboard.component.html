@@ -1,0 +1,70 @@
+<div class="home-carousel" [style.height]="parentHeight">
+  <mat-carousel
+    #matCarousel
+    [timings]="timings"
+    [autoplay]="autoplay"
+    [interval]="interval"
+    [loop]="loop"
+    [hideArrows]="hideArrows"
+    [hideIndicators]="hideIndicators"
+    [color]="color"
+    [maxWidth]="maxWidth"
+    [proportion]="proportion"
+    [useKeyboard]="useKeyboard"
+    [useMouseWheel]="useMouseWheel"
+    [orientation]="orientation"
+    [slides]="slides"
+    [maintainAspectRatio]="maintainAspectRatio"
+    [slideHeight]="slideHeight"
+    (change)="onChange($event)">
+    <mat-carousel-slide
+      #matCarouselSlide
+      *ngFor="let slide of slidesList; let i = index"
+      [overlayColor]="overlayColor"
+      [hideOverlay]="hideOverlay">
+      <div class="row">
+        <div class="column">
+          <div style="width: 100%; height: 100%; display: flex; flex-direction: column; align-items: flex-start; justify-content: center">
+            <h1 class="">Bramy</h1>
+            <h3 class="">Handmade iron gates</h3>
+            <button
+              color = accent
+              mat-raised-button
+              (click)=" matCarouselSlide.disabled = !matCarouselSlide.disabled ">
+              Zamów teraz
+            </button>
+          </div>
+        </div>
+        <div  class="column">
+          <div style="height: 100%">
+            <img style="width: 100%" src="../../../assets/home-cards/gate01.jpeg" alt="Photo of a gate">
+          </div>
+        </div>
+      </div>
+    </mat-carousel-slide>
+  </mat-carousel>
+</div>
+<mat-toolbar>
+</mat-toolbar>
+<div style="padding-right: 15%; padding-left: 15%">
+  <mat-tab-group color="accent" mat-align-tabs="start">
+    <mat-tab label="Polecane">
+      Polecane
+      <mat-card></mat-card>
+      <mat-card></mat-card>
+      <mat-card></mat-card>
+    </mat-tab>
+    <mat-tab label="Najnowsze">
+      Najnowsze
+      <mat-card></mat-card>
+      <mat-card></mat-card>
+      <mat-card></mat-card>
+    </mat-tab>
+    <mat-tab label="Wyprzedaż">
+      Wyprzedaż
+      <mat-card></mat-card>
+      <mat-card></mat-card>
+      <mat-card></mat-card>
+    </mat-tab>
+  </mat-tab-group>
+</div>

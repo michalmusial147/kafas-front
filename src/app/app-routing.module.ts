@@ -1,18 +1,15 @@
 import { NgModule } from '@angular/core';
 import {Routes, RouterModule, PreloadAllModules, Router} from '@angular/router';
-import {HomePageDesktopComponent} from './home-page/home-page-desktop/home-page-desktop.component';
-import {HomePageMobileComponent} from './home-page/home-page-mobile/home-page-mobile.component';
 import {ScreenTypeServiceService} from './services/screen-type-service/screen-type-service.service';
+import {DashboardComponent} from './dashboard/dashboard.component';
+import {ProductsViewComponent} from './products-view/products-view.component';
 
 const desktopRoutes: Routes = [
   {
-    path: '', component: HomePageDesktopComponent
+    path: '', component: DashboardComponent
   },
-];
-
-const mobileRoutes: Routes = [
   {
-    path: '', component: HomePageMobileComponent
+    path: 'products', component: ProductsViewComponent
   },
 ];
 
@@ -23,8 +20,5 @@ const mobileRoutes: Routes = [
 export class AppRoutingModule {
   public constructor(private router: Router, private applicationStateService: ScreenTypeServiceService) {
 
-    if (applicationStateService.isScreenMobile === true) {
-      router.resetConfig(mobileRoutes);
-    }
   }
 }
