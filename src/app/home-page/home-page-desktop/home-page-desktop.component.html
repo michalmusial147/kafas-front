@@ -1,12 +1,12 @@
 <mat-drawer-container class="app-container" autosize>
-  <mat-drawer  #drawer class="app-sidenav" mode="push">
+  <mat-drawer #drawer class="app-sidenav" mode="push">
     <mat-nav-list>
       <mat-list-item  class="app-item-list-wrapper" (click)="drawer.toggle()">
         <span style="padding: 1.12%; letter-spacing: 2px; font-family: 'Helvetica Neue', serif; font-size: 24px" >KAFAS</span>
       </mat-list-item>
       <mat-divider></mat-divider>
       <mat-list-item>
-        <span>Cart</span>
+        <span>{{this.dictionary.getDictionary().CART}}</span>
       </mat-list-item>
       <mat-divider></mat-divider>
       <mat-list-item>
@@ -20,24 +20,28 @@
   </mat-drawer>
   <mat-toolbar color="primary">
     <mat-toolbar-row>
-      <button mat-icon-button class="example-icon" (click)="drawer.toggle()">
+      <button mat-icon-button class="side-bar-toggle" (click)="drawer.toggle()">
         <mat-icon>menu</mat-icon>
       </button>
       <span>
         <h1 style="font-size: 32px;font-family: 'Helvetica Neue',serif ;letter-spacing: 2px; padding: 1.12%;">KAFAS</h1>
       </span>
       <div style="font-family: 'Helvetica Neue',sans-serif ;letter-spacing: 2px; padding: 1.12%;" class="helpline-header">
-        <span class="helpline-item">Helpline</span>
+        <span class="helpline-item">{{this.dictionary.getDictionary().HELPLINE}}</span>
         <span class="helpline-item">+48 123 456 789</span>
       </div>
       <app-app-searcher class="searcher-wrapper-mobile"></app-app-searcher>
       <button mat-flat-button color="primary" class="cart_button">
+        <mat-icon>select_all</mat-icon>
+        <span class="mat-caption">{{this.dictionary.getDictionary().PRODUCTS}}</span>
+      </button>
+      <button mat-flat-button color="primary" class="cart_button">
         <mat-icon>shopping_cart</mat-icon>
-        <span class="mat-caption">Cart</span>
+        <span class="mat-caption">{{this.dictionary.getDictionary().CART}}</span>
       </button>
       <a mat-button>
         <mat-icon>account_circle</mat-icon>
-        <span class="mat-caption">Account</span>
+        <span class="mat-caption">{{this.dictionary.getDictionary().ACCOUNT}}</span>
       </a>
       <app-language-selector></app-language-selector>
     </mat-toolbar-row>

@@ -4,12 +4,14 @@ import {Router} from '@angular/router';
 import {DomSanitizer} from '@angular/platform-browser';
 import {Orientation} from '@ngbmodule/material-carousel';
 import {ThemePalette} from '@angular/material/core';
+import {DictionaryService} from '../../dictionary-service/dictionary.service';
 @Component({
   selector: 'app-home-page-desktop',
   templateUrl: './home-page-desktop.component.html',
   styleUrls: ['./home-page-desktop.component.styl']
 })
 export class HomePageDesktopComponent extends HomePageComponent {
+  public dictionary: DictionaryService;
   public slidesList = new Array<never>(5);
   public showContent = true;
   public parentHeight = 'auto';
@@ -31,9 +33,9 @@ export class HomePageDesktopComponent extends HomePageComponent {
   public useMouseWheel = false;
   public orientation: Orientation = 'ltr';
   public log: string[] = [];
-  constructor(router: Router,
-              sanitizer: DomSanitizer) {
+  constructor(router: Router, sanitizer: DomSanitizer, dictionaryService: DictionaryService) {
     super(router, sanitizer);
+    this.dictionary = dictionaryService;
   }
   public onChange(index: number) {
     this.log.push(`MatCarousel#change emitted with index ${index}`);

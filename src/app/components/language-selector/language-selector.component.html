@@ -1,9 +1,9 @@
 <a mat-button [matMenuTriggerFor]="menu">
-  <img  alt="Poland's flag" src="https://upload.wikimedia.org/wikipedia/en/1/12/Flag_of_Poland.svg">
-  <span  class="selector-menu-bar mat-caption">Polish</span>
+  <img  alt="Poland's flag" src="{{this.flagUrl}}">
+  <span  class="selector-menu-bar mat-caption">{{this.translationService.getDictionary()[this.currentLang]}}</span>
   <mat-icon >arrow_drop_down</mat-icon>
   <mat-menu #menu="matMenu">
-    <button mat-menu-item>Polish</button>
-    <button mat-menu-item>English</button>
+    <button (click)="setLanguage('Polish')" mat-menu-item>Polish</button>
+    <button (click)="setLanguage('English')" mat-menu-item>English</button>
   </mat-menu>
 </a>

@@ -1,10 +1,6 @@
 console.log("server.js entrypoint")
 var express = require("express");
 var bodyParser = require("body-parser");
-// var mongodb = require("mongodb");
-// var ObjectID = mongodb.ObjectID;
-//
-// var CONTACTS_COLLECTION = "contacts";
 
 var app = express();
 app.use(bodyParser.json());
@@ -19,4 +15,4 @@ app.get('/*', function(req,res) {
 
 // Start the app by listening on the default Heroku port
 app.listen(process.env.PORT || 8080);
-// Rest of server.js code below
+

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {DomSanitizer} from '@angular/platform-browser';
+import {DictionaryService} from '../../dictionary-service/dictionary.service';
 
 @Component({
   selector: 'app-app-searcher',
@@ -6,8 +8,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app-searcher.component.styl']
 })
 export class AppSearcherComponent implements OnInit {
-
-  constructor() { }
+  public dictionary: DictionaryService;
+  constructor(dictionaryService: DictionaryService) {
+    this.dictionary = dictionaryService;
+  }
 
   ngOnInit(): void {
   }
