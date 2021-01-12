@@ -32,18 +32,8 @@ public class AppUser{
   private String lastName;
   private String token;
 
-  @JsonManagedReference
-  @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "appuser")
-  private List<Offer> offers;
-
-
   @ElementCollection(fetch = FetchType.EAGER)
   @Setter
   private List<Role> roles;
-
-  public AppUser(int i, String username, String encode, String firstName, String lastName, String token, List<Role> roles) {
-
-  }
-
 
 }

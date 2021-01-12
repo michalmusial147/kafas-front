@@ -8,8 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/ho")
 public class HelloWorldBoundary {
-//    @Autowired
-//    private CandidateRepository repo;
+
     @GetMapping
     public String ordersForUser() {
         return "Hello world";

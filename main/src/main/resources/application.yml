@@ -22,8 +22,10 @@ spring:
     platform: postgres
     url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
-    password: admin
+    password: password
     driverClassName: org.postgresql.Driver
+    initialization-mode: always
+    data: classpath:data.sql
 
 server:
   port: 8080

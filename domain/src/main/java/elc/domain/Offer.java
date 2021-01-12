@@ -1,13 +1,11 @@
 package elc.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
-import org.springframework.data.rest.core.annotation.RestResource;
-
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Data
@@ -20,20 +18,18 @@ public class Offer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
     private String title;
 
     @Column(columnDefinition="TEXT")
     private String description;
-    private Date datePosted;
 
-    @Column(columnDefinition="TEXT")
-    private String photo;
-    private int price;
+    private Date dateAdded;
 
-    @JsonBackReference
-    @ManyToOne
-    @JoinColumn(name = "appuser_id", nullable = false)
-    private AppUser appuser;
+    private float price;
 
-    private int userId;
+    @JsonManagedReference
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "offer")
+    private List<OfferImage> offerImages;
+
 }

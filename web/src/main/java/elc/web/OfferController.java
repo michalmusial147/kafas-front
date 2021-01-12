@@ -2,13 +2,11 @@ package elc.web;
 
 import elc.data.OfferRepository;
 import elc.data.UserRepository;
-import elc.domain.AppUser;
 import elc.domain.Offer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -36,10 +34,10 @@ public class OfferController {
             offers = offerRepository.findAll();
         }
        else if(sortBy.equals("newest")){
-            offers = offerRepository.findAllByOrderByDatePostedDesc();
+            offers = offerRepository.findAllByOrderByDateAddedDesc();
        }
         else if(sortBy.equals("oldest")){
-             offers = offerRepository.findAllByOrderByDatePostedAsc();
+             offers = offerRepository.findAllByOrderByDateAddedAsc();
         }
         else if(sortBy.equals("low_price")){
             offers = offerRepository.findAllByOrderByPriceAsc();
@@ -47,9 +45,6 @@ public class OfferController {
        else if(sortBy.equals("high_price")){
             offers = offerRepository.findAllByOrderByPriceDesc();
         }
-        offers.forEach(offer -> {
-            offer.setUserId(offer.getAppuser().getId());
-        });
 
         List<Offer> array = StreamSupport
                 .stream(offers.spliterator(), false)
@@ -59,13 +54,12 @@ public class OfferController {
 
     @PostMapping
     public Offer addOne(@RequestBody Offer offer){
-        offer.setDatePosted(new Date());
+        offer.setDateAdded(new Date());
         return offerRepository.save(offer);
     }
 
     @PutMapping
     public Offer editOne(@RequestBody Offer offer){
-        offer.setDatePosted(new Date());
         return offerRepository.save(offer);
     }
 

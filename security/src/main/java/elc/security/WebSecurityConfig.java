@@ -47,6 +47,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/h2-console/**/**").permitAll()
             .antMatchers("/swagger-resources/**").permitAll()
             .antMatchers("/swagger-ui.html").permitAll()
+            .antMatchers("/offers").permitAll()
+            .antMatchers("/offerImages").permitAll()
             .anyRequest().authenticated();
 
     http.exceptionHandling().accessDeniedPage("/login");
