@@ -1,6 +1,6 @@
 [{
   "id": 1,
-  "name": "ONTEC E Headset",
+  "name": "Klej do drewna",
   "price": 175,
   "salePrice": 160,
   "discount": 50,
@@ -37,7 +37,7 @@
 },
 {
   "id": 2,
-  "name": "Solo Headset",
+  "name": "Sadzonki brzozy",
   "price": 235,
   "salePrice": 200,
   "discount": 50,
@@ -73,7 +73,7 @@
 },
 {
   "id": 3,
-  "name": "Ultra Whitte Wireless",
+  "name": "Wkręty stalowe",
   "price": 350,
   "salePrice": 200,
   "discount": 50,
@@ -109,7 +109,7 @@
 },
 {
   "id": 4,
-  "name": "Wireless Mondo",
+  "name": "Koło do taczki",
   "price": 266,
   "salePrice": 200,
   "discount": 50,
@@ -145,7 +145,7 @@
 },
 {
   "id": 5,
-  "name": "Headset Perro",
+  "name": "Cement",
   "price": 88,
   "salePrice": 70.00,
   "discount": 50,
@@ -181,7 +181,7 @@
 },
 {
   "id": 6,
-  "name": "Dono Purple Wireless",
+  "name": "Piasek",
   "price": 100,
   "salePrice": 200,
   "discount": 50,
@@ -217,7 +217,7 @@
 },
 {
   "id": 7,
-  "name": "Tablet Red 8500U 2TB",
+  "name": "Farba akrylowa",
   "price": 100,
   "salePrice": 200,
   "discount": 50,
@@ -257,7 +257,7 @@
 },
 {
   "id": 8,
-  "name": "Ellite Pro Book 15'6 7500U",
+  "name": "Sadzonka wiśni",
   "price": 850,
   "salePrice": 700,
   "discount": 50,
@@ -297,7 +297,7 @@
 },
 {
   "id": 9,
-  "name": "Tablet VX3000 Extra Light",
+  "name": "Drzwi wejściowe",
   "price": 850,
   "salePrice": 700,
   "discount": 50,
@@ -337,7 +337,7 @@
 },
 {
   "id": 10,
-  "name": "Tablet VX4000 8500 3TB",
+  "name": "Wełna",
   "price": 940,
   "salePrice": 700,
   "discount": 50,
@@ -377,7 +377,7 @@
 },
 {
   "id": 11,
-  "name": "Laptop Sens 7200L",
+  "name": "Silikon",
   "price": 760,
   "salePrice": 600,
   "discount": 50,
@@ -417,7 +417,7 @@
 },
 {
   "id": 12,
-  "name": "Laptop XS3000 WiFi Smart",
+  "name": "Okno",
   "price": 1200,
   "salePrice": 1099,
   "discount": 50,
@@ -457,7 +457,7 @@
 },
 {
   "id": 13,
-  "name": "Smartphone Tablet Spring2000",
+  "name": "Zderzak",
   "price": 400,
   "salePrice": 300,
   "discount": 50,
@@ -493,7 +493,7 @@
 },
 {
   "id": 14,
-  "name": "Extra Thin Elitte",
+  "name": "Deski",
   "price": 700,
   "salePrice": 600,
   "discount": 50,
@@ -529,7 +529,7 @@
 },
 {
   "id": 15,
-  "name": "Notebook Polo 4000",
+  "name": "Podkłady filcowe",
   "price": 399,
   "salePrice": 300,
   "discount": 50,
@@ -565,7 +565,7 @@
 },
 {
   "id": 16,
-  "name": "Smartphone Elitte Pro",
+  "name": "Cegła",
   "price": 699,
   "salePrice": 599,
   "discount": 50,
@@ -601,7 +601,7 @@
 },
 {
   "id": 17,
-  "name": "Smartphone XD5000",
+  "name": "Pustak",
   "price": 799,
   "salePrice": 645,
   "discount": 50,
@@ -637,7 +637,7 @@
 },
 {
   "id": 18,
-  "name": "Camera Xd Pro with Waterproof cover",
+  "name": "Farba akrylowa",
   "price": 499,
   "salePrice": 449,
   "discount": 50,
@@ -673,7 +673,7 @@
 },
 {
   "id": 19,
-  "name": "Camera HD200 x100",
+  "name": "Dachówka",
   "price": 479,
   "salePrice": 449,
   "discount": 50,
@@ -709,7 +709,7 @@
 },
 {
   "id": 20,
-  "name": "Smart Camera Extra mini2000",
+  "name": "Papa",
   "price": 799,
   "salePrice": 750,
   "discount": 50,
@@ -745,7 +745,7 @@
 },
 {
   "id": 21,
-  "name": "ONTEC Camera W5000",
+  "name": "Ogórki kiszone",
   "price": 400,
   "salePrice": 389,
   "discount": 50,
@@ -781,7 +781,7 @@
 },
 {
   "id": 22,
-  "name": "Classic Camera E5000",
+  "name": "Rura pcv",
   "price": 400,
   "salePrice": 389,
   "discount": 50,
@@ -817,7 +817,7 @@
 },
 {
   "id": 23,
-  "name": "TV Premium 2000",
+  "name": "Ziemniaki",
   "price": 799,
   "salePrice": 600,
   "discount": 50,
@@ -849,7 +849,7 @@
 },
 {
   "id": 24,
-  "name": "TV Smart 2000",
+  "name": "Fasola",
   "price": 799,
   "salePrice": 600,
   "discount": 50,
@@ -881,7 +881,7 @@
 },
 {
   "id": 25,
-  "name": "Smart TV Extra Premium",
+  "name": "Pomidory",
   "price": 900,
   "salePrice": 799,
   "discount": 50,
@@ -913,7 +913,7 @@
 },
 {
   "id": 26,
-  "name": "ONTEC TV Smart",
+  "name": "Fasola",
   "price": 399,
   "salePrice": 299,
   "discount": 50,
@@ -946,7 +946,7 @@
 
 {
   "id": 27,
-  "name": "Smart Watch",
+  "name": "Pomidory",
   "price": 366,
   "salePrice": 333,
   "discount": 50,
@@ -982,7 +982,7 @@
 },
 {
   "id": 28,
-  "name": "Smart Watch Zoop",
+  "name": "Koszulka",
   "price": 100,
   "salePrice": 200,
   "discount": 50,
@@ -1333,7 +1333,7 @@
 },
 {
   "id": 38,
-  "name": "Tablet VX3000 Extra Light",
+  "name": "Drewno",
   "price": 850,
   "type": "industrial",
   "salePrice": 700,
@@ -2576,7 +2576,7 @@
   "id": 80,
   "name": "Dono Purple",
   "price": 100,
-  "type": "furniture", 
+  "type": "furniture",
   "salePrice": 200,
   "discount": 50,
   "pictures": [
@@ -2613,7 +2613,7 @@
   "id": 81,
   "name": "Light 8500U 2TB",
   "price": 100,
-  "type": "furniture", 
+  "type": "furniture",
   "salePrice": 200,
   "discount": 50,
   "pictures": [
@@ -2654,7 +2654,7 @@
   "id": 82,
   "name": "Ellite Pro 7500U",
   "price": 850,
-  "type": "furniture", 
+  "type": "furniture",
   "salePrice": 700,
   "discount": 50,
   "pictures": [
@@ -2695,7 +2695,7 @@
   "id": 83,
   "name": "VX3000 Extra Light",
   "price": 850,
-  "type": "furniture", 
+  "type": "furniture",
   "salePrice": 700,
   "discount": 50,
   "pictures": [
@@ -2736,7 +2736,7 @@
   "id": 84,
   "name": "Light VX4000 8500 ",
   "price": 940,
-  "type": "furniture", 
+  "type": "furniture",
   "salePrice": 700,
   "discount": 50,
   "pictures": [
@@ -2777,7 +2777,7 @@
   "id": 85,
   "name": "Sens 7200L",
   "price": 760,
-  "type": "furniture", 
+  "type": "furniture",
   "salePrice": 600,
   "discount": 50,
   "pictures": [
@@ -2818,7 +2818,7 @@
   "id": 86,
   "name": "XS3000 WiFi Smart",
   "price": 1200,
-  "type": "furniture", 
+  "type": "furniture",
   "salePrice": 1099,
   "discount": 50,
   "pictures": [
@@ -2859,7 +2859,7 @@
   "id": 87,
   "name": "Spring2000 tube",
   "price": 400,
-  "type": "furniture", 
+  "type": "furniture",
   "salePrice": 300,
   "discount": 50,
   "pictures": [
@@ -2896,7 +2896,7 @@
   "id": 88,
   "name": "Extra Thin Elitte",
   "price": 700,
-  "type": "furniture", 
+  "type": "furniture",
   "salePrice": 600,
   "discount": 50,
   "pictures": [
@@ -2933,7 +2933,7 @@
   "id": 89,
   "name": "Polo 4000 light",
   "price": 399,
-  "type": "furniture", 
+  "type": "furniture",
   "salePrice": 300,
   "discount": 50,
   "pictures": [
@@ -2970,7 +2970,7 @@
   "id": 90,
   "name": "Elitte Pro",
   "price": 699,
-  "type": "furniture", 
+  "type": "furniture",
   "salePrice": 599,
   "discount": 50,
   "pictures": [
@@ -3007,7 +3007,7 @@
   "id": 91,
   "name": "Aenean rutrum XD5000",
   "price": 799,
-  "type": "furniture", 
+  "type": "furniture",
   "salePrice": 645,
   "discount": 50,
   "pictures": [
@@ -3044,7 +3044,7 @@
   "id": 92,
   "name": "Sofa evert",
   "price": 499,
-  "type": "furniture", 
+  "type": "furniture",
   "salePrice": 449,
   "discount": 50,
   "pictures": [
@@ -3081,7 +3081,7 @@
   "id": 93,
   "name": "Sofa ultra100",
   "price": 479,
-  "type": "furniture", 
+  "type": "furniture",
   "salePrice": 449,
   "discount": 50,
   "pictures": [
@@ -3118,7 +3118,7 @@
   "id": 94,
   "name": "Extra mini2000",
   "price": 799,
-  "type": "furniture", 
+  "type": "furniture",
   "salePrice": 750,
   "discount": 50,
   "pictures": [
@@ -3156,9 +3156,9 @@
   "id": 95,
   "name": "Praesent mollis",
   "price": 175,
-  "type": "decor", 
+  "type": "decor",
   "salePrice": 160,
-  "discount": 50, 
+  "discount": 50,
   "pictures": [
     {
       "small": "assets/images/product/decor/headphone1/headphone1.png",
@@ -3194,7 +3194,7 @@
   "id": 96,
   "name": "Aenean rutrum",
   "price": 235,
-  "type": "decor", 
+  "type": "decor",
   "salePrice": 200,
   "discount": 50,
   "pictures": [
@@ -3231,7 +3231,7 @@
   "id": 97,
   "name": "Ultra rutrum",
   "price": 350,
-  "type": "decor", 
+  "type": "decor",
   "salePrice": 200,
   "discount": 50,
   "pictures": [
@@ -3268,7 +3268,7 @@
   "id": 98,
   "name": "Aenean Mondo",
   "price": 266,
-  "type": "decor", 
+  "type": "decor",
   "salePrice": 200,
   "discount": 50,
   "pictures": [
@@ -3305,7 +3305,7 @@
   "id": 99,
   "name": "Aenean Perro",
   "price": 88,
-  "type": "decor", 
+  "type": "decor",
   "salePrice": 70.00,
   "discount": 50,
   "pictures": [
@@ -3342,7 +3342,7 @@
   "id": 100,
   "name": "Dono Purple",
   "price": 100,
-  "type": "decor", 
+  "type": "decor",
   "salePrice": 200,
   "discount": 50,
   "pictures": [
@@ -3379,7 +3379,7 @@
   "id": 101,
   "name": "Light 8500U 2TB",
   "price": 100,
-  "type": "decor", 
+  "type": "decor",
   "salePrice": 200,
   "discount": 50,
   "pictures": [
@@ -3461,7 +3461,7 @@
   "id": 103,
   "name": "VX3000 Extra Light",
   "price": 850,
-  "type": "decor", 
+  "type": "decor",
   "salePrice": 700,
   "discount": 50,
   "pictures": [
@@ -3502,7 +3502,7 @@
   "id": 104,
   "name": "Light VX4000 8500 ",
   "price": 940,
-  "type": "decor", 
+  "type": "decor",
   "salePrice": 700,
   "discount": 50,
   "pictures": [
@@ -3543,7 +3543,7 @@
   "id": 105,
   "name": "Sens 7200L",
   "price": 760,
-  "type": "decor", 
+  "type": "decor",
   "salePrice": 600,
   "discount": 50,
   "pictures": [
@@ -3584,7 +3584,7 @@
   "id": 106,
   "name": "XS3000 WiFi Smart",
   "price": 1200,
-  "type": "decor", 
+  "type": "decor",
   "salePrice": 1099,
   "discount": 50,
   "pictures": [
@@ -3625,7 +3625,7 @@
   "id": 107,
   "name": "Spring2000 tube",
   "price": 400,
-  "type": "decor", 
+  "type": "decor",
   "salePrice": 300,
   "discount": 50,
   "pictures": [
@@ -3662,7 +3662,7 @@
   "id": 108,
   "name": "Extra Thin Elitte",
   "price": 700,
-  "type": "decor", 
+  "type": "decor",
   "salePrice": 600,
   "discount": 50,
   "pictures": [
@@ -3699,7 +3699,7 @@
   "id": 109,
   "name": "Polo 4000 light",
   "price": 399,
-  "type": "decor", 
+  "type": "decor",
   "salePrice": 300,
   "discount": 50,
   "pictures": [
@@ -3736,7 +3736,7 @@
   "id": 110,
   "name": "Elitte Pro",
   "price": 699,
-  "type": "decor", 
+  "type": "decor",
   "salePrice": 599,
   "discount": 50,
   "pictures": [
@@ -3773,7 +3773,7 @@
   "id": 111,
   "name": "Aenean rutrum XD5000",
   "price": 799,
-  "type": "decor", 
+  "type": "decor",
   "salePrice": 645,
   "discount": 50,
   "pictures": [
@@ -3810,7 +3810,7 @@
   "id": 112,
   "name": "Sofa evert",
   "price": 499,
-  "type": "decor", 
+  "type": "decor",
   "salePrice": 449,
   "discount": 50,
   "pictures": [
@@ -3847,7 +3847,7 @@
   "id": 113,
   "name": "Sofa ultra100",
   "price": 479,
-  "type": "decor", 
+  "type": "decor",
   "salePrice": 449,
   "discount": 50,
   "pictures": [
@@ -3884,7 +3884,7 @@
   "id": 114,
   "name": "Extra mini2000",
   "price": 799,
-  "type": "decor", 
+  "type": "decor",
   "salePrice": 750,
   "discount": 50,
   "pictures": [
@@ -3921,7 +3921,7 @@
   "id": 115,
   "name": "ONTEC Sofa",
   "price": 400,
-  "type": "decor", 
+  "type": "decor",
   "salePrice": 389,
   "discount": 50,
   "pictures": [
@@ -3958,7 +3958,7 @@
   "id": 116,
   "name": "Classic Sofa E5000",
   "price": 400,
-  "type": "decor", 
+  "type": "decor",
   "salePrice": 389,
   "discount": 50,
   "pictures": [

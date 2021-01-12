@@ -2,34 +2,30 @@ import { Component, OnInit } from '@angular/core';
 import {FormGroup} from '@angular/forms';
 import {ActivatedRoute, Params} from '@angular/router';
 import {CategoryFilter, Product} from '../model/product';
-import {ProductService} from "../services/product/product-service.service";
-
+import {ProductService} from '../services/product/product-service.service';
+import { DomSanitizer } from '@angular/platform-browser';
 @Component({
   selector: 'app-products-view',
   templateUrl: './products-view.component.html',
   styleUrls: ['./products-view.component.styl']
 })
 export class ProductsViewComponent implements OnInit {
-
-
   public sidenavOpen = true;
   public animation: any;   // Animation
   public sortByOrder = '';   // sorting
   public page: any;
   public tagsFilters: any[] = [];
   public viewType = 'list';
-  public viewCol = 25;
+  public viewCol = 50;
   public filterForm: FormGroup;
   public categoryFilters: CategoryFilter[] = [];
-
   public items: Product[] = [];
   public allItems: Product[] = [];
   public products: Product[] = [];
   public tags: any[] = [];
   public colors: any[] = [];
 
-
-  constructor(private productService: ProductService, private route: ActivatedRoute) {
+  constructor(private productService: ProductService, private route: ActivatedRoute, public domSanitizer: DomSanitizer) {
     this.route.params.subscribe(
       (params: Params) => {
         let category = params.category;
@@ -82,7 +78,7 @@ export class ProductsViewComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.changeViewType('list', 100);
+    this.changeViewType('list', 50);
   }
 
 
@@ -139,7 +135,6 @@ export class ProductsViewComponent implements OnInit {
 
   public onPageChanged(event) {
     this.page = event;
-    this.allItems;
     window.scrollTo(0, 0);
   }
 

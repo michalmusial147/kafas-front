@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import {BehaviorSubject, Observable, Subscriber} from 'rxjs';
+import {BehaviorSubject, Observable, Subscriber, throwError} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {Product} from '../../model/product';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {map} from 'rxjs/operators';
+import {catchError, map} from 'rxjs/operators';
 
 const products = JSON.parse(localStorage.getItem('compareItem')) || [];
 
@@ -26,7 +26,12 @@ export class ProductService {
   }
 
   private products(): Observable<Product[]> {
-    return this.httpClient.get<Product[]>('assets/data/products2.json');
+    return this.httpClient.get<Product[]>('http://localhost:8080/offers').pipe(map(products => {
+        return products;
+      }), catchError((err, caught) => {
+        return throwError(err);
+      })
+    );
   }
 
   public banners(): Observable<any[]> {
@@ -93,13 +98,13 @@ export class ProductService {
     if (this.hasProduct(product)) {
       item = products.filter(item => item.id === product.id)[0];
       const index = products.indexOf(item);
-      this.snackBar.open('The product  ' + product.name + ' already added to comparison list.', '×', { panelClass: 'error', verticalPosition: 'top', duration: 3000 });
+      this.snackBar.open('The product  ' + product.title + ' already added to comparison list.', '×', { panelClass: 'error', verticalPosition: 'top', duration: 3000 });
 
     } else {
       if (products.length < 4) {
         products.push(product);
       }
-      message = 'The product ' + product.name + ' has been added to comparison list.';
+      message = 'The product ' + product.title + ' has been added to comparison list.';
       status = 'success';
       this.snackBar.open(message, '×', { panelClass: [status], verticalPosition: 'top', duration: 3000 });
 

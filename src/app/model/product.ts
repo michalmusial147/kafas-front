@@ -6,12 +6,12 @@ export type ProductCategory = 'tynki' | 'kleje';
 
 export class Product {
   id?: number;
-  name?: string;
+  title?: string;
   price?: number;
   type?: string;
   salePrice?: number;
   discount?: number;
-  pictures?: string;
+  offerImages?: any;
   state?: string;
   shortDetails?: string;
   description?: string;
@@ -29,7 +29,7 @@ export class Product {
     price?: number,
     salePrice?: number,
     discount?: number,
-    pictures?: string,
+    offerImages?: any,
     type?: string,
     shortDetails?: string,
     description?: string,
@@ -42,12 +42,12 @@ export class Product {
     tags?: ProductTags[],
   ) {
     this.id = id;
-    this.name = name;
+    this.title = name;
     this.price = price;
     this.type = type;
     this.salePrice = salePrice;
     this.discount = discount;
-    this.pictures = pictures;
+    this.offerImages = offerImages;
     this.shortDetails = shortDetails;
     this.description = description;
     this.stock = stock;

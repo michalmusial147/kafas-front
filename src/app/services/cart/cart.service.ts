@@ -43,7 +43,7 @@ export class CartService {
         const stock = this.calculateStockCounts(products[index], quantity);
         if (qty !== 0 && stock) {
           products[index].quantity = qty;
-          message = 'The product.ts ' + product.name + ' has been added to cart.';
+          message = 'The product.ts ' + product.title + ' has been added to cart.';
           status = 'success';
           this.snackBar.open(message, '×', { panelClass: [status], verticalPosition: 'top', duration: 3000 });
         }
@@ -55,7 +55,7 @@ export class CartService {
     if (!hasItem) {
       item = { product, quantity };
       products.push(item);
-      message = 'The product.ts ' + product.name + ' has been added to cart.';
+      message = 'The product.ts ' + product.title + ' has been added to cart.';
       status = 'success';
       this.snackBar.open(message, '×', { panelClass: [status], verticalPosition: 'top', duration: 3000 });
     }
