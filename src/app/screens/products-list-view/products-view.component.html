@@ -26,15 +26,20 @@
         <div class="inner"><mat-spinner color="primary"></mat-spinner></div>
       </div>
       <div [@Animation]="this.animation" fxLayout="row wrap" class="products-wrapper">
-        <div *ngFor="let products of this.allItems | orderBy: this.sortByOrder | paginate: { itemsPerPage: 12, currentPage: page  }" fxFlex="100" [fxFlex.gt-sm]="viewCol" fxFlex.sm="50" class="col">
+        <div *ngFor="let product of this.allItems | orderBy: this.sortByOrder | paginate: { itemsPerPage: 12, currentPage: page  }" fxFlex="100" [fxFlex.gt-sm]="viewCol" fxFlex.sm="50" class="col">
           <div class="product-box">
             <mat-card>
-              <img mat-card-image [src]="this.domSanitizer.bypassSecurityTrustUrl(('data:image/jpg;base64,'+ (products.offerImages[0].content)))" alt="product image" >
+              <img
+                   [routerLink]="['/products', product.id]"
+                   class="product-image"
+                   mat-card-image
+                   [src]="this.domSanitizer.bypassSecurityTrustUrl(('data:image/jpg;base64,'+ (product.offerImages[0].content)))"
+                   alt="product image">
               <mat-card-content>
-                <mat-card-title> {{products.title}} </mat-card-title>
-                <mat-card-subtitle>Materiały budowlane</mat-card-subtitle>
+                <mat-card-title> {{product.title}} </mat-card-title>
+                <mat-card-subtitle> Materiały budowlane </mat-card-subtitle>
                 <div fxLayout="row" fxLayoutAlign="space-between center">
-                  <h2>{{products.price}}zł</h2>
+                  <h2>{{product.price}}zł</h2>
                   <button mat-mini-fab color="accent" aria-label="Add to cart button"><mat-icon>add_shopping_cart</mat-icon></button>
                 </div>
               </mat-card-content>

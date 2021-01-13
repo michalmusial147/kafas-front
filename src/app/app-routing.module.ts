@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import {Routes, RouterModule, PreloadAllModules, Router} from '@angular/router';
 import {ScreenTypeServiceService} from './services/screen-type-service/screen-type-service.service';
-import {DashboardComponent} from './dashboard/dashboard.component';
-import {ProductsViewComponent} from './products-view/products-view.component';
+import {DashboardComponent} from './screens/dashboard/dashboard.component';
+import {ProductsViewComponent} from './screens/products-list-view/products-view.component';
+import {ProductDetailsComponent} from './screens/product-details/product-details.component';
 
 const desktopRoutes: Routes = [
   {
@@ -11,6 +12,9 @@ const desktopRoutes: Routes = [
   {
     path: 'products', component: ProductsViewComponent
   },
+  {
+    path: 'products/:id', component: ProductDetailsComponent
+  }
 ];
 
 @NgModule({

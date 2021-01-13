@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {FormGroup} from '@angular/forms';
-import {ActivatedRoute, Params} from '@angular/router';
-import {CategoryFilter, Product} from '../model/product';
-import {ProductService} from '../services/product/product-service.service';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { CategoryFilter, Product } from '../../model/product';
+import { ProductService } from '../../services/product/product-service.service';
 import { DomSanitizer } from '@angular/platform-browser';
 @Component({
   selector: 'app-products-view',
@@ -24,7 +23,8 @@ export class ProductsViewComponent implements OnInit {
   public tags: any[] = [];
   public colors: any[] = [];
 
-  constructor(private productService: ProductService, private route: ActivatedRoute, public domSanitizer: DomSanitizer) {
+  constructor(private productService: ProductService,
+              private route: ActivatedRoute, public domSanitizer: DomSanitizer, public router: Router) {
     this.route.params.subscribe(
       (params: Params) => {
         let category = params.category;
@@ -142,7 +142,6 @@ export class ProductsViewComponent implements OnInit {
     window.scrollTo(0, 0);
   }
 
-
   // Update price filter
 //   public updatePriceFilters(price: any) {
 //     let items: any[] = [];
@@ -154,13 +153,10 @@ export class ProductsViewComponent implements OnInit {
 //     this.items = items;
 // }
 
-
   // Update price filter
   public updatePriceFilters(price: any) {
     console.log(price);
     console.log(this.products);
-
-
     this.allItems = this.products.filter((item: Product) => {
       return item.price >= price.priceFrom && item.price <= price.priceTo;
     });
@@ -171,13 +167,13 @@ export class ProductsViewComponent implements OnInit {
   onBrendsChanged(newBrend) {
     console.log(newBrend);
     this.allItems = newBrend === 'all' ? this.products : this.products.filter(
-
       item => item.brand === newBrend
     );
     console.log(this.allItems);
-
-
   }
 
 
+  openProductDetails(id: any) {
+    this.router.navigate(['/products/' + id]);
+  }
 }

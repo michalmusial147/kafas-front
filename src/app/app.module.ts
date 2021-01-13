@@ -25,8 +25,8 @@ import { MatCarouselModule } from '@ngbmodule/material-carousel';
 import {MatTabsModule} from '@angular/material/tabs';
 import { FooterComponent } from './components/footer/footer.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { ProductsViewComponent } from './products-view/products-view.component';
+import { DashboardComponent } from './screens/dashboard/dashboard.component';
+import { ProductsViewComponent } from './screens/products-list-view/products-view.component';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 import {OrderByPipe} from './pipes/order-by.pipe';
 import {ProductComponent} from './components/product/product.component';
@@ -36,9 +36,10 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MAT_DIALOG_DATA, MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule, MatDialogRef} from '@angular/material/dialog';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatRippleModule} from "@angular/material/core";
-import {MatBadgeModule} from "@angular/material/badge";
-import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatRippleModule} from '@angular/material/core';
+import {MatBadgeModule} from '@angular/material/badge';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { ProductDetailsComponent } from './screens/product-details/product-details.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +54,8 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     BreadcrumbComponent,
     OrderByPipe,
     ProductComponent,
-    ProductDialogComponent
+    ProductDialogComponent,
+    ProductDetailsComponent
   ],
     imports: [
         BrowserModule,
@@ -83,6 +85,7 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
         MatRippleModule,
         MatBadgeModule,
         MatProgressSpinnerModule,
+      MatDialogModule
     ],
   providers: [ {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}},
     {provide: MatDialogRef , useValue: {} },
