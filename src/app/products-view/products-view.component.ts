@@ -10,14 +10,13 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./products-view.component.styl']
 })
 export class ProductsViewComponent implements OnInit {
-  public sidenavOpen = true;
-  public animation: any;   // Animation
+  public showSpinner = false;
+  public animation: any = 'fadeIn';   // Animation
   public sortByOrder = '';   // sorting
   public page: any;
   public tagsFilters: any[] = [];
   public viewType = 'list';
-  public viewCol = 50;
-  public filterForm: FormGroup;
+  public viewCol = 25;
   public categoryFilters: CategoryFilter[] = [];
   public items: Product[] = [];
   public allItems: Product[] = [];
@@ -31,16 +30,23 @@ export class ProductsViewComponent implements OnInit {
         let category = params.category;
         category = 'all';
         console.log(JSON.stringify(category));
+        this.showSpinner = true;
         this.productService.getProductByCategory(category).subscribe(products => {
           console.log(JSON.stringify(products));
           this.allItems = products;
           this.products = products.slice(0.8);
           this.getTags(products);
           this.getColors(products);
+
+          this.showSpinner = false;
         });
       }
     );
   }
+  ngOnInit() {
+
+  }
+
   // Get current product tags
   public getTags(products) {
     const uniqueBrands = [];
@@ -77,9 +83,6 @@ export class ProductsViewComponent implements OnInit {
     this.colors = itemColor;
   }
 
-  ngOnInit() {
-    this.changeViewType('list', 50);
-  }
 
 
 
@@ -108,7 +111,8 @@ export class ProductsViewComponent implements OnInit {
   // sorting type ASC / DESC / A-Z / Z-A etc.
   public onChangeSorting(val) {
     this.sortByOrder = val;
-    this.animation === 'fadeOut' ? this.fadeIn() : this.fadeOut(); // animation
+    // this.animation === 'fadeOut' ? this.fadeIn() : this.fadeOut(); // animation
+    // this.changeViewType(this.viewType, this.viewCol);
   }
 
   // Initialize filetr Items

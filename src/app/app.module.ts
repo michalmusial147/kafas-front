@@ -36,6 +36,9 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MAT_DIALOG_DATA, MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule, MatDialogRef} from '@angular/material/dialog';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatRippleModule} from "@angular/material/core";
+import {MatBadgeModule} from "@angular/material/badge";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,32 +55,35 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     ProductComponent,
     ProductDialogComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatSliderModule,
-    MatButtonModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatSidenavModule,
-    MatListModule,
-    MatCardModule,
-    MatFormFieldModule,
-    ReactiveFormsModule,
-    MatAutocompleteModule,
-    MatInputModule,
-    FormsModule,
-    MatChipsModule,
-    MatMenuModule,
-    MatGridListModule,
-    MatCarouselModule.forRoot(),
-    MatTabsModule,
-    FlexLayoutModule,
-    NgxPaginationModule,
-    HttpClientModule,
-    MatSnackBarModule,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatSliderModule,
+        MatButtonModule,
+        MatToolbarModule,
+        MatIconModule,
+        MatSidenavModule,
+        MatListModule,
+        MatCardModule,
+        MatFormFieldModule,
+        ReactiveFormsModule,
+        MatAutocompleteModule,
+        MatInputModule,
+        FormsModule,
+        MatChipsModule,
+        MatMenuModule,
+        MatGridListModule,
+        MatCarouselModule.forRoot(),
+        MatTabsModule,
+        FlexLayoutModule,
+        NgxPaginationModule,
+        HttpClientModule,
+        MatSnackBarModule,
+        MatRippleModule,
+        MatBadgeModule,
+        MatProgressSpinnerModule,
+    ],
   providers: [ {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}},
     {provide: MatDialogRef , useValue: {} },
     { provide: MAT_DIALOG_DATA, useValue: {} }

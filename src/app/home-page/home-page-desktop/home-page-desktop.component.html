@@ -1,8 +1,8 @@
 <mat-drawer-container class="app-container" autosize>
   <mat-drawer #drawer class="app-sidenav" mode="push">
     <mat-nav-list>
-      <mat-list-item  class="app-item-list-wrapper" (click)="drawer.toggle()">
-        <span style="padding: 1.12%; letter-spacing: 2px; font-family: 'Helvetica Neue', serif; font-size: 24px" >KAFAS</span>
+      <mat-list-item   class="app-item-list-wrapper" (click)="drawer.toggle()">
+        <span  style="padding: 1.12%; letter-spacing: 2px; font-family: 'Helvetica Neue', serif; font-size: 24px" >KAFAS</span>
       </mat-list-item>
       <mat-divider></mat-divider>
       <mat-list-item>
@@ -23,9 +23,9 @@
       <button mat-icon-button class="side-bar-toggle" (click)="drawer.toggle()">
         <mat-icon>menu</mat-icon>
       </button>
-      <span (click)="this.navigateToHomePage()">
-        <h1 style="font-size: 32px;font-family: 'Helvetica Neue',serif ;letter-spacing: 2px; padding: 1.12%;">KAFAS</h1>
-      </span>
+      <div mat-ripple (click)="this.navigateToHomePage()">
+        <h1 style="cursor: pointer;font-size: 32px;font-family: 'Helvetica Neue',serif ;letter-spacing: 2px; padding: 1.12%;">KAFAS</h1>
+      </div>
       <div style="font-family: 'Helvetica Neue',sans-serif ;letter-spacing: 2px; padding: 1.12%;" class="helpline-header">
         <span class="helpline-item">{{this.dictionary.getDictionary().HELPLINE}}</span>
         <span class="helpline-item">+48 123 456 789</span>
@@ -45,9 +45,6 @@
       </a>
       <app-language-selector></app-language-selector>
     </mat-toolbar-row>
-  </mat-toolbar>
-
-  <mat-toolbar>
   </mat-toolbar>
 
   <router-outlet>

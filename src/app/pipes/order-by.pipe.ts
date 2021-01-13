@@ -22,9 +22,9 @@ export class OrderByPipe implements PipeTransform {
        });
      } else if (val === 'a-z') { // a-z
        return Array.from(array).sort((a: any, b: any) => {
-         if ( a.name < b.name ) {
+         if ( a.title < b.title ) {
           return -1;
-        } else if ( a.name > b.name ) {
+        } else if ( a.title > b.title ) {
             return 1;
         } else {
           return 0;
@@ -32,9 +32,9 @@ export class OrderByPipe implements PipeTransform {
        });
      } else if (val === 'z-a') { // z-a
        return Array.from(array).sort((a: any, b: any) => {
-         if ( a.name > b.name ) {
+         if ( a.title > b.title ) {
           return -1;
-        } else if ( a.name < b.name ) {
+        } else if ( a.title < b.title ) {
           return 1;
         } else {
           return 0;
