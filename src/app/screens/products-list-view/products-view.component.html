@@ -1,4 +1,4 @@
-<div  fxLayout='row'  >
+<div  fxLayout='row'>
     <div fxFlex="100" fxFlex.lt-sm="100"  ngClass.gt-sm="p-left">
       <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-around center" class="filter-row mat-elevation-z1 text-muted">
         <div>
@@ -22,32 +22,36 @@
           </button>
         </div>
       </div>
-      <div *ngIf="this.showSpinner" class="spinner-wrapper">
-        <div class="inner"><mat-spinner color="primary"></mat-spinner></div>
-      </div>
+
+      <app-loader *ngIf="this.showSpinner"></app-loader>
+
       <div [@Animation]="this.animation" fxLayout="row wrap" class="products-wrapper">
         <div *ngFor="let product of this.allItems | orderBy: this.sortByOrder | paginate: { itemsPerPage: 12, currentPage: page  }" fxFlex="100" [fxFlex.gt-sm]="viewCol" fxFlex.sm="50" class="col">
           <div class="product-box">
             <mat-card>
-              <img
-                   [routerLink]="['/products', product.id]"
-                   class="product-image"
-                   mat-card-image
-                   [src]="this.domSanitizer.bypassSecurityTrustUrl(('data:image/jpg;base64,'+ (product.offerImages[0].content)))"
-                   alt="product image">
+              <a href="{{ '/products/'+ product.id }}">
+                <img
+                     class="product-image"
+                     mat-card-image
+                     [src]="this.domSanitizer.bypassSecurityTrustUrl(('data:image/jpg;base64,'+ (product.offerImages[0].content)))"
+                     alt="product image">
+              </a>
               <mat-card-content>
                 <mat-card-title> {{product.title}} </mat-card-title>
                 <mat-card-subtitle> Materiały budowlane </mat-card-subtitle>
                 <div fxLayout="row" fxLayoutAlign="space-between center">
-                  <h2>{{product.price}}zł</h2>
-                  <button mat-mini-fab color="accent" aria-label="Add to cart button"><mat-icon>add_shopping_cart</mat-icon></button>
+                  <h2>{{formatCurrency(product.price)}}</h2>
+                  <button mat-mini-fab color="accent" aria-label="Add to cart button" (click)="this.addItemToCart(product)">
+                    <mat-icon>
+                      add_shopping_cart
+                    </mat-icon>
+                  </button>
                 </div>
               </mat-card-content>
             </mat-card>
           </div>
         </div>
       </div>
-
       <div *ngIf="products.length > 0" fxLayout="row wrap">
         <div fxFlex="100">
           <mat-card class="p-0 text-center no-shadow">
@@ -57,4 +61,5 @@
       </div>
     </div>
 </div>
+
 

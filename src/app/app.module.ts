@@ -29,10 +29,8 @@ import { DashboardComponent } from './screens/dashboard/dashboard.component';
 import { ProductsViewComponent } from './screens/products-list-view/products-view.component';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 import {OrderByPipe} from './pipes/order-by.pipe';
-import {ProductComponent} from './components/product/product.component';
-import {ProductDialogComponent} from './components/product-dialog/product-dialog.component';
 import {NgxPaginationModule} from 'ngx-pagination';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import {HttpClientModule, HttpClient, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MAT_DIALOG_DATA, MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule, MatDialogRef} from '@angular/material/dialog';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -40,6 +38,10 @@ import {MatRippleModule} from '@angular/material/core';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { ProductDetailsComponent } from './screens/product-details/product-details.component';
+import { AppLoaderComponent } from './components/app-loader/app-loader.component';
+import {LoadingInterceptor} from "./loading-state-service/loading.interceptor-service";
+import { CartViewComponent } from './screens/cart-view/cart-view.component';
+import {MatTableModule} from "@angular/material/table";
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,43 +55,45 @@ import { ProductDetailsComponent } from './screens/product-details/product-detai
     ProductsViewComponent,
     BreadcrumbComponent,
     OrderByPipe,
-    ProductComponent,
-    ProductDialogComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    AppLoaderComponent,
+    CartViewComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        MatSliderModule,
-        MatButtonModule,
-        MatToolbarModule,
-        MatIconModule,
-        MatSidenavModule,
-        MatListModule,
-        MatCardModule,
-        MatFormFieldModule,
-        ReactiveFormsModule,
-        MatAutocompleteModule,
-        MatInputModule,
-        FormsModule,
-        MatChipsModule,
-        MatMenuModule,
-        MatGridListModule,
-        MatCarouselModule.forRoot(),
-        MatTabsModule,
-        FlexLayoutModule,
-        NgxPaginationModule,
-        HttpClientModule,
-        MatSnackBarModule,
-        MatRippleModule,
-        MatBadgeModule,
-        MatProgressSpinnerModule,
-      MatDialogModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatSliderModule,
+    MatButtonModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatSidenavModule,
+    MatListModule,
+    MatCardModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatAutocompleteModule,
+    MatInputModule,
+    FormsModule,
+    MatChipsModule,
+    MatMenuModule,
+    MatGridListModule,
+    MatCarouselModule.forRoot(),
+    MatTabsModule,
+    FlexLayoutModule,
+    NgxPaginationModule,
+    HttpClientModule,
+    MatSnackBarModule,
+    MatRippleModule,
+    MatBadgeModule,
+    MatProgressSpinnerModule,
+    MatDialogModule,
+    MatTableModule
+  ],
   providers: [ {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}},
     {provide: MatDialogRef , useValue: {} },
-    { provide: MAT_DIALOG_DATA, useValue: {} }
+    { provide: MAT_DIALOG_DATA, useValue: {} },
+    { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

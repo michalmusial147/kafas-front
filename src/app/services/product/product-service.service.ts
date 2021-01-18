@@ -3,7 +3,7 @@ import {BehaviorSubject, Observable, Subscriber, throwError} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {Product} from '../../model/product';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {catchError, map} from 'rxjs/operators';
+import {catchError, map, timeout} from 'rxjs/operators';
 
 const products = JSON.parse(localStorage.getItem('compareItem')) || [];
 
@@ -11,7 +11,6 @@ const products = JSON.parse(localStorage.getItem('compareItem')) || [];
   providedIn: 'root'
 })
 export class ProductService {
-
   public currency = 'USD';
   public catalogMode = false;
 
@@ -25,9 +24,10 @@ export class ProductService {
     this.compareProducts.subscribe(products => products = products);
   }
 
-  private products(): Observable<Product[]> {
-    return this.httpClient.get<Product[]>('http://localhost:8080/offers').pipe(map(products => {
-        return products;
+  public getProductsFromBackend(): Observable<Product[]> {
+    // @ts-ignore
+    return this.httpClient.get<Product[]>('http://localhost:8080/offers').pipe( timeout(5000), map(products => {
+       return products;
       }), catchError((err, caught) => {
         return throwError(err);
       })
@@ -46,18 +46,15 @@ export class ProductService {
 
   // Get Banners
   public getProducts(): Observable<Product[]> {
-    return this.products();
+    return this.getProductsFromBackend();
   }
 
 
   // Get Products By Id
   public getProduct(id: number): Observable<Product> {
-    return this.products().pipe(map(items => {
+    return this.getProductsFromBackend().pipe(map(items => {
       return items.find((item: Product) => item.id === id);
     }));
-    // return this.products.find(product=> product.id === id);
-
-    // return this.httpClient.get<Product>(this._url + 'product-' + id + '.json');
   }
 
 
@@ -84,7 +81,7 @@ export class ProductService {
 
   // Get Products By Slug
   public getProductBySlug(slug: string): Observable<Product> {
-    return this.products().pipe(map(items => {
+    return this.getProductsFromBackend().pipe(map(items => {
       return items.find((item: any) => {
         return item.name.replace(' ', '-') === slug;
       });
@@ -122,16 +119,16 @@ export class ProductService {
   }
 
   // Get Products By category
-  public getProductByCategory(category: string): Observable<Product[]> {
-    return this.products().pipe(map(items =>
-      items.filter((item: Product) => {
-        if (category === 'all') {
-          return item;
-        } else {
-          return item.category === category;
-        }
-
-      })
-    ));
-  }
+  // public getProductByCategory(category: string): Observable<Product[]> {
+  //   return this.products().pipe(map(items =>
+  //     items.filter((item: Product) => {
+  //       if (category === 'all') {
+  //         return item;
+  //       } else {
+  //         return item.category === category;
+  //       }
+  //
+  //     })
+  //   ));
+  // }
 }

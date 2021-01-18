@@ -4,6 +4,7 @@ import {ScreenTypeServiceService} from './services/screen-type-service/screen-ty
 import {DashboardComponent} from './screens/dashboard/dashboard.component';
 import {ProductsViewComponent} from './screens/products-list-view/products-view.component';
 import {ProductDetailsComponent} from './screens/product-details/product-details.component';
+import {CartViewComponent} from './screens/cart-view/cart-view.component';
 
 const desktopRoutes: Routes = [
   {
@@ -14,6 +15,9 @@ const desktopRoutes: Routes = [
   },
   {
     path: 'products/:id', component: ProductDetailsComponent
+  },
+  {
+    path: 'cart', component: CartViewComponent
   }
 ];
 

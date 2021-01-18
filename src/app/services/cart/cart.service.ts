@@ -99,6 +99,7 @@ export class CartService {
 // Update Cart Value
   public updateCartQuantity(product: Product, quantity: number): CartItem | boolean {
     return products.find((items, index) => {
+      // tslint:disable-next-line:triple-equals
       if (items.product.id == product.id) {
         const qty = products[index].quantity + quantity;
         const stock = this.calculateStockCounts(products[index], quantity);

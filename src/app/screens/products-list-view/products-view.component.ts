@@ -3,15 +3,17 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { CategoryFilter, Product } from '../../model/product';
 import { ProductService } from '../../services/product/product-service.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { formatCurrency } from '../../model/formatCurrency';
+import {CartService} from "../../services/cart/cart.service";
+
 @Component({
   selector: 'app-products-view',
   templateUrl: './products-view.component.html',
   styleUrls: ['./products-view.component.styl']
 })
 export class ProductsViewComponent implements OnInit {
-  public showSpinner = false;
-  public animation: any = 'fadeIn';   // Animation
-  public sortByOrder = '';   // sorting
+  public animation: any = 'fadeIn';
+  public sortByOrder = '';
   public page: any;
   public tagsFilters: any[] = [];
   public viewType = 'list';
@@ -22,29 +24,30 @@ export class ProductsViewComponent implements OnInit {
   public products: Product[] = [];
   public tags: any[] = [];
   public colors: any[] = [];
-
+  public showSpinner: any;
+  formatCurrency: any = formatCurrency;
   constructor(private productService: ProductService,
-              private route: ActivatedRoute, public domSanitizer: DomSanitizer, public router: Router) {
+              private route: ActivatedRoute,
+              public domSanitizer: DomSanitizer,
+              public router: Router,
+              public cartService: CartService) {}
+
+  ngOnInit() {
+    this.showSpinner = true;
     this.route.params.subscribe(
       (params: Params) => {
         let category = params.category;
         category = 'all';
         console.log(JSON.stringify(category));
-        this.showSpinner = true;
-        this.productService.getProductByCategory(category).subscribe(products => {
-          console.log(JSON.stringify(products));
-          this.allItems = products;
-          this.products = products.slice(0.8);
-          this.getTags(products);
-          this.getColors(products);
-
-          this.showSpinner = false;
-        });
       }
     );
-  }
-  ngOnInit() {
-
+    this.productService.getProductsFromBackend().subscribe(products => {
+      this.allItems = products;
+      this.products = products.slice(0.8);
+      this.getTags(products);
+      this.getColors(products);
+      this.showSpinner = false;
+    });
   }
 
   // Get current product tags
@@ -65,7 +68,6 @@ export class ProductsViewComponent implements OnInit {
     this.tags = itemBrand;
   }
 
-  // Get current product colors
   public getColors(products) {
     const uniqueColors = [];
     const itemColor = Array();
@@ -83,9 +85,6 @@ export class ProductsViewComponent implements OnInit {
     this.colors = itemColor;
   }
 
-
-
-
   public changeViewType(viewType, viewCol) {
     this.viewType = viewType;
     this.viewCol = viewCol;
@@ -100,19 +99,9 @@ export class ProductsViewComponent implements OnInit {
     this.animation = 'fadeOut';
   }
 
-  // Update tags filter
-  public updateTagFilters(tags: any[]) {
-    this.tagsFilters = tags;
-    this.animation === 'fadeOut' ? this.fadeIn() : this.fadeOut(); // animation
-  }
 
-
-
-  // sorting type ASC / DESC / A-Z / Z-A etc.
   public onChangeSorting(val) {
     this.sortByOrder = val;
-    // this.animation === 'fadeOut' ? this.fadeIn() : this.fadeOut(); // animation
-    // this.changeViewType(this.viewType, this.viewCol);
   }
 
   // Initialize filetr Items
@@ -134,46 +123,13 @@ export class ProductsViewComponent implements OnInit {
       }, true);
       return Colors && Tags; // return true
     });
-
   }
-
   public onPageChanged(event) {
     this.page = event;
     window.scrollTo(0, 0);
   }
 
-  // Update price filter
-//   public updatePriceFilters(price: any) {
-//     let items: any[] = [];
-//     this.products.filter((item: Product) => {
-//         if (item.price >= price[0] && item.price <= price[1] )  {
-//            items.push(item); // push in array
-//         }
-//     });
-//     this.items = items;
-// }
-
-  // Update price filter
-  public updatePriceFilters(price: any) {
-    console.log(price);
-    console.log(this.products);
-    this.allItems = this.products.filter((item: Product) => {
-      return item.price >= price.priceFrom && item.price <= price.priceTo;
-    });
-    console.log(this.products);
-
-  }
-
-  onBrendsChanged(newBrend) {
-    console.log(newBrend);
-    this.allItems = newBrend === 'all' ? this.products : this.products.filter(
-      item => item.brand === newBrend
-    );
-    console.log(this.allItems);
-  }
-
-
-  openProductDetails(id: any) {
-    this.router.navigate(['/products/' + id]);
+  addItemToCart(product: any) {
+    this.cartService.addToCart(product, 1);
   }
 }

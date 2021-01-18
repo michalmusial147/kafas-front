@@ -1,4 +1,4 @@
-<mat-drawer-container class="app-container" autosize>
+<mat-drawer-container class="background-color-white" autosize>
   <mat-drawer #drawer class="app-sidenav" mode="push">
     <mat-nav-list>
       <mat-list-item   class="app-item-list-wrapper" (click)="drawer.toggle()">
@@ -35,7 +35,7 @@
         <mat-icon>select_all</mat-icon>
         <span class="mat-caption">{{this.dictionary.getDictionary().PRODUCTS}}</span>
       </button>
-      <button mat-flat-button color="primary" class="cart_button">
+      <button mat-flat-button color="primary" class="cart_button" (click)="this.navigateToCart()">
         <mat-icon>shopping_cart</mat-icon>
         <span class="mat-caption">{{this.dictionary.getDictionary().CART}}</span>
       </button>

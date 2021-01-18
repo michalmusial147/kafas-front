@@ -26,4 +26,7 @@ export class HomePageDesktopComponent extends HomePageComponent {
   navigateToProducts() {
     this.router.navigate(['/products']);
   }
+  navigateToCart() {
+    this.router.navigate(['/cart']);
+  }
 }

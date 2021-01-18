@@ -22,7 +22,7 @@ export class Product {
   category?: string;
   tags?: ProductTags[];
   colors?: ProductCategory[];
-
+  quantity?: number;
   constructor(
     id?: number,
     name?: string,
@@ -39,6 +39,7 @@ export class Product {
     brand?: string,
     sale?: boolean,
     category?: string,
+    quantity?: number,
     tags?: ProductTags[],
   ) {
     this.id = id;
@@ -57,8 +58,8 @@ export class Product {
     this.category = category;
     this.tags = tags;
     this.state = state;
+    this.quantity =  quantity;
   }
-
 }
 // Color Filter
 export interface CategoryFilter {
