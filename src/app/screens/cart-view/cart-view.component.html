@@ -17,11 +17,11 @@
     <ng-container matColumnDef="quantity">
       <th  mat-header-cell *matHeaderCellDef>Ilość</th>
       <td mat-cell *matCellDef="let element">
-        <button color="accent" mat-icon-button  aria-label="Delete one button"  (click)="this.decrement(element)" >
+        <button color="accent" mat-icon-button  aria-label="Delete one button"  (click)="decrement(element)" >
           <mat-icon>remove</mat-icon>
         </button>
         {{element.quantity}}
-        <button color="accent"  mat-icon-button  aria-label="Add one more button" (click)="this.increment(element)">
+        <button color="accent"  mat-icon-button  aria-label="Add one more button" (click)="increment(element)">
           <mat-icon>add</mat-icon>
         </button>
       </td>
@@ -44,4 +44,29 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
   </h2>
+</div>
+
+<div *ngFor="let item of shoppingCartItems"  class="mat-row">
+  <div class="mat-cell"><img></div>
+  <div class="mat-cell"><a  class="product-name">{{item.product.title}}</a></div>
+  <div class="mat-cell price">{{item.product.price | number : '1.2-2'}}</div>
+  <div class="mat-cell text-muted">
+    <div fxLayout="row" fxLayout.xs="column"  class="text-muted">
+      <div fxLayout="row" fxLayoutAlign="center start">
+        <button mat-icon-button matTooltip="Remove" (click)="decrement(item.product)">
+          <mat-icon>remove</mat-icon>
+        </button>
+        <input type="text" name="quantity"  [(ngModel)]="item.quantity" disabled class="form-control input-number">
+        <button mat-icon-button matTooltip="Add" (click)="increment(item.product)">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="mat-cell total">{{item.product.price * item.quantity | number : '1.2-2' }}</div>
+  <div class="mat-cell text-center">
+    <div class="p-1">
+      <mat-icon (click)="removeProductFromCart(item)">close</mat-icon>
+    </div>
+  </div>
 </div>
