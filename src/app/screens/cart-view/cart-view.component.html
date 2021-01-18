@@ -1,0 +1,47 @@
+<div xLayout="row" fxLayoutAlign="center center" class="wrapper">
+  <h2>
+  <div fxLayout="column" fxLayoutAlign="space-around center" *ngIf="!shoppingCartItems.length">
+    <mat-chip-list>
+      <mat-chip color="warn" selected="true">YOU HAVE NO ITEMS IN YOUR SHOPPING CART.</mat-chip>
+    </mat-chip-list>
+  </div>
+  <table *ngIf="shoppingCartItems.length" mat-table [dataSource]="this.shoppingCartItems" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="title">
+      <th  mat-header-cell *matHeaderCellDef>
+        Nazwa
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.product.title}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="quantity">
+      <th  mat-header-cell *matHeaderCellDef>Ilość</th>
+      <td mat-cell *matCellDef="let element">
+        <button color="accent" mat-icon-button  aria-label="Delete one button"  (click)="this.decrement(element)" >
+          <mat-icon>remove</mat-icon>
+        </button>
+        {{element.quantity}}
+        <button color="accent"  mat-icon-button  aria-label="Add one more button" (click)="this.increment(element)">
+          <mat-icon>add</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="totalPrice">
+      <th mat-header-cell *matHeaderCellDef>Cena</th>
+      <td mat-cell *matCellDef="let element">
+        {{formatCurrency(element.product.price * element.quantity)}}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="delete">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button color="warn" aria-label="Delete button" (click)="this.removeProductFromCart(element)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  </h2>
+</div>
