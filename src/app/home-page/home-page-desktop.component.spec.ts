@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { HomePageDesktopComponent } from './home-page-desktop.component';
 
 describe('HomePageDesktopComponent', () => {

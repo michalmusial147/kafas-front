@@ -15,7 +15,7 @@ import { formatCurrency } from '../../model/formatCurrency';
 export class ProductDetailsComponent implements OnInit {
   formatCurrency: any = formatCurrency;
   public product: Product;
-  productQuantity: any = 0;
+  productQuantity: number;
   showSpinner: any;
   constructor(private route: ActivatedRoute,
               public productsService: ProductService,
@@ -48,14 +48,8 @@ export class ProductDetailsComponent implements OnInit {
 
   }
 
-  handleCounterChange() {
-    if (this.productQuantity < 0) {
-      this.productQuantity = 0;
-    }
-  }
-
-
   addItemToCart(product: any, quantity: number) {
+    console.log(quantity);
     this.cartService.addToCart(product, quantity);
   }
 

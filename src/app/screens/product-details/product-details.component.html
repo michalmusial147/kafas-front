@@ -12,28 +12,25 @@
     </mat-card>
     <div fxFlex="100"  fxLayout="column" fxLayoutAlign="space-between" fxLayoutGap="10px">
      <div>
-          <h1>{{product.title}}</h1>
-          <h2>{{formatCurrency(product.price)}}</h2>
-          <p>{{product.description}}</p>
-        <div class="py-1 mt-15">
-          <p>
-            <span class="text-muted fw-500">Avalibility: {{product.stock}}</span>
-          </p>
-        </div>
+          <h1> {{product.title}} </h1>
+          <h2> {{formatCurrency(product.price)}} </h2>
+          <p> {{product.description}} </p>
+          <p> <span class="text-muted fw-500">Dostępność: {{product.stock}}</span> </p>
         <div fxLayout="row" fxLayoutGap="10px" class="quantity">
           <span class="text-muted fw-500">Quantity</span>
           <div fxLayout="row" fxLayout.xs="column" class="text-muted">
             <div fxLayout="row" fxLayoutAlign="center start">
-              <input matInput type="number" name="quantity" [ngModel]="productQuantity" min="0">
+              <input matInput type="number" name="quantity" [(ngModel)]="productQuantity" min="0">
             </div>
           </div>
         </div>
       </div>
       <div fxLayoutGap="20px">
         <button mat-raised-button color="primary" class="btn-project mr-10" (click)="addItemToCart(product, productQuantity)">
-          ADD TO CART
+          Dodaj do koszyka
         </button>
-        <button mat-raised-button color="accent" class="btn-project" (click)="buyNow(product, productQuantity)">BUY NOW
+        <button mat-raised-button color="accent" class="btn-project" (click)="buyNow(product, productQuantity)">
+          Kup teraz
         </button>
       </div>
     </div>

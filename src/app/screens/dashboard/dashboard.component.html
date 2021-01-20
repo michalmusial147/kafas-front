@@ -24,22 +24,20 @@
         *ngFor="let slide of slidesList; let i = index"
         [overlayColor]="overlayColor"
         [hideOverlay]="hideOverlay">
-        <div class="row">
-          <div class="column">
-            <div style="width: 100%; height: 100%; display: flex; flex-direction: column; align-items: flex-start; justify-content: center">
-              <h1 class="">Bramy</h1>
-              <h3 class="">Handmade iron gates</h3>
-              <button
-                color = accent
-                mat-raised-button
-                (click)=" matCarouselSlide.disabled = !matCarouselSlide.disabled ">
-                Zamów teraz
-              </button>
-            </div>
+        <div fxFlexFill fxLayout="row" fxLayoutAlign="space-between center">
+          <div fxLayout="column" fxLayoutAlign="center center"  fxFlex="50">
+            <h2>Bramy</h2>
+            <h3>Handmade iron gates</h3>
+            <button
+              color=accent
+              mat-raised-button
+              (click)=" matCarouselSlide.disabled = !matCarouselSlide.disabled ">
+              Zamów teraz
+            </button>
           </div>
-          <div  class="column">
-            <div style="height: 100%">
-              <img style="width: 100%" src="../../../assets/home-cards/gate01.jpeg" alt="Photo of a gate">
+          <div fxFlex="50">
+            <div>
+              <img  style="width: 100%" src="../../../assets/home-cards/gate01.jpeg" alt="Photo of a gate">
             </div>
           </div>
         </div>

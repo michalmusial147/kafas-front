@@ -6,9 +6,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
-import { HomePageMobileComponent } from './home-page/home-page-mobile/home-page-mobile.component';
-import { HomePageDesktopComponent } from './home-page/home-page-desktop/home-page-desktop.component';
-import { ToolbarMobileComponent } from './home-page/home-page-mobile/components/toolbar-mobile/toolbar-mobile.component';
+import { HomePageDesktopComponent } from './home-page/home-page-desktop.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card';
@@ -39,15 +37,15 @@ import {MatBadgeModule} from '@angular/material/badge';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { ProductDetailsComponent } from './screens/product-details/product-details.component';
 import { AppLoaderComponent } from './components/app-loader/app-loader.component';
-import {LoadingInterceptor} from "./loading-state-service/loading.interceptor-service";
+import {LoadingInterceptor} from './loading-state-service/loading.interceptor-service';
 import { CartViewComponent } from './screens/cart-view/cart-view.component';
-import {MatTableModule} from "@angular/material/table";
+import {MatTableModule} from '@angular/material/table';
+import {OverlayModule} from '@angular/cdk/overlay';
+import { AccountComponent } from './screens/account/account.component';
 @NgModule({
   declarations: [
     AppComponent,
-    HomePageMobileComponent,
     HomePageDesktopComponent,
-    ToolbarMobileComponent,
     LanguageSelectorComponent,
     AppSearcherComponent,
     FooterComponent,
@@ -57,7 +55,8 @@ import {MatTableModule} from "@angular/material/table";
     OrderByPipe,
     ProductDetailsComponent,
     AppLoaderComponent,
-    CartViewComponent
+    CartViewComponent,
+    AccountComponent
   ],
   imports: [
     BrowserModule,
@@ -88,7 +87,8 @@ import {MatTableModule} from "@angular/material/table";
     MatBadgeModule,
     MatProgressSpinnerModule,
     MatDialogModule,
-    MatTableModule
+    MatTableModule,
+    OverlayModule
   ],
   providers: [ {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}},
     {provide: MatDialogRef , useValue: {} },

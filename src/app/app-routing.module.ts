@@ -5,6 +5,7 @@ import {DashboardComponent} from './screens/dashboard/dashboard.component';
 import {ProductsViewComponent} from './screens/products-list-view/products-view.component';
 import {ProductDetailsComponent} from './screens/product-details/product-details.component';
 import {CartViewComponent} from './screens/cart-view/cart-view.component';
+import {AccountComponent} from "./screens/account/account.component";
 
 const desktopRoutes: Routes = [
   {
@@ -18,6 +19,9 @@ const desktopRoutes: Routes = [
   },
   {
     path: 'cart', component: CartViewComponent
+  },
+  {
+    path: 'account', component: AccountComponent
   }
 ];
 

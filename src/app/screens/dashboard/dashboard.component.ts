@@ -19,7 +19,7 @@ export class DashboardComponent implements OnInit {
   public color: ThemePalette = 'primary';
   public maxWidth = 'auto';
   public maintainAspectRatio = true;
-  public proportion = 25;
+  public proportion = 40;
   public slideHeight = '300px';
   public slides = this.slidesList.length;
   public overlayColor = '#00000000';

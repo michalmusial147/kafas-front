@@ -3,7 +3,7 @@ export const Polish = {
   POLISH : 'Polski',
   ENGLISH: 'Angielski',
   ACCOUNT: 'Konto',
-  HELPLINE: 'Pomoc klienta',
+  HELPLINE: 'Pomoc klienta:',
   PRODUCTS: 'Produkty',
   SEARCH: 'Wyszukaj'
 };

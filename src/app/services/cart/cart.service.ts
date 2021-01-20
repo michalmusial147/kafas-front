@@ -43,7 +43,7 @@ export class CartService {
         const stock = this.calculateStockCounts(products[index], quantity);
         if (qty !== 0 && stock) {
           products[index].quantity = qty;
-          message = 'The product.ts ' + product.title + ' has been added to cart.';
+          message =  product.title + ' został dodany do koszyka.';
           status = 'success';
           this.snackBar.open(message, '×', { panelClass: [status], verticalPosition: 'top', duration: 3000 });
         }
@@ -55,7 +55,7 @@ export class CartService {
     if (!hasItem) {
       item = { product, quantity };
       products.push(item);
-      message = 'The product.ts ' + product.title + ' has been added to cart.';
+      message = product.title + ' został dodany do koszyka.';
       status = 'success';
       this.snackBar.open(message, '×', { panelClass: [status], verticalPosition: 'top', duration: 3000 });
     }
@@ -81,7 +81,9 @@ export class CartService {
 
 // Removed in cart
   public removeFromCart(item: CartItem) {
-    if (item === undefined) { return false; }
+    if (item === undefined) {
+      console.log('removeFromCart error');
+      return false; }
     const index = products.indexOf(item);
     products.splice(index, 1);
     localStorage.setItem('cartItem', JSON.stringify(products));
