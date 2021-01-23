@@ -42,6 +42,8 @@ import { CartViewComponent } from './screens/cart-view/cart-view.component';
 import {MatTableModule} from '@angular/material/table';
 import {OverlayModule} from '@angular/cdk/overlay';
 import { AccountComponent } from './screens/account/account.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { UserRegisterAccountComponent } from './screens/user-register-account/user-register-account.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,7 +58,8 @@ import { AccountComponent } from './screens/account/account.component';
     ProductDetailsComponent,
     AppLoaderComponent,
     CartViewComponent,
-    AccountComponent
+    AccountComponent,
+    UserRegisterAccountComponent
   ],
   imports: [
     BrowserModule,
@@ -88,7 +91,8 @@ import { AccountComponent } from './screens/account/account.component';
     MatProgressSpinnerModule,
     MatDialogModule,
     MatTableModule,
-    OverlayModule
+    OverlayModule,
+    MatCheckboxModule
   ],
   providers: [ {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}},
     {provide: MatDialogRef , useValue: {} },

@@ -6,6 +6,7 @@ import {ProductsViewComponent} from './screens/products-list-view/products-view.
 import {ProductDetailsComponent} from './screens/product-details/product-details.component';
 import {CartViewComponent} from './screens/cart-view/cart-view.component';
 import {AccountComponent} from "./screens/account/account.component";
+import {UserRegisterAccountComponent} from "./screens/user-register-account/user-register-account.component";
 
 const desktopRoutes: Routes = [
   {
@@ -22,6 +23,9 @@ const desktopRoutes: Routes = [
   },
   {
     path: 'account', component: AccountComponent
+  },
+  {
+    path: 'account/register', component: UserRegisterAccountComponent
   }
 ];
 

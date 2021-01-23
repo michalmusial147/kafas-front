@@ -1,6 +1,6 @@
 <mat-drawer-container class="background-color-white" autosize>
   <mat-drawer  #drawer class="app-sidenav" mode="push">
-    <mat-nav-list >
+    <mat-nav-list>
       <mat-list-item   class="app-item-list-wrapper" (click)="drawer.toggle()">
         <span  style="padding: 1.12%; letter-spacing: 2px; font-family: 'Helvetica Neue', serif; font-size: 24px" >KAFAS</span>
       </mat-list-item>
@@ -42,7 +42,6 @@
           <mat-icon>account_circle</mat-icon>
           <span class="mat-caption">{{this.dictionary.getDictionary().ACCOUNT}}</span>
         </button>
-        <app-language-selector></app-language-selector>
       </div>
     </mat-toolbar-row>
     <mat-toolbar-row fxLayout="row"  fxLayoutAlign="center center" fxShow="false" fxShow.lt-sm="true" >
@@ -50,10 +49,7 @@
     </mat-toolbar-row>
   </mat-toolbar>
 
-
-
   <router-outlet>
-
   </router-outlet>
 
   <app-footer>
