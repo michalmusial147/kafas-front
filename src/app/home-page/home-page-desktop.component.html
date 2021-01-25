@@ -1,57 +1,52 @@
-<mat-drawer-container class="background-color-white" autosize>
-  <mat-drawer  #drawer class="app-sidenav" mode="push">
-    <mat-nav-list>
-      <mat-list-item   class="app-item-list-wrapper" (click)="drawer.toggle()">
-        <span  style="padding: 1.12%; letter-spacing: 2px; font-family: 'Helvetica Neue', serif; font-size: 24px" >KAFAS</span>
-      </mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item>
-        <a (click)="this.navigateToCart()">{{this.dictionary.getDictionary().CART}}</a>
-      </mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item >
-        <a (click)="this.navigateToProducts()">Produkty</a>
-      </mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item>
-        <a (click)="this.navigateToAccount()">Konto</a>
-      </mat-list-item>
-    </mat-nav-list>
-  </mat-drawer>
-  <mat-toolbar color="primary">
-    <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
-      <div fxLayout="row" fxFlex="35" fxFlex.lt-md="25">
-        <button  fxShow="false" fxShow.lt-md="true" mat-icon-button  (click)="drawer.toggle()">
-          <mat-icon>menu</mat-icon>
-        </button>
-        <button color="primary" mat-flat-button (click)="this.navigateToHomePage()">
-          <h1 class="logo">KAFAS</h1>
-        </button>
-      </div>
-      <app-app-searcher fxFlex="40" fxFlex.lt-md="40" fxShow.lt-sm="false"></app-app-searcher>
-      <div fxLayout="row"  fxFlex="35" fxFlex.lt-md="25" fxLayoutAlign="end center" >
-        <button fxShow.lt-md="false" mat-flat-button color="primary"  (click)="this.navigateToProducts()">
-          <mat-icon>select_all</mat-icon>
-          <span class="mat-caption">{{this.dictionary.getDictionary().PRODUCTS}}</span>
-        </button>
-        <button fxShow.lt-md="false" mat-flat-button color="primary"  (click)="this.navigateToCart()">
-          <mat-icon>shopping_cart</mat-icon>
-          <span class="mat-caption">{{this.dictionary.getDictionary().CART}}</span>
-        </button>
-        <button color="primary" fxShow.lt-md="false" mat-flat-button (click)="this.navigateToAccount()">
-          <mat-icon>account_circle</mat-icon>
-          <span class="mat-caption">{{this.dictionary.getDictionary().ACCOUNT}}</span>
-        </button>
-      </div>
-    </mat-toolbar-row>
-    <mat-toolbar-row fxLayout="row"  fxLayoutAlign="center center" fxShow="false" fxShow.lt-sm="true" >
-      <app-app-searcher fxFlex="95" ></app-app-searcher>
-    </mat-toolbar-row>
-  </mat-toolbar>
+<mat-toolbar color="primary">
+  <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
+    <div fxLayout="row" fxFlex="35" fxFlex.lt-md="25">
+      <button color="primary" mat-flat-button (click)="this.navigateToHomePage()">
+        <h1 class="logo">KAFAS</h1>
+      </button>
+    </div>
+    <app-app-searcher fxFlex="40" fxFlex.lt-md="40" fxShow.lt-sm="false"></app-app-searcher>
+    <div fxLayout="row"  fxFlex="35" fxFlex.lt-md="25" fxLayoutAlign="end center">
+      <button fxShow.lt-md="false" mat-flat-button color="primary"  (click)="this.navigateToProducts()">
+        <mat-icon>select_all</mat-icon>
+        <span class="mat-caption">Sklep</span>
+      </button>
+      <button fxShow.lt-md="false" mat-flat-button color="primary"  (click)="this.navigateToCart()">
+        <mat-icon>shopping_cart</mat-icon>
+        <span class="mat-caption">Koszyk</span>
+      </button>
+      <button color="primary" fxShow.lt-md="false" mat-flat-button (click)="this.navigateToAccount()">
+        <mat-icon>account_circle</mat-icon>
+        <span class="mat-caption">Konto</span>
+      </button>
+    </div>
+  </mat-toolbar-row>
+<mat-toolbar-row fxLayout="row"  fxLayoutAlign="center center" fxShow="false" fxShow.lt-sm="true" >
+  <app-app-searcher fxFlex="95"></app-app-searcher>
+</mat-toolbar-row>
+</mat-toolbar>
 
-  <router-outlet>
-  </router-outlet>
+<router-outlet>
+</router-outlet>
 
-  <app-footer>
-  </app-footer>
-</mat-drawer-container>
+<app-footer>
+</app-footer>
+
+<mat-toolbar fxLayout="row" fxLayoutAlign="space-between center"  fxShow="false" fxShow.sm="true" fxShow.xs="true" class="toolbarNav mat-elevation-z24">
+  <button mat-button (click)="this.navigateToHomePage()">
+    <mat-icon>home</mat-icon>
+    <div>Home</div>
+  </button>
+  <button mat-button (click)="this.navigateToProducts()">
+    <mat-icon>list</mat-icon>
+    <div>Kategorie</div>
+  </button>
+  <button mat-button (click)="this.navigateToCart()">
+    <mat-icon>shopping_cart</mat-icon>
+    <div>Koszyk</div>
+  </button>
+  <button mat-button (click)="this.navigateToAccount()">
+    <mat-icon>account_circle</mat-icon>
+    <div>Konto</div>
+  </button>
+</mat-toolbar>

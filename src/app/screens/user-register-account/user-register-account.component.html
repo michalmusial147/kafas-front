@@ -1,4 +1,4 @@
-<div fxLayout="column" fxLayoutAlign="space-around center" class="register-view-wrapper">
+<div fxLayout="column" fxLayoutAlign="space-around center" class="register-view-wrapper mat-elevation-z1">
   <h1>Załóż konto</h1>
   <h3>Dane użytkownika</h3>
   <mat-form-field appearance="outline">
@@ -10,7 +10,7 @@
     <mat-error *ngIf="password.invalid">Podaj hasło</mat-error>
   </mat-form-field>
   <mat-form-field appearance="outline">
-    <input [(ngModel)]="this.userPasswordRepeat" (change)="comparePasswords()" type="text" matInput placeholder="Powtórz hasło" #passwordRepeat="ngModel" ngModel name="passwordRepeat" required>
+    <input [(ngModel)]="this.userPasswordRepeat" (change)="comparePasswords()" type="password" matInput placeholder="Powtórz hasło" #passwordRepeat="ngModel" ngModel name="passwordRepeat" required>
     <mat-error *ngIf="passwordRepeat.invalid">Powtórz hasło</mat-error>
   </mat-form-field>
   <span *ngIf="passwordFlag" style="color: red" class="mat-caption"><mat-icon>error</mat-icon>Powtórzone hasło nie jest identyczne</span>
@@ -39,9 +39,13 @@
       <input type="tel" matInput placeholder="Telefon" #telephone="ngModel" ngModel name="tel">
       <mat-error *ngIf="telephone.invalid">Podaj telefon</mat-error>
     </mat-form-field>
-    <span fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="20px">
-      <mat-checkbox [(ngModel)]="termsChecked"> </mat-checkbox>
-      <div>Oświadczam iż, zapoznałam/em się z treścią <a>regulaminu sklepu internetowego KAFAS </a> i akceptuję jego postanowienia.</div>
+    <span fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
+      <mat-checkbox  [(ngModel)]="termsChecked"> </mat-checkbox>
+      <div>Oświadczam iż, zapoznałam/em się z treścią <a>regulaminu sklepu internetowego KAFAS </a> i akceptuję jego postanowienia.*</div>
     </span>
-    <button (click)="registerAccount()" mat-raised-button color="accent">Załóż konto</button>
+    <span fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
+        <mat-checkbox [(ngModel)]="newsletterChecked"> </mat-checkbox>
+        <div >Chcę zasubskrybować newsletter żeby otrzymywać najnowsze oferty i promocje.</div>
+      </span>
+    <button [disabled]="!this.termsChecked" (click)="registerAccount()" mat-raised-button color="accent">Załóż konto</button>
 </div>

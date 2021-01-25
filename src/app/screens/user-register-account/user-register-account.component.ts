@@ -12,6 +12,7 @@ export class UserRegisterAccountComponent implements OnInit {
   userPasswordRepeat: any;
   public passwordFlag = false;
   termsChecked: any;
+  newsletterChecked: any;
   constructor() { }
 
   ngOnInit(): void {

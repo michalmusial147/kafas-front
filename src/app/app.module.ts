@@ -44,6 +44,7 @@ import {OverlayModule} from '@angular/cdk/overlay';
 import { AccountComponent } from './screens/account/account.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { UserRegisterAccountComponent } from './screens/user-register-account/user-register-account.component';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 @NgModule({
   declarations: [
     AppComponent,
@@ -92,7 +93,7 @@ import { UserRegisterAccountComponent } from './screens/user-register-account/us
     MatDialogModule,
     MatTableModule,
     OverlayModule,
-    MatCheckboxModule
+    MatCheckboxModule,
   ],
   providers: [ {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}},
     {provide: MatDialogRef , useValue: {} },
