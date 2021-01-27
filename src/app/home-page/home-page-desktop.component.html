@@ -8,8 +8,8 @@
     <app-app-searcher fxFlex="40" fxFlex.lt-md="40" fxShow.lt-sm="false"></app-app-searcher>
     <div fxLayout="row"  fxFlex="35" fxFlex.lt-md="25" fxLayoutAlign="end center">
       <button fxShow.lt-md="false" mat-flat-button color="primary"  (click)="this.navigateToProducts()">
-        <mat-icon>select_all</mat-icon>
-        <span class="mat-caption">Sklep</span>
+        <mat-icon>list</mat-icon>
+        <span class="mat-caption">Kategorie</span>
       </button>
       <button fxShow.lt-md="false" mat-flat-button color="primary"  (click)="this.navigateToCart()">
         <mat-icon>shopping_cart</mat-icon>
@@ -17,7 +17,7 @@
       </button>
       <button color="primary" fxShow.lt-md="false" mat-flat-button (click)="this.navigateToAccount()">
         <mat-icon>account_circle</mat-icon>
-        <span class="mat-caption">Konto</span>
+        <span class="mat-caption">{{this.getName()}}</span>
       </button>
     </div>
   </mat-toolbar-row>
@@ -47,6 +47,6 @@
   </button>
   <button mat-button (click)="this.navigateToAccount()">
     <mat-icon>account_circle</mat-icon>
-    <div>Konto</div>
+    <div>{{this.getName()}}</div>
   </button>
 </mat-toolbar>

@@ -1,65 +1,73 @@
-<div  fxLayout='row'>
-    <div fxFlex="100" fxFlex.lt-sm="100"  ngClass.gt-sm="p-left">
-      <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-around center" class="filter-row mat-elevation-z1 text-muted">
-        <div>
-          <select (change)="onChangeSorting($event.target.value)">
-            <option value="asc">Sorting items</option>
-            <option value="a-z">Alphabetically, A-Z</option>
-            <option value="z-a">Alphabetically, Z-A</option>
-            <option value="low">Price, low to high</option>
-            <option value="high">Price, high to low</option>
+<div fxLayout='row'>
+  <div fxFlex="100" fxFlex.lt-sm="100" ngClass.gt-sm="p-left">
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-around center"
+         class="mat-elevation-z1">
+      <div>
+        <mat-form-field>
+          <mat-label>Sortowanie</mat-label>
+          <select matNativeControl  [(ngModel)]="this.selectedSorting" (change)="onChangeSorting($event.selectionChange)">
+            <option [value]="'asc'">Domyślne</option>
+            <option [value]="'a-z'">Alfabetycznie, A-Z</option>
+            <option [value]="'z-a'">Alfabetycznie, Z-A</option>
+            <option [value]="'low'">Najtańsze</option>
+            <option [value]="'high'">Najdroższe</option>
           </select>
-        </div>
-        <div>
-          <button mat-icon-button (click)="this.changeViewType('list', 50)">
-            <mat-icon>view_list</mat-icon>
-          </button>
-          <button mat-icon-button (click)="this.changeViewType('list', 33.3)">
-            <mat-icon>view_module</mat-icon>
-          </button>
-          <button mat-icon-button (click)="this.changeViewType('list', 25)">
-            <mat-icon>view_comfy</mat-icon>
-          </button>
-        </div>
+        </mat-form-field>
       </div>
-
-      <app-loader *ngIf="this.showSpinner"></app-loader>
-
-      <div [@Animation]="this.animation" fxLayout="row wrap" class="products-wrapper">
-        <div *ngFor="let product of this.allItems | orderBy: this.sortByOrder | paginate: { itemsPerPage: 12, currentPage: page  }" fxFlex="100" [fxFlex.gt-sm]="viewCol" fxFlex.sm="50" class="col">
-          <div class="product-box">
-            <mat-card>
-              <a href="{{ '/products/'+ product.id }}">
-                <img
-                     class="product-image"
-                     mat-card-image
-                     [src]="this.domSanitizer.bypassSecurityTrustUrl(('data:image/jpg;base64,'+ (product.offerImages[0].content)))"
-                     alt="product image">
-              </a>
-              <mat-card-content>
-                <mat-card-title> {{product.title}} </mat-card-title>
-                <mat-card-subtitle> Materiały budowlane </mat-card-subtitle>
-                <div fxLayout="row" fxLayoutAlign="space-between center">
-                  <h2>{{formatCurrency(product.price)}}</h2>
-                  <button mat-mini-fab color="accent" aria-label="Add to cart button" (click)="this.addItemToCart(product)">
-                    <mat-icon>
-                      add_shopping_cart
-                    </mat-icon>
-                  </button>
-                </div>
-              </mat-card-content>
-            </mat-card>
-          </div>
-        </div>
+      <div fxShow.xs="false">
+        <button mat-icon-button (click)="this.changeViewType('list', 50)">
+          <mat-icon>view_list</mat-icon>
+        </button>
+        <button mat-icon-button (click)="this.changeViewType('list', 33.3)">
+          <mat-icon>view_module</mat-icon>
+        </button>
+        <button mat-icon-button (click)="this.changeViewType('list', 25)">
+          <mat-icon>view_comfy</mat-icon>
+        </button>
       </div>
-      <div *ngIf="products.length > 0" fxLayout="row wrap">
-        <div fxFlex="100">
-          <mat-card class="p-0 text-center no-shadow">
-            <pagination-controls class="product-pagination" autoHide="true" maxSize="5" (pageChange)="onPageChanged($event)"></pagination-controls>
+    </div>
+
+    <app-loader *ngIf="this.showSpinner"></app-loader>
+
+    <div [@Animation]="this.animation" fxLayout="row wrap" class="products-wrapper">
+      <div
+        *ngFor="let product of this.allItems | orderBy: this.sortByOrder | paginate: { itemsPerPage: 12, currentPage: page  }"
+        fxFlex="50" [fxFlex.gt-sm]="viewCol" fxFlex.sm="50" class="col">
+        <div class="product-box">
+          <mat-card>
+            <a href="{{ '/products/'+ product.id }}">
+              <img
+                class="product-image"
+                mat-card-image
+                [src]="this.domSanitizer.bypassSecurityTrustUrl(('data:image/jpg;base64,'+ (product.offerImages[0].content)))"
+                alt="product image">
+            </a>
+            <mat-card-content>
+              <mat-card-title> {{product.title}} </mat-card-title>
+              <mat-card-subtitle> Materiały budowlane</mat-card-subtitle>
+              <div fxLayout="row" fxLayoutAlign="space-between center">
+                <h2>{{formatCurrency(product.price)}}</h2>
+                <button mat-mini-fab color="accent" aria-label="Add to cart button"
+                        (click)="this.addItemToCart(product)">
+                  <mat-icon>
+                    add_shopping_cart
+                  </mat-icon>
+                </button>
+              </div>
+            </mat-card-content>
           </mat-card>
         </div>
       </div>
     </div>
+    <div *ngIf="products.length > 0" fxLayout="row wrap">
+      <div fxFlex="100">
+        <mat-card class="p-0 text-center no-shadow">
+          <pagination-controls class="product-pagination" autoHide="true" maxSize="5"
+                               (pageChange)="onPageChanged($event)"></pagination-controls>
+        </mat-card>
+      </div>
+    </div>
+  </div>
 </div>
 
 

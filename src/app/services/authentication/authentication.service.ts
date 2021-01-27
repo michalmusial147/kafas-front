@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import {BehaviorSubject, Observable, throwError} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
 import {environment} from '../../../environments/environment';
-import {User} from "../../model/user";
+import {User} from '../../model/user';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -20,7 +20,6 @@ export class AuthenticationService {
     }
 
     login(username: string, password: string) {
-      console.log('login called');
       return this.http.post<any>(`${environment.apiUrl}/authentication/login`, { username, password })
           .pipe(map(user => {
               console.log(JSON.stringify(user));
@@ -33,6 +32,17 @@ export class AuthenticationService {
             console.log(err);
             return throwError(err);
           }));
+    }
+    register(user: User){
+      return this.http.post<any>(`${environment.apiUrl}/authentication/register`, user)
+        .pipe(map(user => {
+          console.log(JSON.stringify(user));
+          localStorage.setItem('currentUser', JSON.stringify(user));
+          this.currentUserSubject.next(user);
+          return user;
+        }), catchError((err, caught) => {
+          return throwError(err);
+        }));
     }
     logout() {
         // remove user from local storage to log user out

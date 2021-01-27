@@ -1,5 +1,6 @@
-<div  class="wrapper mat-elevation-z8" fxLayout="column" fxLayoutAlign="center center" *ngIf="!shoppingCartItems.length">
-  Koszyk pusty
+<div class="empty-cart-wrapper mat-elevation-z2" fxLayout="column" fxLayoutAlign="center center" *ngIf="!shoppingCartItems.length">
+  <h1>Koszyk pusty</h1>
+  <button mat-raised-button color="primary">Zobacz produkty</button>
 </div>
 <div   class="min-height" *ngIf="shoppingCartItems.length">
   <table mat-table [dataSource]="this.shoppingCartItems">

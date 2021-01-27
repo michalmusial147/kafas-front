@@ -13,7 +13,6 @@ import {Observable} from 'rxjs';
 export class LoadingInterceptor implements HttpInterceptor {
   constructor(public loadingService: LoadingStateService) { }
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    console.log('intercept');
     this.loadingService.setLoading(true);
     return next.handle(request).pipe(
       finalize(() => {

@@ -1,6 +1,70 @@
-<div class="wrapper">
-  <mat-toolbar></mat-toolbar>
-  <div class="home-carousel" [style.height]="parentHeight">
+<div class="dashboard-wrapper">
+  <div fxLayout="row" fxLayout.lt-sm="column" style="padding-right: 5%; padding-left: 5%" fxLayoutGap="10px">
+    <mat-card fxLayout="column" fxFlex="100" fxLayoutAlign="stretch stretch">
+      <mat-card-header>
+        <div mat-card-avatar>
+          <mat-icon color="primary">handyman</mat-icon>
+        </div>
+        <mat-card-title>Usługi budowlane</mat-card-title>
+        <mat-card-subtitle>Remonty</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image
+           style="height: 100%; width: 100%"
+           src="../../../assets/home-cards/remont.jpeg"
+           alt="product picture"/>
+      <mat-card-content>
+        <p>
+          Wyremontuj swój dom marzeń.
+        </p>
+      </mat-card-content>
+      <mat-card-actions fxLayout="row" fxLayoutAlign="center">
+        <button color="accent" mat-raised-button>Zamów</button>
+      </mat-card-actions>
+    </mat-card>
+    <mat-card fxLayout="column" fxFlex="100" fxLayoutAlign="stretch stretch">
+      <mat-card-header>
+        <div mat-card-avatar>
+          <mat-icon color="primary">local_offer</mat-icon>
+        </div>
+        <mat-card-title>Sklep z materiałami</mat-card-title>
+        <mat-card-subtitle>Oferujemy materiały budowlane w najlepszych cenach.</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <img mat-card-image
+             style="height: 100%; width: 100%"
+             src="../../../assets/home-cards/ladder_paint.jpeg"
+             alt="product picture"/>
+        <p>
+          Skorzystaj z naszego sklepu.
+        </p>
+      </mat-card-content>
+      <mat-card-actions fxLayout="row" fxLayoutAlign="center">
+        <button color="accent" mat-raised-button>Odwiedź</button>
+      </mat-card-actions>
+    </mat-card>
+    <mat-card fxLayout="column" fxFlex="100" fxLayoutAlign="stretch stretch">
+      <mat-card-header>
+        <div mat-card-avatar>
+          <mat-icon color="primary">local_offer</mat-icon>
+        </div>
+        <mat-card-title>Bramy żelazne</mat-card-title>
+        <mat-card-subtitle>Wykonujemy bramy żelazne na zamówienie.</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image
+           style="height: 100%; width: 100%"
+           src="../../../assets/home-cards/gate.jpeg"
+           alt="product picture"/>
+      <mat-card-content>
+        <p>
+          Skorzystaj z naszego sklepu.
+        </p>
+      </mat-card-content>
+      <mat-card-actions fxLayout="row" fxLayoutAlign="center">
+        <button color="accent" mat-raised-button>Zamów</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  <div style="padding-right: 5%; padding-left: 5%" [style.height]="parentHeight">
     <mat-carousel
       #matCarousel
       [timings]="timings"
@@ -25,11 +89,10 @@
         [overlayColor]="overlayColor"
         [hideOverlay]="hideOverlay">
         <div fxFlexFill fxLayout="row" fxLayoutAlign="space-between center">
-          <div fxLayout="column" fxLayoutAlign="center center"  fxFlex="50">
-            <h2>Bramy</h2>
-            <h3>Handmade iron gates</h3>
+          <div fxLayout="column" fxLayoutAlign="center center" fxFlex="50">
+            <h3 style="margin-bottom: 5px">Ręcznie wykonywane bramy żelazne</h3>
             <button
-              color=accent
+              color=primary
               mat-raised-button
               (click)=" matCarouselSlide.disabled = !matCarouselSlide.disabled ">
               Zamów teraz
@@ -37,35 +100,11 @@
           </div>
           <div fxFlex="50">
             <div>
-              <img  style="width: 100%" src="../../../assets/home-cards/gate01.jpeg" alt="Photo of a gate">
+              <img style="width: 100%" src="../../../assets/home-cards/gate01.jpeg" alt="Photo of a gate">
             </div>
           </div>
         </div>
       </mat-carousel-slide>
     </mat-carousel>
-  </div>
-  <mat-toolbar>
-  </mat-toolbar>
-  <div style="padding-right: 15%; padding-left: 15%">
-    <mat-tab-group color="accent" mat-align-tabs="start">
-      <mat-tab label="Polecane">
-        Polecane
-        <mat-card></mat-card>
-        <mat-card></mat-card>
-        <mat-card></mat-card>
-      </mat-tab>
-      <mat-tab label="Najnowsze">
-        Najnowsze
-        <mat-card></mat-card>
-        <mat-card></mat-card>
-        <mat-card></mat-card>
-      </mat-tab>
-      <mat-tab label="Wyprzedaż">
-        Wyprzedaż
-        <mat-card></mat-card>
-        <mat-card></mat-card>
-        <mat-card></mat-card>
-      </mat-tab>
-    </mat-tab-group>
   </div>
 </div>

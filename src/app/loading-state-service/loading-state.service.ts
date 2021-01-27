@@ -13,7 +13,6 @@ export class LoadingStateService {
   }
 
   setLoading(b: boolean) {
-    console.log('setLoading: ' + b);
     this.loadingState.next(b);
   }
 }

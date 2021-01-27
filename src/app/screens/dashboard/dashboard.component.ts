@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ThemePalette} from '@angular/material/core';
 import {Orientation} from '@ngbmodule/material-carousel';
+import {ScreenTypeServiceService} from "../../services/screen-type-service/screen-type-service.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -11,7 +12,7 @@ export class DashboardComponent implements OnInit {
   public slidesList = new Array<never>(5);
   public parentHeight = 'auto';
   public timings = '500ms ease-in';
-  public autoplay = false;
+  public autoplay = true;
   public interval = 4000;
   public loop = true;
   public hideArrows = true;
@@ -28,9 +29,12 @@ export class DashboardComponent implements OnInit {
   public useMouseWheel = false;
   public orientation: Orientation = 'ltr';
 
-  constructor() { }
+  constructor(public screenTypeServiceService: ScreenTypeServiceService) { }
 
   ngOnInit(): void {
+    if(this.screenTypeServiceService.isScreenMobile){
+      this.proportion = 70;
+    }
   }
   public onChange(index: number) {
 

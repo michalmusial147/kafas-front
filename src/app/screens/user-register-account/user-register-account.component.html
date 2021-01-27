@@ -1,51 +1,53 @@
-<div fxLayout="column" fxLayoutAlign="space-around center" class="register-view-wrapper mat-elevation-z1">
-  <h1>Załóż konto</h1>
-  <h3>Dane użytkownika</h3>
-  <mat-form-field appearance="outline">
-    <input [(ngModel)]="this.userEmail" type="email" matInput placeholder="Email" #email="ngModel" ngModel name="email" required>
-    <mat-error *ngIf="email.invalid">Podaj adres email</mat-error>
-  </mat-form-field>
-  <mat-form-field appearance="outline" >
-    <input (change)="comparePasswords()" [(ngModel)]="this.userPassword" type="password" matInput placeholder="Hasło" #password="ngModel" ngModel name="new-password" required>
-    <mat-error *ngIf="password.invalid">Podaj hasło</mat-error>
-  </mat-form-field>
-  <mat-form-field appearance="outline">
-    <input [(ngModel)]="this.userPasswordRepeat" (change)="comparePasswords()" type="password" matInput placeholder="Powtórz hasło" #passwordRepeat="ngModel" ngModel name="passwordRepeat" required>
-    <mat-error *ngIf="passwordRepeat.invalid">Powtórz hasło</mat-error>
-  </mat-form-field>
-  <span *ngIf="passwordFlag" style="color: red" class="mat-caption"><mat-icon>error</mat-icon>Powtórzone hasło nie jest identyczne</span>
-  <h3>Dane osobowe</h3>
-  <mat-form-field appearance="outline">
-    <input type="text" matInput placeholder="Imię" #firstname="ngModel" ngModel name="firstname" required>
-    <mat-error *ngIf="firstname.invalid">Podaj imię</mat-error>
-  </mat-form-field>
-  <mat-form-field appearance="outline">
-    <input type="text" matInput placeholder="Nazwisko" #name="ngModel" ngModel name="lastname" required>
-    <mat-error *ngIf="name.invalid">Podaj nazwisko</mat-error>
-  </mat-form-field>
-  <mat-form-field appearance="outline">
-    <input type="text" matInput placeholder="Adres" #password="ngModel" ngModel name="address1" required>
-    <mat-error *ngIf="password.invalid">Podaj adres</mat-error>
-  </mat-form-field>
-  <mat-form-field appearance="outline">
-    <input type="text" matInput placeholder="Dodatkowe informacje - nr domu/numer mieszkania" #houseNumber="ngModel" ngModel name="address2" required>
-      <mat-error *ngIf="houseNumber.invalid">Podaj nr domu/numer mieszkania</mat-error>
-    </mat-form-field >
+<div class="register-view-outside-wrapper">
+  <div fxLayout="column" fxLayoutAlign="space-around center" class="register-view-inside-wrapper mat-elevation-z1">
+    <h1>Załóż konto</h1>
+    <h3>Dane użytkownika</h3>
     <mat-form-field appearance="outline">
-      <input type="text" matInput placeholder="Kod pocztowy" #postcode="ngModel" ngModel name="postcode" required>
-      <mat-error *ngIf="postcode.invalid">Podaj hasło</mat-error>
+      <input [(ngModel)]="this.userEmail" type="email" matInput placeholder="Email" #email="ngModel" ngModel name="email" required>
+      <mat-error *ngIf="email.invalid">Podaj adres email</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" >
+      <input (change)="comparePasswords()" [(ngModel)]="this.userPassword" type="password" matInput placeholder="Hasło" #password="ngModel" ngModel name="new-password" required>
+      <mat-error *ngIf="password.invalid">Podaj hasło</mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline">
-      <input type="tel" matInput placeholder="Telefon" #telephone="ngModel" ngModel name="tel">
-      <mat-error *ngIf="telephone.invalid">Podaj telefon</mat-error>
+      <input [(ngModel)]="this.userPasswordRepeat" (change)="comparePasswords()" type="password" matInput placeholder="Powtórz hasło" #passwordRepeat="ngModel" ngModel name="passwordRepeat" required>
+      <mat-error *ngIf="passwordRepeat.invalid">Powtórz hasło</mat-error>
     </mat-form-field>
-    <span fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
-      <mat-checkbox  [(ngModel)]="termsChecked"> </mat-checkbox>
-      <div>Oświadczam iż, zapoznałam/em się z treścią <a>regulaminu sklepu internetowego KAFAS </a> i akceptuję jego postanowienia.*</div>
-    </span>
-    <span fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
-        <mat-checkbox [(ngModel)]="newsletterChecked"> </mat-checkbox>
-        <div >Chcę zasubskrybować newsletter żeby otrzymywać najnowsze oferty i promocje.</div>
+    <span *ngIf="passwordFlag" style="color: red" class="mat-caption"><mat-icon>error</mat-icon>Powtórzone hasło nie jest identyczne</span>
+    <h3>Dane osobowe</h3>
+    <mat-form-field appearance="outline">
+      <input  [(ngModel)]="this.userFirstName" type="text" matInput placeholder="Imię" #firstname="ngModel" ngModel name="firstname" required>
+      <mat-error *ngIf="firstname.invalid">Podaj imię</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <input [(ngModel)]="this.userLastName" type="text" matInput placeholder="Nazwisko" #name="ngModel" ngModel name="lastname" required>
+      <mat-error *ngIf="name.invalid">Podaj nazwisko</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <input [(ngModel)]="this.userAddress1" type="text" matInput placeholder="Adres" #address1="ngModel" ngModel name="address1" required>
+      <mat-error *ngIf="address1.invalid">Podaj adres</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <input  [(ngModel)]="this.userAddress2" type="text" matInput placeholder="Dodatkowe informacje - nr domu/numer mieszkania" #address2="ngModel" ngModel name="address2" required>
+        <mat-error *ngIf="address2.invalid">Podaj nr domu/numer mieszkania</mat-error>
+      </mat-form-field >
+      <mat-form-field appearance="outline">
+        <input [(ngModel)]="this.userPostcode" type="text" matInput placeholder="Kod pocztowy" #postcode="ngModel" ngModel name="postcode" required>
+        <mat-error *ngIf="postcode.invalid">Podaj hasło</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <input [(ngModel)]="this.userTelephone" type="tel" matInput placeholder="Telefon" #telephone="ngModel" ngModel name="tel">
+        <mat-error *ngIf="telephone.invalid">Podaj telefon</mat-error>
+      </mat-form-field>
+      <span fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
+        <mat-checkbox  [(ngModel)]="termsChecked"> </mat-checkbox>
+        <div>Oświadczam iż, zapoznałam/em się z treścią <a>regulaminu sklepu internetowego KAFAS </a> i akceptuję jego postanowienia.*</div>
       </span>
-    <button [disabled]="!this.termsChecked" (click)="registerAccount()" mat-raised-button color="accent">Załóż konto</button>
+      <span fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
+          <mat-checkbox [(ngModel)]="userNewsletterChecked"> </mat-checkbox>
+          <div >Chcę zasubskrybować newsletter żeby otrzymywać najnowsze oferty i promocje.</div>
+        </span>
+      <button [disabled]="!this.termsChecked" (click)="registerAccount()" mat-raised-button color="accent">Załóż konto</button>
+  </div>
 </div>

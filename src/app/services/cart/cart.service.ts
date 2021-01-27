@@ -55,7 +55,7 @@ export class CartService {
     if (!hasItem) {
       item = { product, quantity };
       products.push(item);
-      message = product.title + ' został dodany do koszyka.';
+      message = 'Produkt został dodany do koszyka.';
       status = 'success';
       this.snackBar.open(message, '×', { panelClass: [status], verticalPosition: 'top', duration: 3000 });
     }

@@ -26,7 +26,11 @@ const desktopRoutes: Routes = [
   },
   {
     path: 'account/register', component: UserRegisterAccountComponent
+  },
+  {
+    path: 'adminPanel/cfb7ea2d-5846-441a-905f-9a6ba8146f47', component
   }
+
 ];
 
 @NgModule({

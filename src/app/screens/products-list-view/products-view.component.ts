@@ -26,6 +26,7 @@ export class ProductsViewComponent implements OnInit {
   public colors: any[] = [];
   public showSpinner: any;
   formatCurrency: any = formatCurrency;
+  selectedSorting: any;
   constructor(private productService: ProductService,
               private route: ActivatedRoute,
               public domSanitizer: DomSanitizer,
@@ -101,7 +102,7 @@ export class ProductsViewComponent implements OnInit {
 
 
   public onChangeSorting(val) {
-    this.sortByOrder = val;
+    this.sortByOrder = this.selectedSorting;
   }
 
   // Initialize filetr Items
