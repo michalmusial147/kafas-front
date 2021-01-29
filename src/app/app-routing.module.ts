@@ -5,12 +5,16 @@ import {DashboardComponent} from './screens/dashboard/dashboard.component';
 import {ProductsViewComponent} from './screens/products-list-view/products-view.component';
 import {ProductDetailsComponent} from './screens/product-details/product-details.component';
 import {CartViewComponent} from './screens/cart-view/cart-view.component';
-import {AccountComponent} from "./screens/account/account.component";
-import {UserRegisterAccountComponent} from "./screens/user-register-account/user-register-account.component";
+import {AccountComponent} from './screens/account/account.component';
+import {UserRegisterAccountComponent} from './screens/user-register-account/user-register-account.component';
+import {AdminPanelComponent} from './screens/admin-panel/admin-panel.component';
+import {AdminPanelLoginComponent} from './screens/admin-panel-login/admin-panel-login.component';
+import {ProductsManagerComponent} from './screens/products-manager/products-manager.component';
+import {AdminDashboardComponent} from './components/admin-dashboard/admin-dashboard.component';
 
 const desktopRoutes: Routes = [
   {
-    path: '', component: DashboardComponent
+    path: '', component: DashboardComponent , pathMatch: 'full'
   },
   {
     path: 'products', component: ProductsViewComponent
@@ -28,9 +32,11 @@ const desktopRoutes: Routes = [
     path: 'account/register', component: UserRegisterAccountComponent
   },
   {
-    path: 'adminPanel/cfb7ea2d-5846-441a-905f-9a6ba8146f47', component
+    path: 'admin/login/cfb7ea2d-5846-441a-905f-9a6ba8146f47', component: AdminPanelLoginComponent
+  },
+  {
+    path: 'adminPanel', component: AdminPanelComponent,
   }
-
 ];
 
 @NgModule({
@@ -39,6 +45,5 @@ const desktopRoutes: Routes = [
 })
 export class AppRoutingModule {
   public constructor(private router: Router, private applicationStateService: ScreenTypeServiceService) {
-
   }
 }

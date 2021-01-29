@@ -1,11 +1,10 @@
 <div fxLayout='row'>
   <div fxFlex="100" fxFlex.lt-sm="100" ngClass.gt-sm="p-left">
     <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-around center"
-         class="mat-elevation-z1">
-      <div>
-        <mat-form-field>
+         class="mat-elevation-z1 bottom-bar-row-wrapper">
+        <mat-form-field  appearance="fill">
           <mat-label>Sortowanie</mat-label>
-          <select matNativeControl  [(ngModel)]="this.selectedSorting" (change)="onChangeSorting($event.selectionChange)">
+          <select  matNativeControl  [(ngModel)]="this.selectedSorting" (change)="onChangeSorting($event.selectionChange)">
             <option [value]="'asc'">Domyślne</option>
             <option [value]="'a-z'">Alfabetycznie, A-Z</option>
             <option [value]="'z-a'">Alfabetycznie, Z-A</option>
@@ -13,7 +12,6 @@
             <option [value]="'high'">Najdroższe</option>
           </select>
         </mat-form-field>
-      </div>
       <div fxShow.xs="false">
         <button mat-icon-button (click)="this.changeViewType('list', 50)">
           <mat-icon>view_list</mat-icon>

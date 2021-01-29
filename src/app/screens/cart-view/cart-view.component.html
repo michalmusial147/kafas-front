@@ -2,7 +2,7 @@
   <h1>Koszyk pusty</h1>
   <button mat-raised-button color="primary">Zobacz produkty</button>
 </div>
-<div   class="min-height" *ngIf="shoppingCartItems.length">
+<div class="min-height" *ngIf="shoppingCartItems.length">
   <table mat-table [dataSource]="this.shoppingCartItems">
     <ng-container  matColumnDef="image">
       <th mat-header-cell *matHeaderCellDef>Produkt</th>
@@ -58,7 +58,6 @@
     <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"> </tr>
   </table>
   <div style="height: 48px" fxLayoutGap="10px" fxLayout="row" fxLayoutAlign="center center" >
-  <button mat-raised-button color="primary">Kontynuuj zakupy</button>
-   <button mat-raised-button color="accent" [disabled]="shoppingCartItems.length===0">Zamów teraz</button>
+   <button mat-raised-button color="accent" [disabled]="shoppingCartItems.length===0">Do kasy</button>
   </div>
 </div >

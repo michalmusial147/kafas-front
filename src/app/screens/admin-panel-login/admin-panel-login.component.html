@@ -1,0 +1,28 @@
+<div  class="admin-panel-login-wrapper">
+  <div fxFill fxLayout="column" fxLayoutAlign="center center">
+    <mat-card class="mat-elevation-z2">
+      <div  fxFill fxLayout="column" fxLayoutAlign="center center">
+        <form fxLayout="column"  fxLayoutGap="5px">
+          <div>
+            <h2>Zaloguj się na konto administratora</h2>
+          </div>
+          <div  fxFlex="100" fxFlex.gt-sm="100" >
+            <mat-form-field>
+              <input type="email" [(ngModel)]="userEmailLoginForm" matInput placeholder="Adres email" #name="ngModel" ngModel name="name" required>
+              <mat-error *ngIf="name.invalid">Podaj login</mat-error>
+            </mat-form-field>
+          </div>
+          <div  fxFlex="100" fxFlex.gt-sm="100" >
+            <mat-form-field>
+              <input type="password" [(ngModel)]="userPasswordLoginForm" matInput placeholder="Hasło" #password="ngModel" ngModel name="password" required>
+              <mat-error *ngIf="password.invalid">Podaj hasło</mat-error>
+            </mat-form-field>
+          </div>
+          <div  fxFlex="100" fxFlex.gt-sm="100">
+            <button (click)="this.login()"  mat-raised-button color="primary" type="submit">Zaloguj</button>
+          </div>
+        </form>
+      </div>
+    </mat-card>
+  </div>
+</div>

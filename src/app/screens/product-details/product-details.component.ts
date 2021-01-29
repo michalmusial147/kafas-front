@@ -16,7 +16,7 @@ export class ProductDetailsComponent implements OnInit {
   formatCurrency: any = formatCurrency;
   public product: Product;
   productQuantity: number;
-  showSpinner: any;
+  showSpinner = true;
   constructor(private route: ActivatedRoute,
               public productsService: ProductService,
               public productDetailsDomSanitizer: DomSanitizer,

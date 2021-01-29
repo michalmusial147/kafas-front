@@ -48,6 +48,13 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { EmailExistsDialogComponent } from './components/email-exists-dialog/email-exists-dialog.component';
 import {MatSelectModule} from "@angular/material/select";
 import { AdminPanelComponent } from './screens/admin-panel/admin-panel.component';
+import { AdminPanelLoginComponent } from './screens/admin-panel-login/admin-panel-login.component';
+import { BadCredentialsDialogComponent } from './components/bad-credentials-dialog/bad-credentials-dialog.component';
+import { ProductsManagerComponent } from './screens/products-manager/products-manager.component';
+import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
+import { AdminOrdersComponent } from './components/admin-orders/admin-orders.component';
+import { AdminRenovationsComponent } from './components/admin-renovations/admin-renovations.component';
+import { AdminGatesComponent } from './components/admin-gates/admin-gates.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,7 +72,14 @@ import { AdminPanelComponent } from './screens/admin-panel/admin-panel.component
     AccountComponent,
     UserRegisterAccountComponent,
     EmailExistsDialogComponent,
-    AdminPanelComponent
+    AdminPanelComponent,
+    AdminPanelLoginComponent,
+    BadCredentialsDialogComponent,
+    ProductsManagerComponent,
+    AdminDashboardComponent,
+    AdminOrdersComponent,
+    AdminRenovationsComponent,
+    AdminGatesComponent
   ],
     imports: [
         BrowserModule,

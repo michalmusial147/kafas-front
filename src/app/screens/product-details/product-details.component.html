@@ -1,5 +1,5 @@
-<div fxLayout="column" fxLayoutAlign="center center">
-  <app-loader *ngIf="this.showSpinner"></app-loader>
+<app-loader *ngIf="this.showSpinner"></app-loader>
+<div *ngIf="!this.showSpinner" fxLayout="column" fxLayoutAlign="center center">
   <div class="product-details-wrapper" fxLayout="row" fxLayout.sm="row wrap" fxLayout.xs="row wrap" fxLayoutAlign="center stretch" fxLayoutGap="20px">
     <mat-card fxLayout="column" fxFlex="100" fxLayoutAlign="stretch stretch">
       <img mat-card-image
@@ -12,8 +12,8 @@
     </mat-card>
     <div fxFlex="100"  fxLayout="column" fxLayoutAlign="space-between" fxLayoutGap="10px">
      <div>
-          <h1>{{product.title}} </h1>
-          <h2>{{formatCurrency(product.price)}} </h2>
+          <h1> {{product.title}} </h1>
+          <h2> {{formatCurrency(product.price)}} </h2>
           <p> {{product.description}} </p>
           <p> <span class="text-muted fw-500">Dostępność: {{product.stock}}</span> </p>
         <div fxLayout="row" fxLayoutGap="10px" class="quantity">
@@ -28,9 +28,6 @@
       <div fxLayoutGap="20px">
         <button mat-raised-button color="primary" class="btn-project mr-10" (click)="addItemToCart(product, productQuantity)">
           Dodaj do koszyka
-        </button>
-        <button mat-raised-button color="accent" class="btn-project" (click)="buyNow(product, productQuantity)">
-          Kup teraz
         </button>
       </div>
     </div>

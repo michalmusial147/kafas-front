@@ -15,7 +15,6 @@ export class HomePageDesktopComponent{
   router: Router;
 
   public log: string[] = [];
-  isOpen = false;
 
   constructor(router: Router, sanitizer: DomSanitizer,
               dictionaryService: DictionaryService,
