@@ -32,4 +32,7 @@ public class Offer {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "offer")
     private List<OfferImage> offerImages;
 
+    @Column(nullable = true)
+    private int stock;
+
 }

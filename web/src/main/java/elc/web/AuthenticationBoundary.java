@@ -2,7 +2,9 @@ package elc.web;
 
 import elc.domain.AppUser;
 import elc.domain.LoginForm;
+import elc.domain.RegistrationForm;
 import elc.security.AuthenticationService;
+import elc.security.UserAlreadyExistException;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,7 +29,7 @@ public class AuthenticationBoundary {
 
     @PostMapping(value = "/login")
     public ResponseEntity<AppUser> login(@RequestBody LoginForm loginForm) {
-        logger.info("login reached");
+        log.info("reached");
         AppUser resp =  authenticationService.signin(loginForm);
         if(resp==null){
             return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
@@ -37,18 +39,22 @@ public class AuthenticationBoundary {
         }
     }
 
-//    @PostMapping(value = "/signup")
-//    @ApiOperation(value = "${AuthenticationController.signup}")
-//    @DefaultApiResponds
-//    @ApiResponse(code = 201, message = "Created successfully")
-//    public String signup(@ApiParam("Signup User") @RequestBody UserInputDataDTO user) {
-//        return authenticationService.signup(modelMapper.map(user, User.class));
-//    }
-//
-//    @PutMapping
-//    @ApiOperation(value = "${AuthenticationController.editpassword}")
-//    @DefaultApiResponds
-//    public String editUserPassword(String password, HttpServletRequest req) {
-//        return authenticationService.editPassword(password, req);
-//    }
+    @PostMapping(value = "/register")
+    public ResponseEntity<AppUser> signup(@RequestBody RegistrationForm registerForm) {
+        try {
+            return new ResponseEntity<>(
+                    authenticationService.signup(registerForm),
+                    HttpStatus.OK );
+        }
+        catch (UserAlreadyExistException e){
+            return new ResponseEntity<>(
+                    null,
+                    HttpStatus.UNPROCESSABLE_ENTITY);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 }

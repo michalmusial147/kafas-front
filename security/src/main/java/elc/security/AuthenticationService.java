@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 import elc.data.UserRepository;
 import elc.domain.LoginForm;
 import elc.domain.AppUser;
+import elc.domain.RegistrationForm;
+import elc.domain.Role;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -13,6 +15,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.Arrays;
 
 
 @Slf4j
@@ -28,11 +32,11 @@ public class AuthenticationService {
     private AuthenticationManager authenticationManager;
 
     @Autowired
-    public AuthenticationService(UserRepository userRepository,
-        PasswordEncoder passwordEncoder,
-        JwtTokenProvider jwtTokenProvider,
-        AuthenticationManager authenticationManager)
-    {
+    public AuthenticationService(
+            UserRepository userRepository,
+            PasswordEncoder passwordEncoder,
+            JwtTokenProvider jwtTokenProvider,
+            AuthenticationManager authenticationManager) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.jwtTokenProvider = jwtTokenProvider;
@@ -58,14 +62,16 @@ public class AuthenticationService {
     }
 
 
-    public String signup(AppUser appUser) throws Exception {
-        if (userRepository.existsById(appUser.getId())) {
-            throw new Exception();
+    public AppUser signup(RegistrationForm registrationForm) throws UserAlreadyExistException {
+        if (userRepository.findByUsername(registrationForm.getUsername()) !=  null) {
+            throw new UserAlreadyExistException("User exists", new Exception());
         }
        else {
-            appUser.setPassword(passwordEncoder.encode(appUser.getPassword()));
-            userRepository.save(appUser);
-            return jwtTokenProvider.createToken(appUser.getUsername(), appUser.getRoles());
+            AppUser usr = registrationForm.toUser(passwordEncoder);
+            usr = userRepository.save(usr);
+            usr.setRoles(Arrays.asList(Role.ROLE_USER));
+            usr.setToken(jwtTokenProvider.createToken(usr.getUsername(), usr.getRoles()));
+            return usr;
         }
     }
 

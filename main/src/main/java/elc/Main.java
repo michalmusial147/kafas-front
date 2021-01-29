@@ -14,6 +14,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 
 @SpringBootApplication
@@ -35,13 +36,27 @@ public class Main implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         userRepository.save(AppUser.builder()
-                .id(1)
-                .username("admin")
+                .username("admin@gmail.com")
                 .password(passwordEncoder.encode("test"))
-                .roles(Arrays.asList(Role.ROLE_ADMIN))
-                .firstName("Mariusz")
-                .lastName("Pudzianowski")
+                .roles(Collections.singletonList(Role.ROLE_ADMIN))
+                .firstName("Piotr")
+                .lastName("Michalak")
+                .address1("Katarzyna")
+                .address2("20")
+                .postcode("61-650")
+                .telephone("652025987")
                 .build());
 
+        userRepository.save(AppUser.builder()
+                .username("testowy_klient@gmail.com")
+                .password(passwordEncoder.encode("test"))
+                .roles(Arrays.asList(Role.ROLE_USER))
+                .firstName("Adam")
+                .lastName("Kowalski")
+                .address1("Piernikowa")
+                .address2("3/24")
+                .postcode("11-222")
+                .telephone("987645312")
+                .build());
     }
 }

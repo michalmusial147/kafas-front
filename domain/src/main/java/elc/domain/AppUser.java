@@ -30,10 +30,34 @@ public class AppUser{
   private String password;
   private String firstName;
   private String lastName;
+  private String address1;
+  private String address2;
+  private String postcode;
+  private String telephone;
   private String token;
 
   @ElementCollection(fetch = FetchType.EAGER)
   @Setter
   private List<Role> roles;
 
+  public AppUser(int i,
+                 String username,
+                 String password,
+                 String firstName,
+                 String lastName,
+                 String address1,
+                 String address2,
+                 String postcode,
+                 String telephone,
+                 List<Role> roles) {
+    this.username = username;
+    this.password = password;
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.address1 = address1;
+    this.address2 = address2;
+    this.postcode = postcode;
+    this.telephone = telephone;
+    this.roles =  roles;
+  }
 }

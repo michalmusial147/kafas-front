@@ -8,4 +8,5 @@ import java.util.Map;
 public interface UserRepository extends CrudRepository<AppUser, Integer> {
 
     AppUser findByUsername(String userName);
+
 }
