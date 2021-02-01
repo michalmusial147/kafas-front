@@ -11,6 +11,7 @@ import {AdminPanelComponent} from './screens/admin-panel/admin-panel.component';
 import {AdminPanelLoginComponent} from './screens/admin-panel-login/admin-panel-login.component';
 import {ProductsManagerComponent} from './screens/products-manager/products-manager.component';
 import {AdminDashboardComponent} from './components/admin-dashboard/admin-dashboard.component';
+import {AdminAuthGuard} from "./security/admin.auth.guard";
 
 const desktopRoutes: Routes = [
   {
@@ -32,10 +33,10 @@ const desktopRoutes: Routes = [
     path: 'account/register', component: UserRegisterAccountComponent
   },
   {
-    path: 'admin/login/cfb7ea2d-5846-441a-905f-9a6ba8146f47', component: AdminPanelLoginComponent
+    path: 'adminPanel/login/cfb7ea2d-5846-441a-905f-9a6ba8146f47', component: AdminPanelLoginComponent
   },
   {
-    path: 'adminPanel', component: AdminPanelComponent,
+    path: 'adminPanel', component: AdminPanelComponent, canActivate: [AdminAuthGuard],
   }
 ];
 
