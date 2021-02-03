@@ -24,6 +24,7 @@ public class OfferImage {
 
     @JsonBackReference
     @ManyToOne
-    @JoinColumn(name = "offer_id", nullable = false)
+    @JoinColumn(name = "offer_id", nullable = true)
     private Offer offer;
+
 }

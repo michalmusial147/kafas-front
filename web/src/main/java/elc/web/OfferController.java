@@ -3,6 +3,7 @@ package elc.web;
 import elc.data.OfferRepository;
 import elc.data.UserRepository;
 import elc.domain.Offer;
+import elc.domain.OfferDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +24,7 @@ public class OfferController {
     UserRepository userRepository;
 
     @GetMapping
-    public Iterable<Offer> getAll(@RequestParam(value = "sortBy", required = false) String sortBy,
+    public Iterable<Offer> getAllOffers(@RequestParam(value = "sortBy", required = false) String sortBy,
                                   @RequestParam(value = "destination", required = false) String destination,
                                   @RequestParam(value = "rooms", required = false) String rooms) {
         System.out.println("getall reached rooms= "+ rooms);
@@ -53,8 +54,16 @@ public class OfferController {
     }
 
     @PostMapping
-    public Offer addOne(@RequestBody Offer offer){
-        offer.setDateAdded(new Date());
+    public Offer addOne(@RequestBody OfferDTO offerDTO){
+        Offer offer = Offer.builder()
+                .title(offerDTO.getTitle())
+                .dateAdded(new Date())
+                .description(offerDTO.getDescription())
+                .price(offerDTO.getPrice())
+                .stock(offerDTO.getStock())
+                .category(offerDTO.getCategory())
+                .build();
+
         return offerRepository.save(offer);
     }
 
@@ -68,5 +77,9 @@ public class OfferController {
         offerRepository.deleteById(id);
         return new ResponseEntity(HttpStatus.OK);
     }
+    @GetMapping(value = "/categories")
+    public Iterable<String> getAllCategories() {
 
+        return offerRepository.findAllCategories();
+    }
 }

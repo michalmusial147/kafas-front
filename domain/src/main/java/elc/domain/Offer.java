@@ -29,10 +29,13 @@ public class Offer {
     private float price;
 
     @JsonManagedReference
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "offer")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "offer")
     private List<OfferImage> offerImages;
+
+    private String category;
 
     @Column(nullable = true)
     private int stock;
+
 
 }

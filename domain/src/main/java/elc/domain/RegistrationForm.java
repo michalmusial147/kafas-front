@@ -1,10 +1,7 @@
 package elc.domain;
-import lombok.Setter;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import lombok.Data;
 
-import javax.persistence.ElementCollection;
-import javax.persistence.FetchType;
 import java.util.List;
 
 
@@ -23,7 +20,6 @@ public class RegistrationForm {
 
   public AppUser toUser(PasswordEncoder passwordEncoder) {
     return new AppUser(
-            0,
             username,
             passwordEncoder.encode(password),
             firstName,

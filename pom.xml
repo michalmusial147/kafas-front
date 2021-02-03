@@ -28,6 +28,7 @@
         <module>web</module>
         <module>security</module>
     </modules>
+
     <build>
         <plugins>
             <plugin>

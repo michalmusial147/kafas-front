@@ -1,6 +1,8 @@
 package elc.web;
 
 import elc.data.OfferImageRepository;
+import elc.data.OfferRepository;
+import elc.domain.Offer;
 import elc.domain.OfferImage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
@@ -11,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 import java.io.IOException;
+import java.util.Optional;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,9 +28,11 @@ public class OfferImageBoundary {
 
     @Autowired
     OfferImageRepository offerImageRepository;
+    @Autowired
+    OfferRepository offerRepository;
 
 
-    @GetMapping(value = "/image/{imageId}", produces = MediaType.IMAGE_JPEG_VALUE)
+    @GetMapping(value = "/{imageId}", produces = MediaType.IMAGE_JPEG_VALUE)
     Resource downloadImage(@PathVariable Long imageId) {
         byte[] image = offerImageRepository.findById(imageId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND))
@@ -34,13 +40,14 @@ public class OfferImageBoundary {
         return new ByteArrayResource(image);
     }
 
-    @PostMapping("/image")
-    long uploadImage(@RequestParam MultipartFile multipartImage) throws IOException {
+    @PostMapping
+    long uploadImage(@RequestParam ("imageFile") MultipartFile imageFile,
+                     @RequestParam(value = "offerId", required = true) Integer offerId) throws IOException {
         OfferImage dbImage = new OfferImage();
-        dbImage.setContent(multipartImage.getBytes());
-
-        return offerImageRepository.save(dbImage)
-                .getId();
+        dbImage.setContent(imageFile.getBytes());
+        Optional<Offer> offer = offerRepository.findById(offerId);
+        dbImage.setOffer(offer.get());
+        return offerImageRepository.save(dbImage).getId();
     }
 
 }

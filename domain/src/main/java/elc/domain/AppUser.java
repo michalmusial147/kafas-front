@@ -40,8 +40,7 @@ public class AppUser{
   @Setter
   private List<Role> roles;
 
-  public AppUser(int i,
-                 String username,
+  public AppUser(String username,
                  String password,
                  String firstName,
                  String lastName,
