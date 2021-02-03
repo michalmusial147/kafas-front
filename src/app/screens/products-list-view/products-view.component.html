@@ -1,17 +1,24 @@
 <div fxLayout='row'>
-  <div fxFlex="100" fxFlex.lt-sm="100" ngClass.gt-sm="p-left">
-    <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-around center"
-         class="mat-elevation-z1 bottom-bar-row-wrapper">
-        <mat-form-field  appearance="fill">
-          <mat-label>Sortowanie</mat-label>
-          <select  matNativeControl  [(ngModel)]="this.selectedSorting" (change)="onChangeSorting($event.selectionChange)">
-            <option [value]="'asc'">Domyślne</option>
-            <option [value]="'a-z'">Alfabetycznie, A-Z</option>
-            <option [value]="'z-a'">Alfabetycznie, Z-A</option>
-            <option [value]="'low'">Najtańsze</option>
-            <option [value]="'high'">Najdroższe</option>
-          </select>
-        </mat-form-field>
+  <div fxFlex="100" fxFlex.lt-sm="100">
+    <div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="5px"
+         class="mat-elevation-z1 padding-top-5" >
+      <mat-form-field  appearance="outline">
+        <mat-label>Sortowanie</mat-label>
+        <select  matNativeControl  [(ngModel)]="this.selectedSorting" (change)="onChangeSorting($event.selectionChange)">
+          <option [value]="'asc'">Domyślne</option>
+          <option [value]="'a-z'">Alfabetycznie, A-Z</option>
+          <option [value]="'z-a'">Alfabetycznie, Z-A</option>
+          <option [value]="'low'">Najtańsze</option>
+          <option [value]="'high'">Najdroższe</option>
+        </select>
+      </mat-form-field>
+      <mat-form-field  appearance="outline">
+        <mat-label>Kategorie</mat-label>
+        <select  matNativeControl  [(ngModel)]="this.selectedCategory" (change)="onChangeCategory($event.selectionChange)">
+          <option [value]="'all'">Wszystko</option>
+          <option *ngFor="let category of this.categories" [value]="category">{{category}}</option>
+        </select>
+      </mat-form-field>
       <div fxShow.xs="false">
         <button mat-icon-button (click)="this.changeViewType('list', 50)">
           <mat-icon>view_list</mat-icon>
@@ -26,10 +33,9 @@
     </div>
 
     <app-loader *ngIf="this.showSpinner"></app-loader>
-
     <div [@Animation]="this.animation" fxLayout="row wrap" class="products-wrapper">
       <div
-        *ngFor="let product of this.allItems | orderBy: this.sortByOrder | paginate: { itemsPerPage: 12, currentPage: page  }"
+        *ngFor="let product of this.products | orderBy: this.sortByOrder | paginate: { itemsPerPage: 12, currentPage: page  }"
         fxFlex="50" [fxFlex.gt-sm]="viewCol" fxFlex.sm="50" class="col">
         <div class="product-box">
           <mat-card>
@@ -42,7 +48,7 @@
             </a>
             <mat-card-content>
               <mat-card-title> {{product.title}} </mat-card-title>
-              <mat-card-subtitle> Materiały budowlane </mat-card-subtitle>
+              <mat-card-subtitle>{{product.category}}</mat-card-subtitle>
               <div fxLayout="row" fxLayoutAlign="space-between center">
                 <h2>{{formatCurrency(product.price)}}</h2>
                 <button mat-mini-fab color="accent" aria-label="Add to cart button"
@@ -57,9 +63,9 @@
         </div>
       </div>
     </div>
-    <div *ngIf="products.length > 0" fxLayout="row wrap">
+    <div *ngIf="products.length > 0" fxLayout="row wrap" >
       <div fxFlex="100">
-        <mat-card class="p-0 text-center">
+        <mat-card fxLayout="row wrap" fxLayoutAlign="center">
           <pagination-controls class="product-pagination" autoHide="true" maxSize="5"
                                (pageChange)="onPageChanged($event)"></pagination-controls>
         </mat-card>

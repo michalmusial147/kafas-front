@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthenticationService} from '../../services/authentication';
 import {Router} from '@angular/router';
+import {User} from "../../model/user";
 
 @Component({
   selector: 'app-admin-panel',
@@ -38,11 +39,12 @@ export class AdminPanelComponent implements OnInit {
     },
   ]
   selectedOption: any;
+  public currentLoggedUser: User;
 
   constructor(public router: Router,public authenticationService: AuthenticationService) { }
 
   ngOnInit(): void {
-
+    this.currentLoggedUser = this.authenticationService.currentUserValue;
   }
 
   login() {
@@ -50,7 +52,9 @@ export class AdminPanelComponent implements OnInit {
   }
 
 
-  onNavListNgModelChange($event: any) {
-    this.router.navigate([$event[0].path]);
+  logout() {
+    this.authenticationService.logout();
+    this.currentLoggedUser = this.authenticationService.currentUserValue;
+    this.router.navigate(['/adminPanel']);
   }
 }

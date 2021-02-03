@@ -24,8 +24,10 @@ export class ProductDetailsComponent implements OnInit {
     this.showSpinner = true;
     this.route.params.subscribe(params => {
       const id = +params.id;
-      this.productsService.getProduct(id).subscribe(product => this.product = product);
-      this.showSpinner = false;
+      this.productsService.getProduct(id).subscribe(product => {
+        this.product = product
+        this.showSpinner = false;
+      });
     });
   }
 

@@ -36,6 +36,9 @@ export class CartViewComponent implements OnInit {
   removeProductFromCart(element: CartItem) {
     this.cartService.removeFromCart(element);
     this.table.renderRows();
+    this.totalAmount.subscribe((newAmount) =>{
+      this.shoppingTotalAmount = newAmount;
+    })
   }
   // Increase Product Quantity
   public increment(product: any) {

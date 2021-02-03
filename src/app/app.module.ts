@@ -6,7 +6,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
-import { HomePageDesktopComponent } from './home-page/home-page-desktop.component';
+import {HomePageDesktopComponent} from './home-page/home-page-desktop.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card';
@@ -44,17 +44,20 @@ import {OverlayModule} from '@angular/cdk/overlay';
 import { AccountComponent } from './screens/account/account.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { UserRegisterAccountComponent } from './screens/user-register-account/user-register-account.component';
-import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { EmailExistsDialogComponent } from './components/email-exists-dialog/email-exists-dialog.component';
-import {MatSelectModule} from "@angular/material/select";
+import {MatSelectModule} from '@angular/material/select';
 import { AdminPanelComponent } from './screens/admin-panel/admin-panel.component';
 import { AdminPanelLoginComponent } from './screens/admin-panel-login/admin-panel-login.component';
 import { BadCredentialsDialogComponent } from './components/bad-credentials-dialog/bad-credentials-dialog.component';
-import { ProductsManagerComponent } from './screens/products-manager/products-manager.component';
+import { ProductsManagerComponent } from './components/products-manager/products-manager.component';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { AdminOrdersComponent } from './components/admin-orders/admin-orders.component';
 import { AdminRenovationsComponent } from './components/admin-renovations/admin-renovations.component';
 import { AdminGatesComponent } from './components/admin-gates/admin-gates.component';
+import { AddProductDialogComponent } from './components/add-product-dialog/add-product-dialog.component';
+import { MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef } from '@angular/material/bottom-sheet';
+import {BottomSheetComponent} from "./home-page/bottom-sheet-component";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -79,7 +82,9 @@ import { AdminGatesComponent } from './components/admin-gates/admin-gates.compon
     AdminDashboardComponent,
     AdminOrdersComponent,
     AdminRenovationsComponent,
-    AdminGatesComponent
+    AdminGatesComponent,
+    AddProductDialogComponent,
+    BottomSheetComponent
   ],
     imports: [
         BrowserModule,
@@ -115,10 +120,13 @@ import { AdminGatesComponent } from './components/admin-gates/admin-gates.compon
         MatCheckboxModule,
         MatSelectModule,
     ],
-  providers: [ {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}},
+  providers: [
+    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}},
     {provide: MatDialogRef , useValue: {} },
     { provide: MAT_DIALOG_DATA, useValue: {} },
-    { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
+    { provide: MatBottomSheetRef, useValue: {} },
+    { provide: MAT_BOTTOM_SHEET_DATA, useValue: {}}
   ],
   bootstrap: [AppComponent]
 })

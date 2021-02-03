@@ -16,7 +16,6 @@ export class AppLoaderComponent implements  OnInit {
 
   ngOnInit() {
     const subscription = this.loadingStateService.loadingState.subscribe(status => {
-      console.log('spinner status:' + status);
       this.showSpinner = status;
     });
   }

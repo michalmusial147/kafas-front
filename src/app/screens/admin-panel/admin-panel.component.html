@@ -13,11 +13,15 @@
         </div>
       </div>
     </div>
+    <div fxLayoutGap="10px">
+      <span>{{this.currentLoggedUser.firstName}} {{this.currentLoggedUser.lastName}}</span>
+      <button (click)="this.logout()"  mat-raised-button>Wyloguj</button>
+    </div>
   </mat-toolbar-row>
 </mat-toolbar>
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #sidenav mode="over" opened class="mat-elevation-z2 sidenav">
-    <mat-selection-list [(ngModel)]="selectedOption" (ngModelChange)="onNavListNgModelChange($event)" #navPositions [multiple]="false">
+  <mat-sidenav #sidenav mode="over"  class="mat-elevation-z2 sidenav" >
+    <mat-selection-list [(ngModel)]="selectedOption"  #navPositions [multiple]="false">
       <mat-list-option *ngFor="let item of navItems" [value]="item">
         <span mat-line>{{item.topText}}</span>
         <span mat-line>{{item.bottomText}}</span>
@@ -25,7 +29,6 @@
     </mat-selection-list>
   </mat-sidenav>
   <mat-sidenav-content>
-
     <app-admin-dashboard  *ngIf="this.navPositions.selectedOptions.selected[0]?.value.id === 'home'"></app-admin-dashboard>
     <app-products-manager *ngIf="this.navPositions.selectedOptions.selected[0]?.value.id === 'products'"></app-products-manager>
     <app-admin-orders  *ngIf="this.navPositions.selectedOptions.selected[0]?.value.id === 'orders'"></app-admin-orders>

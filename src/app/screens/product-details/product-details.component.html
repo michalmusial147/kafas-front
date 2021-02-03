@@ -6,8 +6,9 @@
            [src]="this.productDetailsDomSanitizer.bypassSecurityTrustUrl(('data:image/jpg;base64,' + (product.offerImages[0].content)))"
            alt="product picture"/>
       <div fxLayout="row" fxLayoutAlign="space-between center">
-        <button mat-icon-button><mat-icon>keyboard_arrow_left</mat-icon></button>
-        <button mat-icon-button><mat-icon>keyboard_arrow_right</mat-icon></button>
+        <button disabled mat-icon-button><mat-icon>keyboard_arrow_left</mat-icon></button>
+        <span class="mat-caption">0</span>
+        <button disabled mat-icon-button><mat-icon>keyboard_arrow_right</mat-icon></button>
       </div>
     </mat-card>
     <div fxFlex="100"  fxLayout="column" fxLayoutAlign="space-between" fxLayoutGap="10px">

@@ -4,6 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import {Product} from '../../model/product';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {catchError, map, timeout} from 'rxjs/operators';
+import {environment} from '../../../environments/environment';
 
 const products = JSON.parse(localStorage.getItem('compareItem')) || [];
 
@@ -26,7 +27,7 @@ export class ProductService {
 
   public getProductsFromBackend(): Observable<Product[]> {
     // @ts-ignore
-    return this.httpClient.get<Product[]>('http://localhost:8080/offers').pipe( timeout(5000), map(products => {
+    return this.httpClient.get<Product[]>('http://localhost:8080/offers').pipe( map(products => {
        return products;
       }), catchError((err, caught) => {
         return throwError(err);
@@ -118,17 +119,28 @@ export class ProductService {
     localStorage.setItem('compareItem', JSON.stringify(products));
   }
 
-  // Get Products By category
-  // public getProductByCategory(category: string): Observable<Product[]> {
-  //   return this.products().pipe(map(items =>
-  //     items.filter((item: Product) => {
-  //       if (category === 'all') {
-  //         return item;
-  //       } else {
-  //         return item.category === category;
-  //       }
-  //
-  //     })
-  //   ));
-  // }
+  public addProductOnBackend(product: Product): Observable<any> {
+    return this.httpClient.post<any>(`${environment.apiUrl}/offers`, product)
+      .pipe(map(offer => {
+          return offer;
+        }), catchError((err, caught) => {
+          return throwError(err);
+        })
+      );
+  }
+  public addImageOnBackend(newOfferPhoto: File, id: any): Observable<any>{
+    const uploadImageData = new FormData();
+    uploadImageData.append('imageFile', newOfferPhoto, newOfferPhoto.name);
+
+    return this.httpClient.post('http://localhost:8080/offerImages/?offerId='.concat(id), uploadImageData, { observe: 'response' })
+      .pipe(map((response) => {
+          if (response.status === 200) {
+            console.log('Image uploaded successfully');
+          } else {
+            console.log('Image not uploaded successfully');
+          }
+        }
+      ))
+  }
+
 }

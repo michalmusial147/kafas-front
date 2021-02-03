@@ -1,9 +1,6 @@
 // Product Tag
 export type ProductTags = 'nike' | 'puma' | 'lifestyle' | 'caprese';
 
-// Product Colors
-export type ProductCategory = 'tynki' | 'kleje';
-
 export class Product {
   id?: number;
   title?: string;
@@ -15,13 +12,13 @@ export class Product {
   state?: string;
   shortDetails?: string;
   description?: string;
+  dateAdded?: string
   stock?: number;
   newPro?: boolean;
   brand?: string;
   sale?: boolean;
   category?: string;
   tags?: ProductTags[];
-  colors?: ProductCategory[];
   quantity?: number;
   constructor(
     id?: number,
@@ -34,6 +31,7 @@ export class Product {
     shortDetails?: string,
     description?: string,
     stock?: number,
+    dateAdded?: string,
     state?: string,
     newPro?: boolean,
     brand?: string,
@@ -59,9 +57,6 @@ export class Product {
     this.tags = tags;
     this.state = state;
     this.quantity =  quantity;
+    this.dateAdded = dateAdded;
   }
-}
-// Color Filter
-export interface CategoryFilter {
-  color?: ProductCategory;
 }

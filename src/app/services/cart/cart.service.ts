@@ -114,4 +114,9 @@ export class CartService {
     });
   }
 
+  clearCart() {
+    this.cartItems.getValue().forEach((item) => {
+      this.removeFromCart(item)
+    })
+  }
 }
