@@ -1,0 +1,56 @@
+<div *ngIf="!currentLoggedUser" class="fullscreen  padding-10 ">
+  <div  fxFill fxLayout="row" fxLayoutAlign="center center"   fxLayout.lt-sm="column" fxLayoutGap="50px">
+    <mat-card class="mat-elevation-z2" fxFill fxFlex="50" fxFlex.gt-md="50" fxFlex.md="50">
+      <div  fxFill fxLayout="column" fxLayoutAlign="center center">
+        <form fxLayout="column"  fxLayoutGap="5px">
+          <div>
+            <h2>Mam już konto</h2>
+          </div>
+          <div  fxFlex="100" fxFlex.gt-sm="100" >
+            <mat-form-field>
+              <input type="email" [(ngModel)]="userEmailLoginForm" matInput placeholder="Adres email" #name="ngModel" ngModel name="name" required>
+              <mat-error *ngIf="name.invalid">Podaj poprawny adres email</mat-error>
+            </mat-form-field>
+          </div>
+          <div  fxFlex="100" fxFlex.gt-sm="100" >
+            <mat-form-field>
+              <input type="password" [(ngModel)]="userPasswordLoginForm" matInput placeholder="Hasło" #password="ngModel" ngModel name="password" required>
+              <mat-error *ngIf="password.invalid">Podaj hasło</mat-error>
+            </mat-form-field>
+          </div>
+          <div  fxFlex="100" fxFlex.gt-sm="100">
+            <button (click)="this.login()"  mat-raised-button color="primary" type="submit">Zaloguj</button>
+          </div>
+        </form>
+      </div>
+    </mat-card>
+    <mat-card class="mat-elevation-z2" fxFill fxFlex="50" fxFlex.gt-md="50" fxFlex.md="50">
+      <div  fxFill fxLayout="column" fxLayoutAlign="center center">
+        <div fxLayout="column"  fxLayoutAlign="center center">
+          <div>
+            <h2>Nie mam konta</h2>
+          </div>
+          <p>Stwórz konto i zapisz swoje dane adresowe żeby ułatwić dalsze zakupy i śledzić zamówienia.</p>
+          <form fxLayout="row wrap">
+            <div fxFlex="100" fxFlex.gt-sm="100" ngClass.sm="mt-1" ngClass.xs="mt-1">
+              <button (click)="this.navigateToRegisterPage()" class="btn-project" mat-raised-button color="primary" type="submit">Zarejestruj</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+</div>
+<div *ngIf="currentLoggedUser">
+  <div  fxLayout="column" fxLayoutAlign="space-around center" class="margin3 mat-elevation-z1">
+    <div class="padding-10" fxLayout="column" fxLayoutAlign="center" >
+      <h2>Imie i nazwisko: {{currentLoggedUser.firstName}} {{currentLoggedUser.lastName}}</h2>
+      <h2>Adres email:  {{currentLoggedUser.username}}</h2>
+      <h2>Ulica:  {{currentLoggedUser.address1}}</h2>
+      <h2>Nr domu/mieszkania:  {{currentLoggedUser.address2}}</h2>
+      <h2>Kod pocztowy:  {{currentLoggedUser.postcode}}</h2>
+      <h2>Nr telefonu:  {{currentLoggedUser.telephone}}</h2>
+      <button (click)="this.logout()" color="primary" mat-raised-button>Wyloguj</button>
+    </div>
+  </div>
+</div>

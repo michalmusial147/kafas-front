@@ -1,0 +1,38 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row  fxLayout="row" fxLayoutAlign="space-between center">
+    <div fxLayout="row">
+      <button  (click)="sidenav.toggle()"  mat-icon-button>
+        <mat-icon  class="padding-8">menu</mat-icon>
+      </button>
+      <div>
+        <div fxLayoutAlign="center center" fxLayoutGap="5px">
+          <h1>KAFAS</h1>
+          <h2 *ngIf="this.navPositions.selectedOptions.selected[0]?.value">
+            - {{this.navPositions.selectedOptions.selected[0]?.value.topText}}
+          </h2>
+        </div>
+      </div>
+    </div>
+    <div fxLayoutGap="10px">
+      <span>{{this.currentLoggedUser.firstName}} {{this.currentLoggedUser.lastName}}</span>
+      <button (click)="this.logout()"  mat-raised-button>Wyloguj</button>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav mode="over"  class="mat-elevation-z2 sidenav" >
+    <mat-selection-list [(ngModel)]="selectedOption"  #navPositions [multiple]="false">
+      <mat-list-option *ngFor="let item of navItems" [value]="item">
+        <span mat-line>{{item.topText}}</span>
+        <span mat-line>{{item.bottomText}}</span>
+      </mat-list-option>
+    </mat-selection-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <app-admin-dashboard  *ngIf="this.navPositions.selectedOptions.selected[0]?.value.id === 'home'"></app-admin-dashboard>
+    <app-products-manager *ngIf="this.navPositions.selectedOptions.selected[0]?.value.id === 'products'"></app-products-manager>
+    <app-admin-orders  *ngIf="this.navPositions.selectedOptions.selected[0]?.value.id === 'orders'"></app-admin-orders>
+    <app-admin-renovations  *ngIf="this.navPositions.selectedOptions.selected[0]?.value.id === 'renovation'"></app-admin-renovations>
+    <app-admin-gates *ngIf="this.navPositions.selectedOptions.selected[0]?.value.id === 'gates'"></app-admin-gates>
+  </mat-sidenav-content>
+</mat-sidenav-container>

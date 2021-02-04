@@ -1,0 +1,36 @@
+<app-loader *ngIf="this.showSpinner"></app-loader>
+<div *ngIf="!this.showSpinner" fxLayout="column" fxLayoutAlign="center center">
+  <div class="product-details-wrapper" fxLayout="row" fxLayout.sm="row wrap" fxLayout.xs="row wrap" fxLayoutAlign="center stretch" fxLayoutGap="20px">
+    <mat-card fxLayout="column" fxFlex="100" fxLayoutAlign="stretch stretch">
+      <img mat-card-image
+           [src]="this.productDetailsDomSanitizer.bypassSecurityTrustUrl(('data:image/jpg;base64,' + (product.offerImages[0].content)))"
+           alt="product picture"/>
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <button disabled mat-icon-button><mat-icon>keyboard_arrow_left</mat-icon></button>
+        <span class="mat-caption">0</span>
+        <button disabled mat-icon-button><mat-icon>keyboard_arrow_right</mat-icon></button>
+      </div>
+    </mat-card>
+    <div fxFlex="100"  fxLayout="column" fxLayoutAlign="space-between" fxLayoutGap="10px">
+     <div>
+          <h1> {{product.title}} </h1>
+          <h2> {{formatCurrency(product.price)}} </h2>
+          <p> {{product.description}} </p>
+          <p> <span class="text-muted fw-500">Dostępność: {{product.stock}}</span> </p>
+        <div fxLayout="row" fxLayoutGap="10px" class="quantity">
+          <span class="text-muted fw-500">Quantity</span>
+          <div fxLayout="row" fxLayout.xs="column" class="text-muted">
+            <div fxLayout="row" fxLayoutAlign="center start">
+              <input matInput type="number" name="quantity" [(ngModel)]="productQuantity" min="0">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div fxLayoutGap="20px">
+        <button mat-raised-button color="primary" class="btn-project mr-10" (click)="addItemToCart(product, productQuantity)">
+          Dodaj do koszyka
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
