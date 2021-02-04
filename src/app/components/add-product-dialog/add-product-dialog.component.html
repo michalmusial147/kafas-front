@@ -1,0 +1,47 @@
+<div fxFill class="add-product-spinner-wrapper" *ngIf="this.showSpinner">
+  <mat-spinner></mat-spinner>
+</div>
+<div class="dialog-wrapper">
+  <div mat-dialog-content><h2>Dodaj nowy produkt</h2></div>
+  <div fxLayout="column" mat-dialog-content>
+    <mat-form-field appearance="outline">
+      <input [(ngModel)]="this.title" type="email" matInput placeholder="Nazwa" #titleForm="ngModel" ngModel
+             name="title" required>
+      <mat-error *ngIf="titleForm.invalid">Podaj nazwę produktu</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <textarea [(ngModel)]="this.description" type="text" matInput placeholder="Opis" #descriptioonForm="ngModel" ngModel
+                name="descriptioon" required></textarea>
+      <mat-error *ngIf="descriptioonForm.invalid">Podaj opis produktu</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <input [(ngModel)]="this.price" type="number" matInput placeholder="Cena" #priceForm="ngModel" ngModel
+             name="price" required min="0"/>
+      <mat-error *ngIf="priceForm.invalid">Podaj cenę produktu</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <input [(ngModel)]="this.stock" type="number" matInput placeholder="Na stanie" #stockForm="ngModel" ngModel
+             name="stock" required min="0"/>
+      <mat-error *ngIf="stockForm.invalid">Podaj stan magazynowy</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <input [(ngModel)]="this.category" type="text" matInput placeholder="Kategoria" #priceForm="ngModel" ngModel required />
+      <mat-error *ngIf="priceForm.invalid">Podaj kategorie</mat-error>
+    </mat-form-field>
+
+    <label class="input-file-label imp-bottom-button" for="inputfile">Add photo
+      <input
+        type="file"
+        id="inputfile"
+        name="inputfile"
+        class="input-file"
+        (change)="openImgFile($event)">
+      <img class="fillingimg" style="max-height: 150px" *ngIf="newOfferPhoto!=null" [src]="this.productDetailsDomSanitizer.bypassSecurityTrustResourceUrl(newOfferPhoto)" alt="" />
+    </label>
+
+  </div>
+  <div mat-dialog-actions>
+    <button color="primary" mat-raised-button mat-dialog-close (click)="addProduct()">Dodaj</button>
+    <button color="warn" mat-raised-button mat-dialog-close>Zamknij</button>
+  </div>
+</div>
