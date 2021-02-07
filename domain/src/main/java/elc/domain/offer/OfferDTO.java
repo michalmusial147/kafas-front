@@ -1,4 +1,4 @@
-package elc.domain;
+package elc.domain.offer;
 
 import lombok.Data;
 

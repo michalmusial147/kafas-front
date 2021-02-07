@@ -2,8 +2,8 @@ package elc.web;
 
 import elc.data.OfferRepository;
 import elc.data.UserRepository;
-import elc.domain.Offer;
-import elc.domain.OfferDTO;
+import elc.domain.offer.Offer;
+import elc.domain.offer.OfferDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

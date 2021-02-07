@@ -1,6 +1,7 @@
 package elc.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import elc.domain.offer.Offer;
 import lombok.*;
 import org.hibernate.annotations.Type;
 

@@ -1,7 +1,8 @@
-package elc.domain;
+package elc.domain.offer;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import elc.domain.cartItem.CartItem;
+import elc.domain.OfferImage;
 import lombok.*;
 import javax.persistence.*;
 import java.util.Date;
@@ -37,5 +38,7 @@ public class Offer {
     @Column(nullable = true)
     private int stock;
 
-
+    @JsonManagedReference
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "offer")
+    private List<CartItem> cartItems;
 }

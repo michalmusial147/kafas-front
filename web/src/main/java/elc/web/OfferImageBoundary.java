@@ -2,7 +2,7 @@ package elc.web;
 
 import elc.data.OfferImageRepository;
 import elc.data.OfferRepository;
-import elc.domain.Offer;
+import elc.domain.offer.Offer;
 import elc.domain.OfferImage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;

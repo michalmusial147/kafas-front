@@ -2,10 +2,12 @@ package elc.domain;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import elc.domain.order.Order;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.security.core.GrantedAuthority;
@@ -59,4 +61,6 @@ public class AppUser{
     this.telephone = telephone;
     this.roles =  roles;
   }
+
+
 }

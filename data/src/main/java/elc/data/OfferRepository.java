@@ -1,6 +1,6 @@
 package elc.data;
 
-import elc.domain.Offer;
+import elc.domain.offer.Offer;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
