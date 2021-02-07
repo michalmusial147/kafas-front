@@ -1,0 +1,52 @@
+<div class="dialog-wrapper">
+  <div mat-dialog-title>
+    <h2>Zamówienie nr {{order.id}}</h2>
+    <mat-divider></mat-divider>
+  </div>
+  <div fxLayout="row" mat-dialog-content>
+    <div fxLayout="column" fxFlex='35'>
+      <h3>Dane do rozliczenia</h3>
+      <p>Imie i nazwisko: {{user.firstName}} {{user.lastName}}</p>
+      <p>Adres email:  {{user.username}}</p>
+      <p>Ulica:  {{user.address1}}</p>
+      <p>Nr domu/mieszkania:  {{user.address2}}</p>
+      <p>Kod pocztowy:  {{user.postcode}}</p>
+      <p>Nr telefonu:  {{user.telephone}}</p>
+      <br/>
+    </div>
+    <div fxLayout="column" fxFlex='65'>
+      <h3>Zamawiane produkty</h3>
+      <div class="mat-elevation-z2 padding-5" fxLayout="row">
+      <span fxLayout="column" fxLayoutAlign="center" fxFlex="10">
+          Ilość
+        </span>
+        <mat-divider vertical="true"></mat-divider>
+        <span fxLayout="column" fxLayoutAlign="center center" fxFlex="45">
+          Nazwa
+        </span>
+        <mat-divider vertical="true"></mat-divider>
+        <span fxLayout="column" fxLayoutAlign="center center" fxFlex="45">
+          Cena
+        </span>
+      </div>
+      <div class="mat-elevation-z1 padding-5">
+        <p *ngFor="let item of order.cartItems" fxLayout="row">
+        <span fxLayout="column" fxLayoutAlign="center center" fxFlex="10">
+          {{item.quantity}}
+        </span>
+        <mat-divider vertical="true"></mat-divider>
+        <span fxLayout="column" fxLayoutAlign="center center" fxFlex="45">
+          {{getProductName(item)}}
+        </span>
+        <span fxLayout="column" fxLayoutAlign="center center" fxFlex="45">
+         {{currencyFormatter(getProductPrice(item))}}
+        </span>
+        </p>
+      </div>
+      <h3>Lączna kwota zamówienia: {{currencyFormatter(getTotalPrice())}}</h3>
+    </div>
+  </div>
+  <div mat-dialog-actions>
+    <button color="warn" mat-raised-button mat-dialog-close>Zamknij</button>
+  </div>
+</div>

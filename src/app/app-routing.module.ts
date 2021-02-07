@@ -12,6 +12,7 @@ import {AdminPanelLoginComponent} from './screens/admin-panel-login/admin-panel-
 import {ProductsManagerComponent} from './components/products-manager/products-manager.component';
 import {AdminDashboardComponent} from './components/admin-dashboard/admin-dashboard.component';
 import {AdminAuthGuard} from "./security/admin.auth.guard";
+import {CashDeskComponent} from "./screens/cash-desk/cash-desk.component";
 
 const desktopRoutes: Routes = [
   {
@@ -37,6 +38,9 @@ const desktopRoutes: Routes = [
   },
   {
     path: 'adminPanel', component: AdminPanelComponent, canActivate: [AdminAuthGuard],
+  },
+  {
+    path: 'cashDesk', component: CashDeskComponent
   }
 ];
 

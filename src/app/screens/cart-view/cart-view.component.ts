@@ -4,8 +4,10 @@ import {CartItem} from '../../model/cart-item';
 import {formatCurrency} from '../../model/formatCurrency';
 import * as lodash from 'lodash';
 import {Observable, of} from 'rxjs';
-import {MatTable} from "@angular/material/table";
-import {DomSanitizer} from "@angular/platform-browser";
+import {MatTable} from '@angular/material/table';
+import {DomSanitizer} from '@angular/platform-browser';
+import {AuthenticationService} from '../../services/authentication';
+import {Router} from '@angular/router';
 @Component({
   selector: 'app-cart-view',
   templateUrl: './cart-view.component.html',
@@ -21,9 +23,12 @@ export class CartViewComponent implements OnInit {
   public formatCurrency: any = formatCurrency;
   @ViewChild(MatTable) table: MatTable<any>;
   constructor(public cartService: CartService,
-              public productDetailsDomSanitizer: DomSanitizer) {}
+              public productDetailsDomSanitizer: DomSanitizer,
+              public authenticationService: AuthenticationService,
+              public router: Router) {}
 
   ngOnInit() {
+    console.log('cart view init')
     this.cartItems = this.cartService.getItems();
     this.cartItems.subscribe(( items ) => {
       this.shoppingCartItems = items;
@@ -58,5 +63,14 @@ export class CartViewComponent implements OnInit {
 
   getTotalCost() {
 
+  }
+
+  finalizeCart() {
+    if(this.authenticationService.currentUserValue){
+      this.router.navigate(['/cashDesk']);
+    }
+    else{
+      this.router.navigate(['/account',  { redirectTo: 'cart' }]);
+    }
   }
 }

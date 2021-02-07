@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthenticationService} from "../../services/authentication";
 import {User} from "../../model/user";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 import {EmailExistsDialogComponent} from "../../components/email-exists-dialog/email-exists-dialog.component";
 import {catchError, map} from "rxjs/operators";
@@ -25,12 +25,14 @@ export class UserRegisterAccountComponent implements OnInit {
   userPostcode: any;
   userTelephone: any;
   userNewsletterChecked: boolean;
+  public redirectTo;
   constructor(public authenticationService: AuthenticationService,
               public router: Router,
-              public dialog: MatDialog) { }
+              public dialog: MatDialog,
+              public route: ActivatedRoute) { }
 
   ngOnInit(): void {
-
+    this.redirectTo = this.route.snapshot.paramMap.get('redirectTo');
   }
 
   comparePasswords() {
@@ -50,7 +52,12 @@ export class UserRegisterAccountComponent implements OnInit {
     user.newsLetterSubscriber = this.userNewsletterChecked;
 
     this.authenticationService.register(user).pipe(map(result => {
-      this.router.navigate(['/']);
+      if(this.redirectTo){
+        this.router.navigate(['/'.concat(this.redirectTo)]);
+      }
+      else{
+        this.router.navigate(['/']);
+      }
     }), catchError((err) => {
       this.openDialog();
       return throwError(err);

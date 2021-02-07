@@ -6,7 +6,7 @@ import {CartItem} from '../../model/cart-item';
 import {Product} from '../../model/product';
 
 // Get product from Localstorage
-const products = JSON.parse(localStorage.getItem('cartItem')) || [];
+let products = JSON.parse(localStorage.getItem('cartItem')) || [];
 
 
 @Injectable({
@@ -115,8 +115,7 @@ export class CartService {
   }
 
   clearCart() {
-    this.cartItems.getValue().forEach((item) => {
-      this.removeFromCart(item)
-    })
+    localStorage.removeItem('cartItem');
+    products = [];
   }
 }

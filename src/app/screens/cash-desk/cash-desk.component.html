@@ -1,0 +1,50 @@
+<mat-card>
+  <div fxFill class="add-product-spinner-wrapper" *ngIf="this.showSpinner">
+    <mat-spinner></mat-spinner>
+  </div>
+  <h2>Podsumowanie zamówienia</h2>
+  <mat-divider></mat-divider>
+  <br/>
+  <h3>Dane do rozliczenia</h3>
+  <p>Imie i nazwisko: {{currentLoggedUser.firstName}} {{currentLoggedUser.lastName}}</p>
+  <p>Adres email:  {{currentLoggedUser.username}}</p>
+  <p>Ulica:  {{currentLoggedUser.address1}}</p>
+  <p>Nr domu/mieszkania:  {{currentLoggedUser.address2}}</p>
+  <p>Kod pocztowy:  {{currentLoggedUser.postcode}}</p>
+  <p>Nr telefonu:  {{currentLoggedUser.telephone}}</p>
+  <mat-divider></mat-divider>
+  <br/>
+  <h3>Zamawiane produkty</h3>
+  <div class="mat-elevation-z2 padding-5" fxLayout="row">
+    <span fxLayout="column" fxLayoutAlign="center" fxFlex="10">
+        Ilość
+      </span>
+    <mat-divider vertical="true"></mat-divider>
+    <span fxLayout="column" fxLayoutAlign="center center" fxFlex="45">
+        Nazwa
+    </span>
+    <span fxLayout="column" fxLayoutAlign="center center" fxFlex="45">
+        Cena
+    </span>
+  </div>
+  <div class="mat-elevation-z1 padding-5">
+    <p *ngFor="let item of shoppingCartItems" fxLayout="row">
+      <span fxLayout="column" fxLayoutAlign="center center" fxFlex="10">
+        {{item.quantity}}
+      </span>
+      <mat-divider vertical="true"></mat-divider>
+      <span fxLayout="column" fxLayoutAlign="center center" fxFlex="45">
+        {{item.product.title}}
+      </span>
+      <span fxLayout="column" fxLayoutAlign="center center" fxFlex="45">
+         {{currencyFormatter(item.product.price)}}
+    </span>
+    </p>
+  </div>
+  <br/>
+  <mat-divider></mat-divider>
+  <br/>
+  <h3>Lączna kwota zamówienia: {{currencyFormatter(shoppingTotalAmount)}}</h3>
+  <br/>
+  <button color="accent" mat-raised-button (click)="this.placeOrder()">Złóż zamówienie</button>
+</mat-card>

@@ -22,11 +22,12 @@ export class ProductService {
   public observer: Subscriber<{}>;
 
   constructor(private httpClient: HttpClient, public snackBar: MatSnackBar) {
+    // tslint:disable-next-line:no-shadowed-variable
     this.compareProducts.subscribe(products => products = products);
   }
 
   public getProductsFromBackend(): Observable<Product[]> {
-    // @ts-ignore
+    // tslint:disable-next-line:no-shadowed-variable
     return this.httpClient.get<Product[]>('http://localhost:8080/offers').pipe( map(products => {
        return products;
       }), catchError((err, caught) => {
@@ -76,6 +77,7 @@ export class ProductService {
 
 // If item is aleready added In compare
   public hasProduct(product: Product): boolean {
+    // tslint:disable-next-line:no-shadowed-variable
     const item = products.find(item => item.id === product.id);
     return item !== undefined;
   }
@@ -94,6 +96,7 @@ export class ProductService {
     let message, status;
     let item: Product | boolean = false;
     if (this.hasProduct(product)) {
+      // tslint:disable-next-line:no-shadowed-variable
       item = products.filter(item => item.id === product.id)[0];
       const index = products.indexOf(item);
       this.snackBar.open('The product  ' + product.title + ' already added to comparison list.', '×', { panelClass: 'error', verticalPosition: 'top', duration: 3000 });

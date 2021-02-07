@@ -1,1 +1,49 @@
-<p>admin-orders works!</p>
+<app-loader *ngIf="!usersFlag || !ordersFlag || !productsFlag">
+
+</app-loader>
+<div *ngIf="usersFlag && ordersFlag && productsFlag" >
+  <div class="mat-elevation-z1 padding-5 margin-5" fxLayout="row">
+    <span fxLayout="column" fxLayoutAlign="center center" fxFlex="20">
+      <h3>Nr zamówienia</h3>
+    </span>
+    <mat-divider vertical="true"></mat-divider>
+    <span fxLayout="column" fxLayoutAlign="center center" fxFlex="20">
+          <h3>Data otwarcia</h3>
+    </span>
+    <mat-divider vertical="true"></mat-divider>
+    <span fxLayout="column" fxLayoutAlign="center center" fxFlex="20">
+          <h3>Klient</h3>
+    </span>
+    <mat-divider vertical="true"></mat-divider>
+    <span fxLayout="column" fxLayoutAlign="center center" fxFlex="20">
+         <h3> Suma</h3>
+    </span>
+    <mat-divider vertical="true"></mat-divider>
+    <span fxLayout="column" fxLayoutAlign="center center" fxFlex="20">
+          <h3>Status</h3>
+    </span>
+  </div>
+  <mat-card style="cursor: pointer"  matRipple *ngFor="let order of orders" class="padding-5 margin-5" fxLayout="row" (click)="showOrder(order)">
+    <span fxLayout="column" fxLayoutAlign="center center" fxFlex="20">
+      {{order.id}}
+    </span>
+    <mat-divider vertical="true"></mat-divider>
+    <span fxLayout="column" fxLayoutAlign="center center" fxFlex="20">
+       {{order.date}}
+    </span>
+    <mat-divider vertical="true"></mat-divider>
+    <span fxLayout="column" fxLayoutAlign="center center" fxFlex="20">
+      {{getUserNames(order.userID)}}
+    </span>
+    <mat-divider vertical="true"></mat-divider>
+    <span fxLayout="column" fxLayoutAlign="center center" fxFlex="20">
+      {{currencyFormatter(getTotalPrice(order.id))}}
+    </span>
+    <mat-divider vertical="true"></mat-divider>
+      <span fxLayout="column" fxLayoutAlign="center center" fxFlex="20">
+           <span fxLayout="column" fxLayoutAlign="center center" fxFlex="20">
+        {{this.getStatus(order.status)}}
+      </span>
+    </span>
+  </mat-card>
+</div>

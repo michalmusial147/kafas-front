@@ -57,6 +57,9 @@ import { AdminGatesComponent } from './components/admin-gates/admin-gates.compon
 import { AddProductDialogComponent } from './components/add-product-dialog/add-product-dialog.component';
 import { MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import {BottomSheetComponent} from "./home-page/bottom-sheet-component";
+import { CashDeskComponent } from './screens/cash-desk/cash-desk.component';
+import {JwtInterceptor} from "./security/jwt.interceptor";
+import { OrderViewDialogComponent } from './components/order-view-dialog/order-view-dialog.component';
 
 @NgModule({
   declarations: [
@@ -84,7 +87,9 @@ import {BottomSheetComponent} from "./home-page/bottom-sheet-component";
     AdminRenovationsComponent,
     AdminGatesComponent,
     AddProductDialogComponent,
-    BottomSheetComponent
+    BottomSheetComponent,
+    CashDeskComponent,
+    OrderViewDialogComponent
   ],
     imports: [
         BrowserModule,
@@ -126,7 +131,8 @@ import {BottomSheetComponent} from "./home-page/bottom-sheet-component";
     { provide: MAT_DIALOG_DATA, useValue: {} },
     { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
     { provide: MatBottomSheetRef, useValue: {} },
-    { provide: MAT_BOTTOM_SHEET_DATA, useValue: {}}
+    { provide: MAT_BOTTOM_SHEET_DATA, useValue: {}},
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })
