@@ -18,10 +18,13 @@
           <p> {{product.description}} </p>
           <p> <span class="text-muted fw-500">Dostępność: {{product.stock}}</span> </p>
         <div fxLayout="row" fxLayoutGap="10px" class="quantity">
-          <span class="text-muted fw-500">Quantity</span>
           <div fxLayout="row" fxLayout.xs="column" class="text-muted">
             <div fxLayout="row" fxLayoutAlign="center start">
-              <input matInput type="number" name="quantity" [(ngModel)]="productQuantity" min="0">
+              <mat-form-field appearance="outline">
+                <input [(ngModel)]="this.productQuantity" type="number" matInput placeholder="Podaj ilość" #quantityForm="ngModel" ngModel
+                       name="stock" required min="0"/>
+                <mat-error *ngIf="quantityForm.invalid">Podaj ilość</mat-error>
+              </mat-form-field>
             </div>
           </div>
         </div>

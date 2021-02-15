@@ -1,0 +1,45 @@
+<div class="dialog-wrapper">
+  <div mat-dialog-content>
+    <h2>Wyceń swój remont</h2>
+  </div>
+  <div fxLayout="column"  mat-dialog-content>
+    <mat-form-field appearance="outline">
+      <textarea rows="10" [(ngModel)]="this.description" type="password" matInput placeholder="Opisz usługę" #password="ngModel" ngModel name="new-password" required>
+      </textarea>
+      <mat-error *ngIf="password.invalid">Opisz usługę(minimum 30 znaków)</mat-error>
+    </mat-form-field>
+    <div>
+      <mat-form-field  appearance="fill">
+        <mat-label>Data rozpoczęcia</mat-label>
+        <mat-date-range-input
+          [formGroup]="campaignOne"
+          [rangePicker]="campaignOnePicker">
+          <input matStartDate placeholder="Start date" formControlName="start">
+          <input matEndDate placeholder="End date" formControlName="end">
+        </mat-date-range-input>
+        <mat-datepicker-toggle matSuffix [for]="campaignOnePicker"></mat-datepicker-toggle>
+        <mat-date-range-picker #campaignOnePicker></mat-date-range-picker>
+      </mat-form-field>
+    </div>
+    <mat-form-field appearance="outline">
+      <input [(ngModel)]="this.userTelephone" type="tel" matInput placeholder="Telefon" #telephone="ngModel" required ngModel name="tel">
+      <mat-error *ngIf="telephone.invalid">Numer telefonu jest wymagany</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input type="email" matInput [formControl]="emailFormControl" placeholder="email@example.com">
+      <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+        Podaj proszę prawidłowy adres email
+      </mat-error>
+      <mat-error *ngIf="emailFormControl.hasError('required')">
+        Email jest <strong>wymagany</strong>
+      </mat-error>
+    </mat-form-field>
+
+  </div>
+  <div fxLayout="row" fxLayoutAlign="center center" mat-dialog-actions>
+    <button [disabled]="this.description.length<10" color="primary" mat-raised-button mat-dialog-close>Zapisz</button>
+    <button color="primary" mat-button mat-dialog-close>Zamknij</button>
+  </div>
+</div>

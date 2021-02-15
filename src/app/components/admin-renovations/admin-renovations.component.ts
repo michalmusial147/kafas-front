@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {RenovationsService} from '../../services/renovations/renovations.service';
 
 @Component({
   selector: 'app-admin-renovations',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminRenovationsComponent implements OnInit {
 
-  constructor() { }
+  public renovations = [];
+  page: any;
+  constructor(public renovationsService: RenovationsService) { }
 
   ngOnInit(): void {
+    this.renovationsService.get().subscribe((result)=>{
+
+     this.renovations = result;
+      console.log(result);
+    });
   }
 
+  onPageChanged($event: number) {
+
+  }
 }

@@ -1,12 +1,12 @@
-<mat-toolbar color="primary">
-  <mat-toolbar-row  fxLayout="row" fxLayoutAlign="space-between center">
+<mat-toolbar style="height: 100px" color="primary">
+  <mat-toolbar-row style="height: 100px"  fxLayout="row wrap" fxLayoutAlign="space-between center">
     <div fxLayout="row">
       <button  (click)="sidenav.toggle()"  mat-icon-button>
         <mat-icon  class="padding-8">menu</mat-icon>
       </button>
       <div>
         <div fxLayoutAlign="center center" fxLayoutGap="5px">
-          <h1>KAFAS</h1>
+          <h1>Budowniczy</h1>
           <h2 *ngIf="this.navPositions.selectedOptions.selected[0]?.value">
             - {{this.navPositions.selectedOptions.selected[0]?.value.topText}}
           </h2>

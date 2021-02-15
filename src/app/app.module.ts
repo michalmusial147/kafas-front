@@ -32,7 +32,7 @@ import {HttpClientModule, HttpClient, HTTP_INTERCEPTORS} from '@angular/common/h
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MAT_DIALOG_DATA, MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule, MatDialogRef} from '@angular/material/dialog';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatRippleModule} from '@angular/material/core';
+import {MatNativeDateModule, MatRippleModule} from '@angular/material/core';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { ProductDetailsComponent } from './screens/product-details/product-details.component';
@@ -56,10 +56,14 @@ import { AdminRenovationsComponent } from './components/admin-renovations/admin-
 import { AdminGatesComponent } from './components/admin-gates/admin-gates.component';
 import { AddProductDialogComponent } from './components/add-product-dialog/add-product-dialog.component';
 import { MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef } from '@angular/material/bottom-sheet';
-import {BottomSheetComponent} from "./home-page/bottom-sheet-component";
+import {BottomSheetComponent} from './home-page/bottom-sheet-component';
 import { CashDeskComponent } from './screens/cash-desk/cash-desk.component';
-import {JwtInterceptor} from "./security/jwt.interceptor";
+import {JwtInterceptor} from './security/jwt.interceptor';
 import { OrderViewDialogComponent } from './components/order-view-dialog/order-view-dialog.component';
+import { RestorationFormDialogComponent } from './components/restoration-form-dialog/restoration-form-dialog.component';
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import { WrongPasswordDialogComponent } from './components/wrong-password-dialog/wrong-password-dialog.component';
+import { LoadingPageComponentComponent } from './loading-page-component/loading-page-component.component';
 
 @NgModule({
   declarations: [
@@ -89,42 +93,47 @@ import { OrderViewDialogComponent } from './components/order-view-dialog/order-v
     AddProductDialogComponent,
     BottomSheetComponent,
     CashDeskComponent,
-    OrderViewDialogComponent
+    OrderViewDialogComponent,
+    RestorationFormDialogComponent,
+    WrongPasswordDialogComponent,
+    LoadingPageComponentComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        MatSliderModule,
-        MatButtonModule,
-        MatToolbarModule,
-        MatIconModule,
-        MatSidenavModule,
-        MatListModule,
-        MatCardModule,
-        MatFormFieldModule,
-        ReactiveFormsModule,
-        MatAutocompleteModule,
-        MatInputModule,
-        FormsModule,
-        MatChipsModule,
-        MatMenuModule,
-        MatGridListModule,
-        MatCarouselModule.forRoot(),
-        MatTabsModule,
-        FlexLayoutModule,
-        NgxPaginationModule,
-        HttpClientModule,
-        MatSnackBarModule,
-        MatRippleModule,
-        MatBadgeModule,
-        MatProgressSpinnerModule,
-        MatDialogModule,
-        MatTableModule,
-        OverlayModule,
-        MatCheckboxModule,
-        MatSelectModule,
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatSliderModule,
+    MatButtonModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatSidenavModule,
+    MatListModule,
+    MatCardModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatAutocompleteModule,
+    MatInputModule,
+    FormsModule,
+    MatChipsModule,
+    MatMenuModule,
+    MatGridListModule,
+    MatCarouselModule.forRoot(),
+    MatTabsModule,
+    FlexLayoutModule,
+    NgxPaginationModule,
+    HttpClientModule,
+    MatSnackBarModule,
+    MatRippleModule,
+    MatBadgeModule,
+    MatProgressSpinnerModule,
+    MatDialogModule,
+    MatTableModule,
+    OverlayModule,
+    MatCheckboxModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule
+  ],
   providers: [
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}},
     {provide: MatDialogRef , useValue: {} },
@@ -133,6 +142,7 @@ import { OrderViewDialogComponent } from './components/order-view-dialog/order-v
     { provide: MatBottomSheetRef, useValue: {} },
     { provide: MAT_BOTTOM_SHEET_DATA, useValue: {}},
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    MatDatepickerModule,
   ],
   bootstrap: [AppComponent]
 })

@@ -1,1 +1,37 @@
-<p>admin-renovations works!</p>
+<div class="products-wrapper" fxLayout="row wrap">
+  <div  *ngFor="let renovation of this.renovations | paginate: { itemsPerPage: 12, currentPage: page  }"
+    fxFlex="30" fxFlex.lt-md="45" fxFlex.xs="100" class="product-box">
+    <mat-card  fxLayout="column" fxFlex="100" fxLayoutAlign="stretch stretch">
+      <mat-card-header>
+        <div mat-card-avatar>
+          <mat-icon color="primary">handyman</mat-icon>
+        </div>
+        <mat-card-title>Zgłoszenie</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>
+          <strong>Opis:</strong>{{renovation.description}}
+        </p>
+        <p>
+          <strong>Data:</strong>{{renovation.date}}
+        </p>
+        <p>
+          <strong>Adres email:</strong>{{renovation.email}}
+        </p>
+        <p>
+          <strong>Nr telefonu:</strong>{{renovation.telephone}}
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+
+<div *ngIf="renovations.length > 0" fxLayout="row wrap" >
+  <div fxFlex="100">
+    <mat-card fxLayout="row wrap" fxLayoutAlign="center">
+      <pagination-controls class="product-pagination" autoHide="true" maxSize="5"
+                           (pageChange)="onPageChanged($event)"></pagination-controls>
+    </mat-card>
+  </div>
+</div>
+

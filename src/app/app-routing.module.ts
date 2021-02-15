@@ -9,10 +9,9 @@ import {AccountComponent} from './screens/account/account.component';
 import {UserRegisterAccountComponent} from './screens/user-register-account/user-register-account.component';
 import {AdminPanelComponent} from './screens/admin-panel/admin-panel.component';
 import {AdminPanelLoginComponent} from './screens/admin-panel-login/admin-panel-login.component';
-import {ProductsManagerComponent} from './components/products-manager/products-manager.component';
-import {AdminDashboardComponent} from './components/admin-dashboard/admin-dashboard.component';
 import {AdminAuthGuard} from "./security/admin.auth.guard";
 import {CashDeskComponent} from "./screens/cash-desk/cash-desk.component";
+import {LoadingPageComponentComponent} from "./loading-page-component/loading-page-component.component";
 
 const desktopRoutes: Routes = [
   {
@@ -41,6 +40,9 @@ const desktopRoutes: Routes = [
   },
   {
     path: 'cashDesk', component: CashDeskComponent
+  },
+  {
+    path: 'loading', component: LoadingPageComponentComponent
   }
 ];
 

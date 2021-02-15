@@ -1,8 +1,8 @@
 <div class="searcher-label">
-  <input class="searcher-input" type="text" placeholder="Wyszukaj">
+  <input class="searcher-input" type="text"  [(ngModel)]="searchParameter" placeholder="Wyszukaj">
   <div class="searcher-icon-wrapper">
-    <button color="accent" mat-raised-button style="align-content: center">
-      <mat-icon (click)="this.searchForResults()" class="icon-button">search</mat-icon>
+    <button (click)="this.searchForResults()"  color="accent" mat-raised-button style="align-content: center">
+      <mat-icon class="icon-button">search</mat-icon>
     </button>
   </div>
 </div>

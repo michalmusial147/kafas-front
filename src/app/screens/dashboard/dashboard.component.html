@@ -1,71 +1,75 @@
 <div class="dashboard-wrapper">
-  <div fxLayout="row" fxLayout.lt-sm="column" style="padding-right: 5%; padding-left: 5%" fxLayoutGap="10px">
-    <mat-card fxLayout="column" fxFlex="100" fxLayoutAlign="stretch stretch">
-      <mat-card-header>
-        <div mat-card-avatar>
-          <mat-icon color="primary">handyman</mat-icon>
-        </div>
-        <mat-card-title>Usługi budowlane</mat-card-title>
-        <mat-card-subtitle>Remonty</mat-card-subtitle>
-      </mat-card-header>
-      <img mat-card-image
-           style="height: 100%; width: 100%"
-           src="../../../assets/home-cards/remont.jpeg"
-           alt="product picture"/>
-      <mat-card-content>
-        <p>
-          Wyremontuj swój dom marzeń.
-        </p>
-      </mat-card-content>
-      <mat-card-actions fxLayout="row" fxLayoutAlign="center">
-        <button color="accent" mat-raised-button>Zamów</button>
-      </mat-card-actions>
-    </mat-card>
+  <div fxLayout="row" fxLayout.lt-sm="column wrap" style="padding-right: 10%; padding-left: 10%" fxLayoutGap="10px">
     <mat-card fxLayout="column" fxFlex="100" fxLayoutAlign="stretch stretch">
       <mat-card-header>
         <div mat-card-avatar>
           <mat-icon color="primary">local_offer</mat-icon>
         </div>
         <mat-card-title>Sklep z materiałami</mat-card-title>
-        <mat-card-subtitle>Oferujemy materiały budowlane w najlepszych cenach.</mat-card-subtitle>
+        <mat-card-subtitle>Materiały budowlane</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
-        <img mat-card-image
-             style="height: 100%; width: 100%"
-             src="../../../assets/home-cards/ladder_paint.jpeg"
-             alt="product picture"/>
         <p>
           Skorzystaj z naszego sklepu.
+          Importujemy  najwyższej jakości materiały budowlane z całego świata.
+          Tylko u nas rzadkie egzotytczne drewno dekoracyjne.
+          Odwiedź sklep i zamów, przekonaj się o jakości.
         </p>
       </mat-card-content>
       <mat-card-actions fxLayout="row" fxLayoutAlign="center">
-        <button color="accent" mat-raised-button>Odwiedź</button>
+        <button [routerLink]="['/products']" color="primary" mat-raised-button>Odwiedź</button>
       </mat-card-actions>
     </mat-card>
     <mat-card fxLayout="column" fxFlex="100" fxLayoutAlign="stretch stretch">
       <mat-card-header>
         <div mat-card-avatar>
-          <mat-icon color="primary">local_offer</mat-icon>
+          <mat-icon color="primary">handyman</mat-icon>
         </div>
-        <mat-card-title>Bramy żelazne</mat-card-title>
-        <mat-card-subtitle>Wykonujemy bramy żelazne na zamówienie.</mat-card-subtitle>
+        <mat-card-title>Remonty</mat-card-title>
+        <mat-card-subtitle>Brief</mat-card-subtitle>
       </mat-card-header>
-      <img mat-card-image
-           style="height: 100%; width: 100%"
-           src="../../../assets/home-cards/gate.jpeg"
-           alt="product picture"/>
       <mat-card-content>
         <p>
-          Skorzystaj z naszego sklepu.
+          Wyremontuj z nami dom swoich marzeń.
+          Wypełnij formularz a wycenimy twój projekt i skontakujemy się z Tobą.
+          Wykonujemy zlecenia razem z najlepszymi specjalistami z branży budowlanej.
         </p>
       </mat-card-content>
       <mat-card-actions fxLayout="row" fxLayoutAlign="center">
-        <button color="accent" mat-raised-button>Zamów</button>
+        <button color="primary" (click)="showResorationForm()" mat-raised-button>Zamów</button>
       </mat-card-actions>
     </mat-card>
+
+    <mat-card fxLayout="column" fxFlex="100" fxLayoutAlign="stretch stretch">
+    <mat-card-header>
+      <div mat-card-avatar>
+        <mat-icon color="primary">home</mat-icon>
+      </div>
+      <mat-card-title>Nieruchomości</mat-card-title>
+      <mat-card-subtitle>Oferujemy mieszkania pod wynajem.</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>
+        Posiadamy nieruchomości w interesujących lokalizacjach.
+        Przekładamy zadowolenie klienta ponad zysk, żeby przenieść poziom deweloperski ponad standard.
+        Zapraszamy do obejrzenia naszych aktualnych nieruchomości.
+      </p>
+    </mat-card-content>
+    <mat-card-actions fxLayout="row" fxLayoutAlign="center">
+      <button disabled [routerLink]="['products']" color="primary" mat-raised-button>Zobacz</button>
+    </mat-card-actions>
+    </mat-card>
   </div>
-  <div style="padding-right: 5%; padding-left: 5%" [style.height]="parentHeight">
+  <div style="padding-right: 10%; padding-left: 10%">
+  <mat-card  [style.height]="parentHeight">
+    <mat-card-header>
+      <div mat-card-avatar>
+        <mat-icon color="primary">star</mat-icon>
+      </div>
+      <mat-card-title>Nasze projekty</mat-card-title>
+    </mat-card-header>
     <mat-carousel
+      style="margin: 5px"
       #matCarousel
       [timings]="timings"
       [autoplay]="autoplay"
@@ -90,21 +94,21 @@
         [hideOverlay]="hideOverlay">
         <div fxFlexFill fxLayout="row" fxLayoutAlign="space-between center">
           <div fxLayout="column" fxLayoutAlign="center center" fxFlex="50">
-            <h3 style="margin-bottom: 5px">Ręcznie wykonywane bramy żelazne</h3>
-            <button
-              color=primary
-              mat-raised-button
-              (click)=" matCarouselSlide.disabled = !matCarouselSlide.disabled ">
-              Zamów teraz
-            </button>
+            <h2 style="margin-bottom: 5px">{{slidesList[i].title}}</h2>
+            <div fxLayout="row" fxLayoutAlign="center center" [fxShow.lt-md]="false">
+              <p fxFlex="50">
+                {{slidesList[i].description}}
+              </p>
+            </div>
           </div>
           <div fxFlex="50">
             <div>
-              <img style="width: 100%" src="../../../assets/home-cards/gate01.jpeg" alt="Photo of a gate">
+              <img style="width: 100%" src="../../../assets/home-cards/placeholder.jpg" alt="Photo of a gate">
             </div>
           </div>
         </div>
       </mat-carousel-slide>
     </mat-carousel>
+  </mat-card>
   </div>
 </div>

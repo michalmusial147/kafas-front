@@ -32,11 +32,6 @@ export class AdminPanelComponent implements OnInit {
       topText: 'Remonty',
       bottomText: 'Przeglądaj zamówienia remontów',
     },
-    {
-      id: 'gates',
-      topText: 'Bramy',
-      bottomText: 'Przeglądaj zamówienia bram',
-    },
   ]
   selectedOption: any;
   public currentLoggedUser: User;
@@ -55,6 +50,6 @@ export class AdminPanelComponent implements OnInit {
   logout() {
     this.authenticationService.logout();
     this.currentLoggedUser = this.authenticationService.currentUserValue;
-    this.router.navigate(['/adminPanel']);
+    this.router.navigate(['adminPanel/login/cfb7ea2d-5846-441a-905f-9a6ba8146f47']);
   }
 }

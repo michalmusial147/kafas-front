@@ -6,6 +6,7 @@ import { formatCurrency } from '../../model/formatCurrency';
 import {CartService} from '../../services/cart/cart.service';
 import {CategoriesService} from '../../services/categories/categories.service';
 import {Product} from '../../model/product';
+import Fuse from 'fuse.js';
 
 @Component({
   selector: 'app-products-view',
@@ -29,12 +30,34 @@ export class ProductsViewComponent implements OnInit {
   selectedSorting: any;
   public categories: string[];
   public selectedCategory: any;
+  private searchParam: string;
+
+  private options = {
+    // isCaseSensitive: false,
+     includeScore: true,
+    // shouldSort: true,
+    // includeMatches: false,
+    // findAllMatches: false,
+    // minMatchCharLength: 1,
+    // location: 0,
+    // threshold: 0.6,
+    // distance: 100,
+    // useExtendedSearch: false,
+    // ignoreLocation: false,
+    // ignoreFieldNorm: false,
+    keys: [
+      'title',
+      'category'
+    ]
+  };
+
+
   constructor(private productService: ProductService,
               private route: ActivatedRoute,
               public domSanitizer: DomSanitizer,
               public router: Router,
               public cartService: CartService,
-              public categoriesService: CategoriesService) {}
+              public categoriesService: CategoriesService,) {}
   ngOnInit() {
     this.showSpinner = true;
     this.route.params.subscribe(
@@ -48,10 +71,19 @@ export class ProductsViewComponent implements OnInit {
     this.categoriesService.getCategoriesFromBackend().subscribe((values)=>{
       this.categories = values;
     })
-
+    this.searchParam = this.route.snapshot.paramMap.get('searchFor');
+    console.log(this.searchParam)
     this.productService.getProductsFromBackend().subscribe(products => {
       this.allItems = products;
-      this.products = products;
+      if(this.searchParam && this.searchParam!=='undefined'){
+        const fuse = new Fuse(this.allItems, this.options);
+        const pattern = this.searchParam;
+        console.log(fuse.search(pattern));
+        this.products = fuse.search(pattern).map((item)=>item.item);
+      }
+      else{
+        this.products = products;
+      }
       this.showSpinner = false;
     });
   }
@@ -94,5 +126,9 @@ export class ProductsViewComponent implements OnInit {
       this.products =  this.allItems;
     }
     this.showSpinner = false;
+  }
+
+  navigateToProduct(product:any) {
+    this.router.navigate(['/products/'+ product.id]);
   }
 }

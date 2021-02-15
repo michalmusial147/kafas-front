@@ -7,7 +7,7 @@ import {Observable, of} from 'rxjs';
 import {MatTable} from '@angular/material/table';
 import {DomSanitizer} from '@angular/platform-browser';
 import {AuthenticationService} from '../../services/authentication';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 @Component({
   selector: 'app-cart-view',
   templateUrl: './cart-view.component.html',
@@ -29,6 +29,7 @@ export class CartViewComponent implements OnInit {
 
   ngOnInit() {
     console.log('cart view init')
+
     this.cartItems = this.cartService.getItems();
     this.cartItems.subscribe(( items ) => {
       this.shoppingCartItems = items;

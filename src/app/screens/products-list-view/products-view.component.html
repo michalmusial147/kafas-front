@@ -34,25 +34,25 @@
 
     <app-loader *ngIf="this.showSpinner"></app-loader>
     <div [@Animation]="this.animation" fxLayout="row wrap" class="products-wrapper">
+      <div *ngIf="this.products.length===0" style="padding-top: 100px" fxFill fxLayout="row" fxLayoutAlign="center center">
+        <h2>Brak produktu o wybranych parametrach</h2>
+      </div>
       <div
         *ngFor="let product of this.products | orderBy: this.sortByOrder | paginate: { itemsPerPage: 12, currentPage: page  }"
         fxFlex="50" [fxFlex.gt-sm]="viewCol" fxFlex.sm="50" class="col">
         <div class="product-box">
-          <mat-card>
-            <a href="{{ '/products/'+ product.id }}">
+          <mat-card   class="product-image" (click)="navigateToProduct(product)">
               <img
-                class="product-image"
                 mat-card-image
                 [src]="this.domSanitizer.bypassSecurityTrustUrl(('data:image/jpg;base64,'+ (product.offerImages[0].content)))"
                 alt="product image">
-            </a>
             <mat-card-content>
               <mat-card-title> {{product.title}} </mat-card-title>
               <mat-card-subtitle>{{product.category}}</mat-card-subtitle>
               <div fxLayout="row" fxLayoutAlign="space-between center">
                 <h2>{{formatCurrency(product.price)}}</h2>
-                <button mat-mini-fab color="accent" aria-label="Add to cart button"
-                        (click)="this.addItemToCart(product)">
+                <button  mat-mini-fab color="accent" aria-label="Add to cart button"
+                        (click)="this.addItemToCart(product); $event.stopPropagation()">
                   <mat-icon>
                     add_shopping_cart
                   </mat-icon>

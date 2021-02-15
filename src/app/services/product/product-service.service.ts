@@ -54,9 +54,12 @@ export class ProductService {
 
   // Get Products By Id
   public getProduct(id: number): Observable<Product> {
-    return this.getProductsFromBackend().pipe(map(items => {
-      return items.find((item: Product) => item.id === id);
-    }));
+    return this.httpClient.get<Product>('http://localhost:8080/offers/'+id).pipe( map(products => {
+        return products;
+      }), catchError((err, caught) => {
+        return throwError(err);
+      })
+    );
   }
 
 
