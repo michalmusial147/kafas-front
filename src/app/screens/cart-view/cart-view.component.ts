@@ -15,21 +15,19 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 
 export class CartViewComponent implements OnInit {
+
+  displayedColumns: string[] = ['image', 'title', 'quantity', 'totalPrice', 'delete'];
+  public formatCurrency: any = formatCurrency;
+  @ViewChild(MatTable) table: MatTable<any>;
   public cartItems: Observable<CartItem[]> = of([]);
   public shoppingCartItems: CartItem[] = [];
   public totalAmount: Observable<number> = of(0);
   public shoppingTotalAmount = 0;
-  displayedColumns: string[] = ['image', 'title', 'quantity', 'totalPrice', 'delete'];
-  public formatCurrency: any = formatCurrency;
-  @ViewChild(MatTable) table: MatTable<any>;
   constructor(public cartService: CartService,
               public productDetailsDomSanitizer: DomSanitizer,
               public authenticationService: AuthenticationService,
               public router: Router) {}
-
   ngOnInit() {
-    console.log('cart view init')
-
     this.cartItems = this.cartService.getItems();
     this.cartItems.subscribe(( items ) => {
       this.shoppingCartItems = items;
