@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {NavigationEnd, Router} from '@angular/router';
 import {DomSanitizer} from '@angular/platform-browser';
-import {DictionaryService} from '../services/dictionary/dictionary.service';
+import {DictionaryService} from '../../services/dictionary/dictionary.service';
 import {ComponentPortal} from '@angular/cdk/portal';
 import {Overlay} from '@angular/cdk/overlay';
-import {AuthenticationService} from '../services/authentication';
-import {CategoriesService} from '../services/categories/categories.service';
+import {AuthenticationService} from '../../services/authentication';
+import {CategoriesService} from '../../services/categories/categories.service';
 import {MatBottomSheet, MatBottomSheetRef} from '@angular/material/bottom-sheet';
 
 @Component({

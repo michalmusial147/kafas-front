@@ -11,7 +11,7 @@ import {AdminPanelComponent} from './screens/admin-panel/admin-panel.component';
 import {AdminPanelLoginComponent} from './screens/admin-panel-login/admin-panel-login.component';
 import {AdminAuthGuard} from "./security/admin.auth.guard";
 import {CashDeskComponent} from "./screens/cash-desk/cash-desk.component";
-import {LoadingPageComponentComponent} from "./loading-page-component/loading-page-component.component";
+import {LoadingPageComponentComponent} from "./screens/loading-page-component/loading-page-component.component";
 
 const desktopRoutes: Routes = [
   {

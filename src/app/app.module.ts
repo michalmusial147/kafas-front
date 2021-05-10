@@ -6,7 +6,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
-import {HomePageDesktopComponent} from './home-page/home-page-desktop.component';
+import {HomePageDesktopComponent} from './screens/home-page/home-page-desktop.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card';
@@ -56,14 +56,14 @@ import { AdminRenovationsComponent } from './components/admin-renovations/admin-
 import { AdminGatesComponent } from './components/admin-gates/admin-gates.component';
 import { AddProductDialogComponent } from './components/add-product-dialog/add-product-dialog.component';
 import { MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef } from '@angular/material/bottom-sheet';
-import {BottomSheetComponent} from './home-page/bottom-sheet-component';
+import {BottomSheetComponent} from './screens/home-page/bottom-sheet-component';
 import { CashDeskComponent } from './screens/cash-desk/cash-desk.component';
 import {JwtInterceptor} from './security/jwt.interceptor';
 import { OrderViewDialogComponent } from './components/order-view-dialog/order-view-dialog.component';
 import { RestorationFormDialogComponent } from './components/restoration-form-dialog/restoration-form-dialog.component';
-import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatDatepickerModule} from '@angular/material/datepicker';
 import { WrongPasswordDialogComponent } from './components/wrong-password-dialog/wrong-password-dialog.component';
-import { LoadingPageComponentComponent } from './loading-page-component/loading-page-component.component';
+import { LoadingPageComponentComponent } from './screens/loading-page-component/loading-page-component.component';
 
 @NgModule({
   declarations: [
