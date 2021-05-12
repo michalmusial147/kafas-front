@@ -66,5 +66,18 @@ export class HomePageDesktopComponent implements OnInit{
     }
   }
 
+  isHomeActive() {
+    return window.location.pathname === '/';
+  }
 
+  isCategoriesActive() {
+    return window.location.pathname.includes('products');
+  }
+
+  isCartActive() {
+    return window.location.pathname.includes( '/cart');
+  }
+  isAccountActive() {
+    return window.location.pathname.includes( 'account');
+  }
 }

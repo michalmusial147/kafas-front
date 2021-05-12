@@ -9,10 +9,11 @@ import {AccountComponent} from './screens/account/account.component';
 import {UserRegisterAccountComponent} from './screens/user-register-account/user-register-account.component';
 import {AdminPanelComponent} from './screens/admin-panel/admin-panel.component';
 import {AdminPanelLoginComponent} from './screens/admin-panel-login/admin-panel-login.component';
-import {AdminAuthGuard} from "./security/admin.auth.guard";
-import {CashDeskComponent} from "./screens/cash-desk/cash-desk.component";
-import {LoadingPageComponentComponent} from "./screens/loading-page-component/loading-page-component.component";
+import {AdminAuthGuard} from './security/admin.auth.guard';
+import {CashDeskComponent} from './screens/cash-desk/cash-desk.component';
+import {LoadingPageComponentComponent} from './screens/loading-page-component/loading-page-component.component';
 
+0
 const desktopRoutes: Routes = [
   {
     path: '', component: DashboardComponent , pathMatch: 'full'

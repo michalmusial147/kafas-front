@@ -3,7 +3,7 @@
     <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
       <div fxLayout="row" fxFlex="35" fxFlex.lt-md="25">
         <button color="primary" mat-flat-button (click)="this.navigateToHomePage()">
-          <h1 class="logo">Budowniczy</h1>
+          <h1 class="logo">buildify</h1>
         </button>
       </div>
       <app-app-searcher fxFlex="40" fxFlex.lt-md="40" fxShow.lt-sm="false"></app-app-searcher>
@@ -34,19 +34,19 @@
   </app-footer>
 
   <mat-toolbar fxLayout="row" fxLayoutAlign="space-between center"  fxShow="false" fxShow.sm="true" fxShow.xs="true" class="toolbarNav mat-elevation-z24">
-    <button mat-button (click)="this.navigateToHomePage()">
+    <button [ngClass]="this.isHomeActive() ? 'mat-elevation-z1' : ''" mat-button (click)="this.navigateToHomePage()">
       <mat-icon>home</mat-icon>
       <div>Home</div>
     </button>
-    <button mat-button (click)="this.navigateToProducts()">
+    <button  [ngClass]="this.isCategoriesActive() ? 'mat-elevation-z1' : ''" mat-button (click)="this.navigateToProducts()">
       <mat-icon>list</mat-icon>
       <div>Kategorie</div>
     </button>
-    <button mat-button (click)="this.navigateToCart()">
+    <button  [ngClass]="this.isCartActive() ? 'mat-elevation-z1' : ''" mat-button (click)="this.navigateToCart()">
       <mat-icon>shopping_cart</mat-icon>
       <div>Koszyk</div>
     </button>
-    <button mat-button (click)="this.navigateToAccount()">
+    <button  [ngClass]="this.isAccountActive() ? 'mat-elevation-z1' : ''" mat-button (click)="this.navigateToAccount()">
       <mat-icon>account_circle</mat-icon>
       <div>{{this.getName()}}</div>
     </button>
