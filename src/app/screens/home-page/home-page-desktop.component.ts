@@ -6,7 +6,6 @@ import {ComponentPortal} from '@angular/cdk/portal';
 import {Overlay} from '@angular/cdk/overlay';
 import {AuthenticationService} from '../../services/authentication';
 import {CategoriesService} from '../../services/categories/categories.service';
-import {MatBottomSheet, MatBottomSheetRef} from '@angular/material/bottom-sheet';
 
 @Component({
   selector: 'app-home-page-desktop',

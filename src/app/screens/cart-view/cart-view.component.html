@@ -2,7 +2,7 @@
   <h1>Koszyk pusty</h1>
   <button [routerLink]="['/products']" mat-raised-button color="primary">Zobacz produkty</button>
 </div>
-<div class="min-height" *ngIf="shoppingCartItems.length">
+<div class="min-height cart-wrapper" *ngIf="shoppingCartItems.length">
   <div class="mat-elevation-z2">
     <table mat-table [dataSource]="this.shoppingCartItems">
       <ng-container  matColumnDef="image" >
