@@ -29,6 +29,8 @@ public class Offer {
 
     private float price;
 
+    private boolean available;
+
     @JsonManagedReference
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "offer")
     private List<OfferImage> offerImages;

@@ -17,8 +17,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @Data
-@NoArgsConstructor(access=AccessLevel.PUBLIC, force=true)
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
 @Table(name = "appusers")
 public class AppUser{

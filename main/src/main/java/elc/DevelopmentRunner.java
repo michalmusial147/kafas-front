@@ -2,6 +2,7 @@ package elc;
 
 import elc.data.*;
 import elc.domain.AppUser;
+import elc.domain.RenovationBrief;
 import elc.domain.cartItem.CartItem;
 import elc.domain.offer.Offer;
 import elc.domain.OfferImage;
@@ -10,17 +11,12 @@ import elc.domain.Role;
 import elc.domain.order.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 
 @Component
 public class DevelopmentRunner  implements CommandLineRunner {
@@ -36,40 +32,27 @@ public class DevelopmentRunner  implements CommandLineRunner {
     private OrderRepository orderRepository;
     @Autowired
     private CartItemsRepository cartItemsRepository;
+    @Autowired
+    private RenovationsBriefRepository renovationsBriefRepository;
 
-    public static String encode(File file) {
-        String base64Image = "";
-        try (FileInputStream imageInFile = new FileInputStream(file)) {
-            byte imageData[] = new byte[(int) file.length()];
-            imageInFile.read(imageData);
-            base64Image = Base64.getEncoder().encodeToString(imageData);
-        } catch (FileNotFoundException e) {
-            System.out.println("Image not found" + e);
-        } catch (IOException ioe) {
-            System.out.println("Exception while reading the Image " + ioe);
-        }
-        return base64Image;
-    }
     @Override
     public void run(String... args) throws Exception {
-        File placeHolderImage = new ClassPathResource(
-                "kafasPlaceholder.jpg").getFile();
 
         userRepository.save(AppUser.builder()
                 .username("admin@gmail.com")
-                .password(passwordEncoder.encode("test"))
+                .password(passwordEncoder.encode("test1234"))
                 .roles(Collections.singletonList(Role.ROLE_ADMIN))
-                .firstName("Piotr")
-                .lastName("Michalak")
-                .address1("Katarzyna")
+                .firstName("Michał")
+                .lastName("Musiał")
+                .address1("Warszawa")
                 .address2("20")
-                .postcode("61-650")
-                .telephone("652025987")
+                .postcode("11-222")
+                .telephone("123421234")
                 .build());
 
         AppUser userClient = userRepository.save(AppUser.builder()
                 .username("testowy_klient@gmail.com")
-                .password(passwordEncoder.encode("test"))
+                .password(passwordEncoder.encode("test1234"))
                 .roles(Arrays.asList(Role.ROLE_USER))
                 .firstName("Adam")
                 .lastName("Kowalski")
@@ -116,5 +99,107 @@ public class DevelopmentRunner  implements CommandLineRunner {
                         .build()));
             }
         }
+        renovationsBriefRepository.save(RenovationBrief.builder()
+                .date(new Date())
+                .description("Remont łazienki 10m2")
+                .email("emailtest@email.com")
+                .telephone("123123147")
+                .build());
+        renovationsBriefRepository.save(RenovationBrief.builder()
+                .date(new Date())
+                .description("Remont mieszkania 50m2")
+                .email("emailtest@email.com")
+                .telephone("333323147")
+                .build());
+        renovationsBriefRepository.save(RenovationBrief.builder()
+                .date(new Date())
+                .description("Montaż kabiny prysznicowej")
+                .email("ewat@email.com")
+                .telephone("999888111")
+                .build());
+        renovationsBriefRepository.save(RenovationBrief.builder()
+                .date(new Date())
+                .description("Monataż bramy garażowej.")
+                .email("adamdama@email.com")
+                .telephone("444555111")
+                .build());
+        renovationsBriefRepository.save(RenovationBrief.builder()
+                .date(new Date())
+                .description("Monataż bramy garażowej.")
+                .email("adamdama@email.com")
+                .telephone("444555111")
+                .build());
+        renovationsBriefRepository.save(RenovationBrief.builder()
+                .date(new Date())
+                .description("Monataż bramy garażowej.")
+                .email("adamdama@email.com")
+                .telephone("444555111")
+                .build());
+        renovationsBriefRepository.save(RenovationBrief.builder()
+                .date(new Date())
+                .description("Monataż bramy garażowej.")
+                .email("adamdama@email.com")
+                .telephone("444555111")
+                .build());
+        renovationsBriefRepository.save(RenovationBrief.builder()
+                .date(new Date())
+                .description("Monataż bramy garażowej.")
+                .email("adamdama@email.com")
+                .telephone("444555111")
+                .build());
+        renovationsBriefRepository.save(RenovationBrief.builder()
+                .date(new Date())
+                .description("Monataż bramy garażowej.")
+                .email("adamdama@email.com")
+                .telephone("444555111")
+                .build());
+        renovationsBriefRepository.save(RenovationBrief.builder()
+                .date(new Date())
+                .description("Monataż bramy garażowej.")
+                .email("adamdama@email.com")
+                .telephone("444555111")
+                .build());
+        renovationsBriefRepository.save(RenovationBrief.builder()
+                .date(new Date())
+                .description("Monataż bramy garażowej.")
+                .email("adamdama@email.com")
+                .telephone("444555111")
+                .build());
+        renovationsBriefRepository.save(RenovationBrief.builder()
+                .date(new Date())
+                .description("Monataż bramy garażowej.")
+                .email("adamdama@email.com")
+                .telephone("444555111")
+                .build());
+        renovationsBriefRepository.save(RenovationBrief.builder()
+                .date(new Date())
+                .description("Monataż bramy garażowej.")
+                .email("adamdama@email.com")
+                .telephone("444555111")
+                .build());
+        renovationsBriefRepository.save(RenovationBrief.builder()
+                .date(new Date())
+                .description("Monataż bramy garażowej.")
+                .email("adamdama@email.com")
+                .telephone("444555111")
+                .build());
+        renovationsBriefRepository.save(RenovationBrief.builder()
+                .date(new Date())
+                .description("Monataż bramy garażowej.")
+                .email("adamdama@email.com")
+                .telephone("444555111")
+                .build());
+        renovationsBriefRepository.save(RenovationBrief.builder()
+                .date(new Date())
+                .description("Wymiana okna tarasowego.")
+                .email("adam@email.com")
+                .telephone("444555111")
+                .build());
+        renovationsBriefRepository.save(RenovationBrief.builder()
+                .date(new Date())
+                .description("Monataż bramy garażowej.")
+                .email("adam@email.com")
+                .telephone("111555111")
+                .build());
     }
 }
